@@ -1,8 +1,8 @@
 {
   "name": "buy-local",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "e-com shop for buyers + cms for vendor stores",
+  "main": "server/server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "cd server && npm start",
@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/matt-gross-27/buy-local#readme",
   "devDependencies": {
-    "concurrently": "^6.1.0",
+    "concurrently": "^6.1.0"
+  },
+  "dependencies": {
     "if-env": "^1.0.4"
   }
 }
