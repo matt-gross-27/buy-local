@@ -7,13 +7,13 @@ const shopSchema = new Schema(
     name: {
       type: String,
       required: true,
-      maxLength: 60,
       unique: true
     },
 
     description: {
       type: String,
-      maxlength: 280
+      maxlength: 280,
+      required: true
     },
 
     instagram: {
@@ -23,13 +23,15 @@ const shopSchema = new Schema(
 
     logo: {
       type: String,
-      match: [/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, 'invalid url']
+      default: "https://res.cloudinary.com/dly1i5lwp/image/upload/v1621391331/buy-local-logo_tko5dc.png",
+      match: [/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, 'invalid url'],
     },
 
     phone: {
       type: String,
       minLength: 10,
       maxLength: 10,
+      required: true,
       match: [/[0-9]+/, 'must be 10 digits']
 
     },
@@ -45,10 +47,12 @@ const shopSchema = new Schema(
 
     city: {
       type: String,
+      required: true
     },
 
     state: {
-      type: String
+      type: String,
+      required: true
     },
 
     zip: {
@@ -69,12 +73,12 @@ const shopSchema = new Schema(
 
     open: {
       type: Boolean,
-      default: true
+      default: false
     },
 
     pickup: {
       type: Boolean,
-      default: true
+      default: false
     },
 
     delivery: {
@@ -128,7 +132,7 @@ shopSchema.virtual('ratingCount').get(function() {
 });
 
 shopSchema.virtual('ratingAvg').get(function() {
-  return Math.round(this.ratings.reduce((a, b) => a + b) / this.ratings.length * 100) / 100
+  return Math.round(this.ratings.stars.reduce((a, b) => a + b) / this.ratings.length * 100) / 100
 });
 
 const Shop = model('Shop', shopSchema);
