@@ -6,6 +6,10 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    isVendor: Boolean
+    # orderHistory: Order
+    # shop: Shop
+
   }
 
   type Auth {
