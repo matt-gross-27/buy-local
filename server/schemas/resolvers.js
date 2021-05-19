@@ -48,6 +48,14 @@ const resolvers = {
       return { token, user };
     },
 
+    updateProduct: async (parent, { _id, stock }) => {
+      const decrement = Math.abs(stock) * -1;
+      return await Product.findByIdAndUpdate(
+        _id, 
+        { $inc: { stock: decrement } }, 
+        { new: true });
+    },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
