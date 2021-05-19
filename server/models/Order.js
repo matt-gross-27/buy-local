@@ -1,4 +1,4 @@
-const { Schema, Model } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const orderSchema = new Schema(
   {
@@ -18,11 +18,11 @@ const orderSchema = new Schema(
         ref: 'Product'
       }
     ],
-    shopId: {
+    shop: {
       type: Schema.Types.ObjectId,
       ref: 'Shop'
     },
-    customerId: {
+    customer: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     }
@@ -34,6 +34,6 @@ const orderSchema = new Schema(
   },
 );
 
-const Order = Model('Order', orderSchema);
+const Order = model('Order', orderSchema);
 
 module.exports = Order;

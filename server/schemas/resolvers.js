@@ -7,13 +7,21 @@ const resolvers = {
   Query: {
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id);
+        const user = await User.findById(context.user._id).populate({ path: 'shop' });
         return user
       }
       throw new AuthenticationError('Not logged in');
     },
+    getShops: async () => {
+      const shops = await Shop.find()
+        .populate({ path: 'owner' })
+        .populate({ path: 'categories' })
+        .populate({ path: 'products' })
+        .populate({ path: 'sales' });
 
-    // addMoreQueries {},
+      return shops;
+    }
+
   },
   Mutation: {
     createUser: async (parent, args) => {
@@ -35,11 +43,11 @@ const resolvers = {
       return { token, user };
     },
 
-    createShop: async(parent, args, context) => {
+    createShop: async (parent, args, context) => {
       if (context.user) {
 
         const shop = await Shop.create({
-          storeOwner: context.user._id,
+          owner: context.user._id,
           name: args.name,
           description: args.description,
           phone: args.phone,
@@ -55,14 +63,18 @@ const resolvers = {
           delivery: args.delivery,
           shipping: args.shipping,
         });
-
-        shop.populate('storeOwner');
         
-        User.findByIdAndUpdate(
+        await shop
+          .populate({ path: 'owner' })
+          .populate({ path: 'categories' })
+          .populate({ path: 'products' })
+          .populate({ path: 'sales' });
+
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { "isVendor": true, "shop": shop._id },
+          { $set: { isVendor: true, shop: shop._id } },
           { new: true, runValidators: true }
-        );
+        ).populate({ path: 'shop' });
 
         return shop;
       }

@@ -7,9 +7,8 @@ const typeDefs = gql`
     lastName: String
     email: String
     isVendor: Boolean
-    # orderHistory: Order
-    # shop: Shop
-
+    orderHistory: [Order]
+    shop: Shop
   }
 
   type Category {
@@ -19,9 +18,16 @@ const typeDefs = gql`
 
   type Rating {
     _id: ID
-    userId: User
-    stars: Int
     createdAt: String
+    stars: Int
+    user: User
+  }
+
+  type Review {
+    _id: ID
+    createdAt: String
+    reviewText: String
+    user: User
   }
 
   type Product {
@@ -32,13 +38,6 @@ const typeDefs = gql`
     price: Float
     stock: Int
     category: Category
-  }
-
-  type Review {
-    _id: ID
-    reviewText: String
-    createdAt: String
-    userId: User
   }
 
   type Shop {
@@ -59,15 +58,16 @@ const typeDefs = gql`
     pickup: Boolean
     delivery: Boolean
     shipping: Boolean
-    storeOwner: User
+    owner: User
     categories: [Category]
     products: [Product]
+    sales: [Order]
     ratings: [Rating]
     reviews: [Review]
-    ratingAvg: Float 
     categoryCount: Int
     reviewCount: Int
     ratingCount: Int
+    ratingAvg: Float 
   }
 
   type Purchase {
@@ -89,6 +89,7 @@ const typeDefs = gql`
 
   type Query {
     user: User
+    getShops: [Shop]
   }
 
   type Mutation {

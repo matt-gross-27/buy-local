@@ -91,7 +91,7 @@ const shopSchema = new Schema(
       default: false
     },
 
-    storeOwner: {
+    owner: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
@@ -109,12 +109,20 @@ const shopSchema = new Schema(
         ref: 'Product'
       }
     ],
+    
+    sales: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Order'
+      }
+    ],
+
     ratings: [ratingSchema],
     reviews: [reviewSchema]
   },
   {
     toJSON: {
-      virtuals: true
+      virtuals: true,
     }
   }
 );
@@ -132,7 +140,12 @@ shopSchema.virtual('ratingCount').get(function() {
 });
 
 shopSchema.virtual('ratingAvg').get(function() {
-  return Math.round(this.ratings.stars.reduce((a, b) => a + b) / this.ratings.length * 100) / 100
+  try { 
+    return Math.round(this.ratings.map(rating => rating.stars)
+      .reduce((a, b) => a + b) / this.ratings.length * 100) / 100 
+  } catch (e) { 
+    return 0
+  } 
 });
 
 const Shop = model('Shop', shopSchema);
