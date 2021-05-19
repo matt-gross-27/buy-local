@@ -76,7 +76,7 @@ const typeDefs = gql`
   }
 
   type Order {
-    createdAt: Date
+    createdAt: String
     purchases: [Purchase]
     shopId: Shop
     customerId: User
@@ -94,6 +94,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    createShop(name: String!, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
   }
 `;
 
