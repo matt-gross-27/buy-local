@@ -28,11 +28,29 @@ const userSchema = new Schema(
       type: String,
       required: true,
       minLength: 8
+    },
+
+    isVendor: {
+      type: Boolean,
+      default: false
+    },
+    
+    orders: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Order'
+      }
+    ],
+    
+    shop: {
+      type: Schema.Types.ObjectId,
+      ref: 'Shop'
     }
   },
   {
     toJSON: {
-      virtuals: true
+      virtuals: true,
+      getters: true
     }
   }
 );
