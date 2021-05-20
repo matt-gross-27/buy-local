@@ -103,6 +103,7 @@ const typeDefs = gql`
     createOrder(products: [ID]!): Order
     updateProduct(_id: ID!, stock: Int!): Product
     createReview(shopId: ID!, reviewText: String!): Shop
+    createRating(shopId: ID!, stars: Int): Shop
   }
 `;
 

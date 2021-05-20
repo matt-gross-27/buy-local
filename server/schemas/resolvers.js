@@ -147,6 +147,21 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    createRating: async (parent, { shopId, stars }, context) => {
+      if (context.user) {
+        const updatedRating = await Shop.findOneAndUpdate(
+          { _id: shopId },
+          // need to check
+          { $push: { reviews: { stars, shop: context.user.shop } } },
+          { new: true, runValidators: true }
+        );
+
+        return updatedRating;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
   }
 }
 
