@@ -153,7 +153,7 @@ const resolvers = {
         const updatedRating = await Shop.findOneAndUpdate(
           { _id: shopId },
           // need to check
-          { $push: { reviews: { stars, shop: context.user.shop } } },
+          { $push: { ratings: { stars, shop: context.user.shop } } },
           { new: true, runValidators: true }
         );
 
