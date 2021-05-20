@@ -89,21 +89,31 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    getShops: [Shop]
+    shop(_id: ID): Shop
+    shops: [Shop]
     categories: [Category]
-    products(category: ID, name: String): [Product]
     product(_id: ID!): Product
+    products(category: ID, name: String): [Product]
     order(_id: ID!): Order
+    myOrderHistory: [Order]
+    mySales: [Order]
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    
     createShop(name: String!, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
-    createOrder(products: [ID]!): Order
-    updateProduct(_id: ID!, stock: Int!): Product
-    createReview(shopId: ID!, reviewText: String!): Shop
-    createRating(shopId: ID!, stars: Int): Shop
+    updateShop(name: String, description: String, phone: String, instagram: String, logo: String, addressNum: String, street: String, city: String, state: String, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
+
+    createCategory(name: String!): Shop
+    createProduct(name: String!, description: String, image: String, price: Float, stock: Int, categoryName: String): Shop
+    updateProduct(productId: ID, name: String!, description: String, image: String, price: Float, stock: Int, categoryName: String): Shop
+    
+    createRating(shopId: ID!, stars: Int!, createdAt: String): Shop
+    createReview(shopId: ID!, reviewText: String!, createdAt: String): Shop    
+    
+    createOrder(purchases: [ID!]): Order
   }
 `;
 
