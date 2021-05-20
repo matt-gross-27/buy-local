@@ -101,9 +101,12 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     createShop(name: String!, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
+    createOrder(products: [ID]!): Order
     updateProduct(_id: ID!, stock: Int!): Product
     createCategory(name: String!): Category 
     deleteCategory(name: String!): Category
+    createReview(shopId: ID!, reviewText: String!): Shop
+    createRating(shopId: ID!, stars: Int): Shop
   }
 `;
 
