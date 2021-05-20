@@ -93,6 +93,7 @@ const typeDefs = gql`
     categories: [Category]
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
+    category(name: String!): Category
   }
 
   type Mutation {
@@ -100,6 +101,8 @@ const typeDefs = gql`
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     createShop(name: String!, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
     updateProduct(_id: ID!, stock: Int!): Product
+    createCategory(name: String!): Category 
+    deleteCategory(name: String!): Category
   }
 `;
 
