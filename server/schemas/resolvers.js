@@ -74,7 +74,6 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
-
     updateProduct: async (parent, { _id, stock }) => {
       const decrement = Math.abs(stock) * -1;
       return await Product.findByIdAndUpdate(
@@ -82,6 +81,7 @@ const resolvers = {
         { $inc: { stock: decrement } }, 
         { new: true });
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
@@ -131,8 +131,23 @@ const resolvers = {
         return shop;
       }
       throw new AuthenticationError('Not Logged In');
-    }
-  },
+    },
+
+    createReview: async (parent, { shopId, reviewText }, context) => {
+      if (context.user) {
+        const updatedReview = await Shop.findOneAndUpdate(
+          { _id: shopId },
+          // need to check
+          { $push: { reviews: { reviewText, shop: context.user.shop } } },
+          { new: true, runValidators: true }
+        );
+
+        return updatedReview;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+  }
 }
 
 module.exports = resolvers;
