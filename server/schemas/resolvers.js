@@ -43,7 +43,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    
+
     getShops: async () => {
       const shops = await Shop.find()
         .populate({ path: 'owner' })
@@ -64,14 +64,16 @@ const resolvers = {
     createOrder: async (parent, { products }, context) => {
       if (context.user) {
         const orderHistory = new Order({ products });
+        // const sales = 
 
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: orderHistory } });
-
+       //  await Shop.findByIdAndUpdate(context.user._id, { $push: { orders: sales } })
         return orderHistory;
       }
 
       throw new AuthenticationError('Not logged in');
     },
+
 
     updateProduct: async (parent, { _id, stock }) => {
       const decrement = Math.abs(stock) * -1;
@@ -80,7 +82,6 @@ const resolvers = {
         { $inc: { stock: decrement } }, 
         { new: true });
     },
-
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
