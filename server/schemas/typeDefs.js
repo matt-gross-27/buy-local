@@ -107,4 +107,5 @@ const typeDefs = gql`
   }
 `;
 
+//exporting typeDefs here
 module.exports = typeDefs;
