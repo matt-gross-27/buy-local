@@ -47,6 +47,17 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    createOrder: async (parent, { products }, context) => {
+      if (context.user) {
+        const orderHistory = new Order({ products });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { orders: orderHistory } });
+
+        return orderHistory;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
 
     updateProduct: async (parent, { _id, stock }) => {
       const decrement = Math.abs(stock) * -1;
