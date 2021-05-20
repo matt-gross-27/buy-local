@@ -131,8 +131,45 @@ const resolvers = {
         return shop;
       }
       throw new AuthenticationError('Not Logged In');
+    },
+
+    createCategory: async (parent, args, context) => {
+      if (context.user) {
+  
+        const newCategory = await Category.create({
+          name: args.name
+        });
+        
+        await Product.findByIdAndUpdate(
+          { _id: context._id },
+          { $push: { category: newCategory} },
+          { new: true, runValidators: true }
+        ).populate({ path: 'category' });
+  
+        return newCategory;
+      }
+      throw new AuthenticationError('Not Logged In');
+    },
+
+    deleteCategory: async (parent, args, context) => {
+      if (context.user) {
+
+        const deleteCategory = await Category.findByIdAndDelete(
+          { _id: args._id }
+        );
+
+        await Product.findByIdAndUpdate(
+          { _id: context._id },
+          { $pull: { category: deleteCategory} },
+          { new: true, runValidators: true }
+        ).populate( {path: 'category'});
+
+        return deleteCategory;
+      }
+      throw new AuthenticationError('Not Logged In');
     }
-  },
+  }
+
 }
 
 module.exports = resolvers;
