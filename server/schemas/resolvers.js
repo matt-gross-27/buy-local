@@ -65,8 +65,8 @@ const resolvers = {
       const sales = await Shop.find({ owner: context.user._id })
         .populate({ path: 'sales', populate: { path: 'purchases.product' } });
     }
-
   },
+  
   Mutation: {
     createUser: async (parent, args) => {
       const user = await User.create(args);

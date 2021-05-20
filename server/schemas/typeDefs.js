@@ -75,6 +75,17 @@ const typeDefs = gql`
     product: Product
   }
 
+  input purchaseInput {
+    purchaseQuantity: Int
+    product: ID
+  }
+
+  input orderInput {
+    purchases: [purchaseInput]
+    shop: ID
+    createdAt: String
+  }
+
   type Order {
     createdAt: String
     purchases: [Purchase]
@@ -94,7 +105,6 @@ const typeDefs = gql`
     categories: [Category]
     product(_id: ID!): Product
     products(category: ID, name: String): [Product]
-    order(_id: ID!): Order
     myOrderHistory: [Order]
     mySales: [Order]
   }
@@ -113,7 +123,7 @@ const typeDefs = gql`
     createRating(shopId: ID!, stars: Int!, createdAt: String): Shop
     createReview(shopId: ID!, reviewText: String!, createdAt: String): Shop    
     
-    createOrder(purchases: [ID!]): Order
+    createOrder(orderInput: orderInput): Order
   }
 `;
 
