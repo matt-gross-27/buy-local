@@ -124,81 +124,26 @@ const resolvers = {
       throw new AuthenticationError('Not Logged In');
     },
 
-<<<<<<< HEAD
-    //commented this out for now
-    // createReview: async (parent, { shopId, reviewText }, context) => {
-    //   if (context.user) {
-    //     const updatedReview = await Shop.findOneAndUpdate(
-    //       { _id: shopId },
-    //       // need to check (i updated -matt)
-    //       { $push: { reviews: { reviewText, shop: context.user._id } } }, //userId
-    //       { new: true, runValidators: true }
-    //     );
-
-    //     return updatedReview;
-    //   }
-
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
-
-    //Davits code
-=======
->>>>>>> d755c79023407f6ce1c05fee58c95059e1761630
     createReview: async (parent, { shopId, reviewText }, context) => {
       if (context.user) {
         const shop = await Shop.findOneAndUpdate(
           { _id: shopId },
-<<<<<<< HEAD
-          // need to check
-          { $push: { reviews: { reviewText, userId: context.user._id } } },
-          { new: true, runValidators: true }
-        );
-        return updatedReview;
-      }
-=======
           { $push: { reviews: { reviewText, user: context.user._id } } },
           { new: true, runValidators: true }
         )
         .populate({ path: 'reviews', populate: { path: 'user', select: "firstName lastName" } })
         .populate({ path: 'ratings', populate: { path: 'user', select: "firstName lastName" } });
 
->>>>>>> d755c79023407f6ce1c05fee58c95059e1761630
 
         return shop;
       }
       throw new AuthenticationError('Not logged in');
     },
 
-<<<<<<< HEAD
-    //commented this out for now
-    // createRating: async (parent, { shopId, stars, createdAt }, context) => {
-    //   if (context.user) {
-    //     const updatedRating = await Shop.findOneAndUpdate(
-    //       { _id: shopId },
-    //       // need to check (i updated -matt)
-    //       { $push: { ratings: { stars, createdAt, userId: context.user._id } } },
-    //       { new: true, runValidators: true }
-    //     );
-
-    //     return updatedRating;
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
-
-    //Davits code
-=======
->>>>>>> d755c79023407f6ce1c05fee58c95059e1761630
     createRating: async (parent, { shopId, stars }, context) => {
       if (context.user) {
         const shop = await Shop.findOneAndUpdate(
           { _id: shopId },
-<<<<<<< HEAD
-          // need to check
-          { $push: { ratings: { stars, shop: context.user.shop } } },
-          { new: true, runValidators: true }
-        );
-        return updatedRating;
-=======
           { $push: { ratings: { stars, user: context.user._id } } },
           { new: true, runValidators: true }
         )
@@ -206,7 +151,6 @@ const resolvers = {
         .populate({ path: 'ratings', populate: { path: 'user', select: "firstName lastName" } });
 
         return shop;
->>>>>>> d755c79023407f6ce1c05fee58c95059e1761630
       }
       throw new AuthenticationError('Not logged in');
     },
