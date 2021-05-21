@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Shop, Order, Category, Product } = require('../models');
+const { findOneAndUpdate } = require('../models/Order');
 const { signToken } = require('../utils/auth');
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -150,7 +151,8 @@ const resolvers = {
         );
         return updatedReview;
       }
-      throw new AuthenticationError('You need to be logged in!');
+
+      throw new AuthenticationError('Not logged in');
     },
 
     //commented this out for now
@@ -179,7 +181,7 @@ const resolvers = {
         );
         return updatedRating;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('Not logged in');
     },
 
     // createCategory: async (parent, { shopId, name }, context) => {
@@ -247,51 +249,43 @@ const resolvers = {
 
         return shop;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('Not logged in');
     },
 
     updateProduct: async (parent, args, context) => {
       if (context.user) {
-        let product;
-        
-        if (args.categoryName) {
-          let category = await Category.findOne({ name: args.categoryName });
-          if (!category) {
-            category = await Category.create({ name: args.categoryName });
+        let category = await Category.findOne({ name: args.categoryName });
 
-            await Shop.findOneAndUpdate(
-              { owner: context.user._id },
-              { $addToSet: { categories: category._id } },
-              { new: true, runValidators: true }
-            ).populate({ path: 'categories' })
-          }
-
-          product = await Product.findByIdAndUpdate(
-            { _id: args._id },
-            {
-              $set: {
-                ...args,
-                category: category._id
-              }
-            },
-            { new: true }
-          );
-        } else {
-          product = await Product.findByIdAndUpdate(
-            { _id: args._id },
-            { $set: { ...args } },
-            { new: true }
-          );
+        if (!category) {
+          category = await Category.create({ name: args.categoryName });
         }
 
-        const shop = await Shop.find({ owner: context.user._id })
-          .populate({ path: 'products', populate: { path: 'category' } });
+        const product = await Product.findOneAndUpdate(
+          { _id: args._id },
+          {
+            $set: {
+              name: args.name,
+              description: args.description,
+              image: args.image,
+              price: args.price,
+              stock: args.stock,
+              category: category._id
+            }
+          },
+          { new: true, runValidators: true }
+        ).populate({ path: 'category' });
+
+        const shop = await Shop.findOneAndUpdate(
+          { owner: context.user._id },
+          { $addToSet: { categories: { _id: category._id } } },
+          { new: true, runValidators: true })
+          .populate([{ path: 'categories' }, { path: 'products', populate: { path: 'category' } }]);
 
         return shop;
       }
-      throw new AuthenticationError('You need to be logged in!');
-    },
 
+      throw new AuthenticationError('Not logged in');
+    },
     createOrder: async (parent, { orderInput }, context) => {
       if (context.user) {
         const order = await Order.create({

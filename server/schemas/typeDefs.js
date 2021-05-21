@@ -118,7 +118,7 @@ const typeDefs = gql`
 
     createCategory(name: String!): Shop
     createProduct(name: String!, description: String, image: String, price: Float!, stock: Int!, categoryName: String): Shop
-    updateProduct(_id: ID!, name: String, description: String, image: String, price: Float, stock: Int, categoryName: String): Shop
+    updateProduct(name: String!, description: String!, image: String!, price: Float!, stock: Int!, categoryName: String!, _id: ID!): Shop
     
     createRating(shopId: ID!, stars: Int!): Shop
     createReview(shopId: ID!, reviewText: String!): Shop    
