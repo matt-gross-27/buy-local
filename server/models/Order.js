@@ -1,5 +1,15 @@
 const { Schema, model } = require('mongoose');
 
+const purchaseSchema = new Schema({
+  purchaseQuantity: {
+    type: Number
+  },
+  product: {
+    type: Schema.Types.ObjectId,
+    ref: 'Product'
+  }
+});
+
 const orderSchema = new Schema(
   {
     createdAt: {
@@ -7,19 +17,7 @@ const orderSchema = new Schema(
       default: Date.now,
       get: timestamp => timestamp.toLocaleString()
     },
-    purchases: [
-      {
-        purchaseQuantity: {
-          type: Number
-        },
-      },
-      {
-        product: {
-          type: Schema.Types.ObjectId,
-          ref: 'Product'
-        }
-      }
-    ],
+    purchases: [purchaseSchema],
     shop: {
       type: Schema.Types.ObjectId,
       ref: 'Shop'

@@ -14,7 +14,7 @@ const ratingSchema = new Schema(
       get: timestamp => timestamp.toString()
     },
 
-    userId: {
+    user: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     },

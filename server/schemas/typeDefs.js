@@ -83,14 +83,13 @@ const typeDefs = gql`
   input orderInput {
     purchases: [purchaseInput]
     shop: ID
-    createdAt: String
   }
 
   type Order {
     createdAt: String
     purchases: [Purchase]
-    shopId: Shop
-    customerId: User
+    shop: Shop
+    customer: User
   }
 
   type Auth {

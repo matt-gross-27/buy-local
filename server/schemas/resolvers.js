@@ -124,62 +124,33 @@ const resolvers = {
       throw new AuthenticationError('Not Logged In');
     },
 
-    //commented this out for now
-    // createReview: async (parent, { shopId, reviewText }, context) => {
-    //   if (context.user) {
-    //     const updatedReview = await Shop.findOneAndUpdate(
-    //       { _id: shopId },
-    //       // need to check (i updated -matt)
-    //       { $push: { reviews: { reviewText, shop: context.user._id } } }, //userId
-    //       { new: true, runValidators: true }
-    //     );
-
-    //     return updatedReview;
-    //   }
-
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
-
-    //Davits code
     createReview: async (parent, { shopId, reviewText }, context) => {
       if (context.user) {
-        const updatedReview = await Shop.findOneAndUpdate(
+        const shop = await Shop.findOneAndUpdate(
           { _id: shopId },
-          // need to check
-          { $push: { reviews: { reviewText, userId: context.user._id } } },
+          { $push: { reviews: { reviewText, user: context.user._id } } },
           { new: true, runValidators: true }
-        );
-        return updatedReview;
-      }
+        )
+        .populate({ path: 'reviews', populate: { path: 'user', select: "firstName lastName" } })
+        .populate({ path: 'ratings', populate: { path: 'user', select: "firstName lastName" } });
 
+
+        return shop;
+      }
       throw new AuthenticationError('Not logged in');
     },
 
-    //commented this out for now
-    // createRating: async (parent, { shopId, stars, createdAt }, context) => {
-    //   if (context.user) {
-    //     const updatedRating = await Shop.findOneAndUpdate(
-    //       { _id: shopId },
-    //       // need to check (i updated -matt)
-    //       { $push: { ratings: { stars, createdAt, userId: context.user._id } } },
-    //       { new: true, runValidators: true }
-    //     );
-
-    //     return updatedRating;
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
-
-    //Davits code
     createRating: async (parent, { shopId, stars }, context) => {
       if (context.user) {
-        const updatedRating = await Shop.findOneAndUpdate(
+        const shop = await Shop.findOneAndUpdate(
           { _id: shopId },
-          // need to check
-          { $push: { ratings: { stars, shop: context.user.shop } } },
+          { $push: { ratings: { stars, user: context.user._id } } },
           { new: true, runValidators: true }
-        );
-        return updatedRating;
+        )
+        .populate({ path: 'reviews', populate: { path: 'user', select: "firstName lastName" } })
+        .populate({ path: 'ratings', populate: { path: 'user', select: "firstName lastName" } });
+
+        return shop;
       }
       throw new AuthenticationError('Not logged in');
     },
@@ -288,31 +259,23 @@ const resolvers = {
     },
     createOrder: async (parent, { orderInput }, context) => {
       if (context.user) {
-        const order = await Order.create({
-          ...orderInput,
-          customer: context.user._id
-        })
-          .populate([
-            { path: 'shop' },
-            { path: 'customer' },
-            { path: 'purchases.product' },
-          ]);
+        const order = await Order.create(orderInput);
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $push: { orderHistory: { order } } },
+          { $push: { orderHistory: order._id } },
           { new: true, runValidators: true }
         );
 
         await Shop.findOneAndUpdate(
           { _id: orderInput.shop },
-          { $push: { sales: { order } } },
+          { $push: { sales: order._id } },
           { new: true, runValidators: true }
-        );
+        ); 
 
         await orderInput.purchases.forEach(({ purchaseQuantity, product }) => {
           Product.findOneAndUpdate(
-            { _id: Product },
+            { _id: product._id },
             { $inc: { stock: purchaseQuantity * -1 } },
             { new: true, runValidators: true },
           );
