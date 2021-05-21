@@ -258,7 +258,7 @@ const resolvers = {
           { _id: orderInput.shop },
           { $push: { sales: order._id } },
           { new: true, runValidators: true }
-        );
+        ); 
 
         await orderInput.purchases.forEach(({ purchaseQuantity, product }) => {
           Product.findOneAndUpdate(
