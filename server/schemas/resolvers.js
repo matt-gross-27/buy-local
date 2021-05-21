@@ -106,7 +106,6 @@ const resolvers = {
       throw new AuthenticationError('Not Logged In');
     },
 
-<<<<<<< HEAD
     createCategory: async (parent, args, context) => {
       if (context.user) {
   
@@ -143,7 +142,6 @@ const resolvers = {
       throw new AuthenticationError('Not Logged In');
     },
   
-=======
     updateShop: async (parent, args, context) => {
       if (context.user) {
         const shop = await Shop.findOneAndUpdate(
@@ -161,7 +159,6 @@ const resolvers = {
       }
       throw new AuthenticationError('Not Logged In');
     },
->>>>>>> feature/queries-mutations
 
     createReview: async (parent, { shopId, reviewText }, context) => {
       if (context.user) {

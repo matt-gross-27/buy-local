@@ -103,40 +103,25 @@ const typeDefs = gql`
     shops: [Shop]
     categories: [Category]
     product(_id: ID!): Product
-<<<<<<< HEAD
-    order(_id: ID!): Order
-    category(name: String!): Category
-=======
     products(category: ID, name: String): [Product]
     myOrderHistory: [Order]
     mySales: [Order]
->>>>>>> feature/queries-mutations
   }
 
   type Mutation {
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    
     createShop(name: String!, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
-<<<<<<< HEAD
-    createOrder(products: [ID]!): Order
-    updateProduct(_id: ID!, stock: Int!): Product
-    createCategory(name: String!): Category 
-    deleteCategory(name: String!): Category
-    createReview(shopId: ID!, reviewText: String!): Shop
-    createRating(shopId: ID!, stars: Int): Shop
-=======
     updateShop(name: String, description: String, phone: String, instagram: String, logo: String, addressNum: String, street: String, city: String, state: String, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
-
     createCategory(name: String!): Shop
+    deleteCategory(name: String!): Category
     createProduct(name: String!, description: String, image: String, price: Float!, stock: Int!, categoryName: String): Shop
     updateProduct(name: String!, description: String!, image: String!, price: Float!, stock: Int!, categoryName: String!, _id: ID!): Shop
-    
     createRating(shopId: ID!, stars: Int!): Shop
     createReview(shopId: ID!, reviewText: String!): Shop    
     
+    #NOT WORKING YET
     createOrder(orderInput: orderInput): Order
->>>>>>> feature/queries-mutations
   }
 `;
 
