@@ -117,8 +117,8 @@ const typeDefs = gql`
     updateShop(name: String, description: String, phone: String, instagram: String, logo: String, addressNum: String, street: String, city: String, state: String, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
 
     createCategory(name: String!): Shop
-    createProduct(name: String!, description: String, image: String, price: Float, stock: Int, categoryName: String): Shop
-    updateProduct(productId: ID, name: String!, description: String, image: String, price: Float, stock: Int, categoryName: String): Shop
+    createProduct(name: String!, description: String, image: String, price: Float!, stock: Int!, categoryName: String): Shop
+    updateProduct(_id: ID!, name: String, description: String, image: String, price: Float, stock: Int, categoryName: String): Shop
     
     createRating(shopId: ID!, stars: Int!, createdAt: String): Shop
     createReview(shopId: ID!, reviewText: String!, createdAt: String): Shop    

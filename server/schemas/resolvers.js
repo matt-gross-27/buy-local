@@ -66,7 +66,7 @@ const resolvers = {
         .populate({ path: 'sales', populate: { path: 'purchases.product' } });
     }
   },
-  
+
   Mutation: {
     createUser: async (parent, args) => {
       const user = await User.create(args);
@@ -89,15 +89,10 @@ const resolvers = {
 
     createShop: async (parent, args, context) => {
       if (context.user) {
-        const shop = await Shop.create({
+        let shop = await Shop.create({
           owner: context.user._id,
           ...args
-        }).populate([
-          { path: 'owner' },
-          { path: 'categories' },
-          { path: 'products' },
-          { path: 'sales', populate: { path: 'purchases.product' } }
-        ]);
+        });
 
         await User.findByIdAndUpdate(
           { _id: context.user._id },
@@ -214,39 +209,40 @@ const resolvers = {
 
     updateProduct: async (parent, args, context) => {
       if (context.user) {
+        let product;
+        
+        if (args.categoryName) {
+          let category = await Category.findOne({ name: args.categoryName });
+          if (!category) {
+            category = await Category.create({ name: args.categoryName });
 
-        let category = await Category.findOne({ name: args.categoryName });
+            await Shop.findOneAndUpdate(
+              { owner: context.user._id },
+              { $addToSet: { categories: category._id } },
+              { new: true, runValidators: true }
+            ).populate({ path: 'categories' })
+          }
 
-        if (!category) {
-          category = await Category.create({ name: args.categoryName });
-
-          await Shop.findOneAndUpdate(
-            { owner: context.user._id },
-            { $addToSet: { categories: category._id } },
-            { new: true, runValidators: true }
-          ).populate({ path: 'categories' })
+          product = await Product.findByIdAndUpdate(
+            { _id: args._id },
+            {
+              $set: {
+                ...args,
+                category: category._id
+              }
+            },
+            { new: true }
+          );
+        } else {
+          product = await Product.findByIdAndUpdate(
+            { _id: args._id },
+            { $set: { ...args } },
+            { new: true }
+          );
         }
 
-        const product = await Product.findByIdAndUpdate(
-          { _id: args.productId },
-          {
-            $set: {
-              name: args.name,
-              description: args.description,
-              image: args.image,
-              price: args.price,
-              stock: args.stock,
-              category: category._id
-            }
-          },
-          { new: true, runValidators: true }
-        );
-
-        const shop = await Shop.findOneAndUpdate(
-          { owner: context.user._id },
-          { $push: { products: product._id } },
-          { new: true, runValidators: true }
-        ).populate({ path: 'products', populate: { path: 'category' } })
+        const shop = await Shop.find({ owner: context.user._id })
+          .populate({ path: 'products', populate: { path: 'category' } });
 
         return shop;
       }
@@ -259,11 +255,11 @@ const resolvers = {
           ...orderInput,
           customer: context.user._id
         })
-        .populate([
-          { path: 'shop' },
-          { path: 'customer' },
-          { path: 'purchases.product' },
-        ]);
+          .populate([
+            { path: 'shop' },
+            { path: 'customer' },
+            { path: 'purchases.product' },
+          ]);
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -284,7 +280,7 @@ const resolvers = {
             { new: true, runValidators: true },
           );
         });
-        
+
         return order;
       }
 
