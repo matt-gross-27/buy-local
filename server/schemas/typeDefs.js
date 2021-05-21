@@ -75,6 +75,17 @@ const typeDefs = gql`
     product: Product
   }
 
+  input purchaseInput {
+    purchaseQuantity: Int
+    product: ID
+  }
+
+  input orderInput {
+    purchases: [purchaseInput]
+    shop: ID
+    createdAt: String
+  }
+
   type Order {
     createdAt: String
     purchases: [Purchase]
@@ -89,24 +100,30 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    getShops: [Shop]
+    shop(_id: ID): Shop
+    shops: [Shop]
     categories: [Category]
-    products(category: ID, name: String): [Product]
     product(_id: ID!): Product
-    order(_id: ID!): Order
-    category(name: String!): Category
+    products(category: ID, name: String): [Product]
+    myOrderHistory: [Order]
+    mySales: [Order]
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    
     createShop(name: String!, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
-    createOrder(products: [ID]!): Order
-    updateProduct(_id: ID!, stock: Int!): Product
-    createCategory(name: String!): Category 
-    deleteCategory(name: String!): Category
-    createReview(shopId: ID!, reviewText: String!): Shop
-    createRating(shopId: ID!, stars: Int): Shop
+    updateShop(name: String, description: String, phone: String, instagram: String, logo: String, addressNum: String, street: String, city: String, state: String, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
+
+    createCategory(name: String!): Shop
+    createProduct(name: String!, description: String, image: String, price: Float!, stock: Int!, categoryName: String): Shop
+    updateProduct(_id: ID!, name: String, description: String, image: String, price: Float, stock: Int, categoryName: String): Shop
+    
+    createRating(shopId: ID!, stars: Int!, createdAt: String): Shop
+    createReview(shopId: ID!, reviewText: String!, createdAt: String): Shop    
+    
+    createOrder(orderInput: orderInput): Order
   }
 `;
 
