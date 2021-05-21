@@ -246,29 +246,23 @@ const resolvers = {
     },
     createOrder: async (parent, { orderInput }, context) => {
       if (context.user) {
-        const order = await Order.create({
-          ...orderInput,
-          customer: context.user._id
-        })
-          .populate([
-            { path: 'purchases.product' },
-          ]);
+        const order = await Order.create(orderInput);
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $push: { orderHistory: { order } } },
+          { $push: { orderHistory: order._id } },
           { new: true, runValidators: true }
         );
 
         await Shop.findOneAndUpdate(
           { _id: orderInput.shop },
-          { $push: { sales: { order } } },
+          { $push: { sales: order._id } },
           { new: true, runValidators: true }
         );
 
         await orderInput.purchases.forEach(({ purchaseQuantity, product }) => {
           Product.findOneAndUpdate(
-            { _id: Product },
+            { _id: product._id },
             { $inc: { stock: purchaseQuantity * -1 } },
             { new: true, runValidators: true },
           );
