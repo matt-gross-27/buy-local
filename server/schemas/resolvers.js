@@ -124,18 +124,19 @@ const resolvers = {
       throw new AuthenticationError('Not Logged In');
     },
 
-    createReview: async (parent, { shopId, reviewText, createdAt }, context) => {
+    createReview: async (parent, { shopId, reviewText }, context) => {
       if (context.user) {
-        const updatedReview = await Shop.findOneAndUpdate(
+        const shop = await Shop.findOneAndUpdate(
           { _id: shopId },
-          // need to check (i updated -matt)
-          { $push: { reviews: { reviewText, createdAt, userId: context.user._id } } },
+          { $push: { reviews: { reviewText, user: context.user._id } } },
           { new: true, runValidators: true }
-        );
+        )
+        .populate({ path: 'reviews', populate: { path: 'user', select: "firstName lastName" } })
+        .populate({ path: 'ratings', populate: { path: 'user', select: "firstName lastName" } });
 
-        return updatedReview;
+
+        return shop;
       }
-
       throw new AuthenticationError('Not logged in');
     },
 
@@ -143,9 +144,11 @@ const resolvers = {
       if (context.user) {
         const shop = await Shop.findOneAndUpdate(
           { _id: shopId },
-          { $push: { ratings: { stars, userId: context.user._id } } },
+          { $push: { ratings: { stars, user: context.user._id } } },
           { new: true, runValidators: true }
-        ).populate({path: 'ratings.userId'});
+        )
+        .populate({ path: 'reviews', populate: { path: 'user', select: "firstName lastName" } })
+        .populate({ path: 'ratings', populate: { path: 'user', select: "firstName lastName" } });
 
         return shop;
       }
