@@ -102,8 +102,8 @@ const typeDefs = gql`
     user: User
     shop(_id: ID): Shop
     shops: [Shop]
-    categories: [Category]
     product(_id: ID!): Product
+    categories: [Category]
     products(category: ID, name: String): [Product]
     myOrderHistory: [Order]
     mySales: [Order]
@@ -120,12 +120,12 @@ const typeDefs = gql`
     createProduct(name: String!, description: String, image: String, price: Float!, stock: Int!, categoryName: String): Shop
     updateProduct(_id: ID!, name: String, description: String, image: String, price: Float, stock: Int, categoryName: String): Shop
     
-    createRating(shopId: ID!, stars: Int!, createdAt: String): Shop
-    createReview(shopId: ID!, reviewText: String!, createdAt: String): Shop    
+    createRating(shopId: ID!, stars: Int!): Shop
+    createReview(shopId: ID!, reviewText: String!): Shop    
     
     createOrder(orderInput: orderInput): Order
   }
 `;
-
+// /////createdAt: String removed from createRating/createReview until we can figure out how to fix the user: null issue
 //exporting typeDefs here
 module.exports = typeDefs;

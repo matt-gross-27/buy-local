@@ -123,34 +123,77 @@ const resolvers = {
       throw new AuthenticationError('Not Logged In');
     },
 
-    createReview: async (parent, { shopId, reviewText, createdAt }, context) => {
+    //commented this out for now
+    // createReview: async (parent, { shopId, reviewText }, context) => {
+    //   if (context.user) {
+    //     const updatedReview = await Shop.findOneAndUpdate(
+    //       { _id: shopId },
+    //       // need to check (i updated -matt)
+    //       { $push: { reviews: { reviewText, shop: context.user._id } } }, //userId
+    //       { new: true, runValidators: true }
+    //     );
+
+    //     return updatedReview;
+    //   }
+
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
+
+    //Davits code
+    createReview: async (parent, { shopId, reviewText }, context) => {
       if (context.user) {
         const updatedReview = await Shop.findOneAndUpdate(
           { _id: shopId },
-          // need to check (i updated -matt)
-          { $push: { reviews: { reviewText, createdAt, userId: context.user._id } } },
+          // need to check
+          { $push: { reviews: { reviewText, userId: context.user._id } } },
           { new: true, runValidators: true }
         );
-
         return updatedReview;
       }
-
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    createRating: async (parent, { shopId, stars, createdAt }, context) => {
+    //commented this out for now
+    // createRating: async (parent, { shopId, stars, createdAt }, context) => {
+    //   if (context.user) {
+    //     const updatedRating = await Shop.findOneAndUpdate(
+    //       { _id: shopId },
+    //       // need to check (i updated -matt)
+    //       { $push: { ratings: { stars, createdAt, userId: context.user._id } } },
+    //       { new: true, runValidators: true }
+    //     );
+
+    //     return updatedRating;
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
+
+    //Davits code
+    createRating: async (parent, { shopId, stars }, context) => {
       if (context.user) {
         const updatedRating = await Shop.findOneAndUpdate(
           { _id: shopId },
-          // need to check (i updated -matt)
-          { $push: { ratings: { stars, createdAt, userId: context.user._id } } },
+          // need to check
+          { $push: { ratings: { stars, shop: context.user.shop } } },
           { new: true, runValidators: true }
         );
-
         return updatedRating;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    // createCategory: async (parent, { shopId, name }, context) => {
+    //   if (context.user) {
+    //     const newCategory = await Shop.findOneAndUpdate(
+    //       { _id: shopId },
+    //       // need to check
+    //       { $push: { categories: { name, shop: context.user.shop } } },
+    //       { new: true, runValidators: true }
+    //     );
+    //     return newCategory;
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
 
     createCategory: async (parent, { name }, context) => {
       if (context.user) {
