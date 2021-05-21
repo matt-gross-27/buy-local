@@ -53,7 +53,7 @@ function UploadLogo() {
             <p>{message}</p>
           ) :
           (
-            <img style={{ height: '300px', width: '300px', borderRadius: '100%' }} src={logoPreview} alt="your logo" />
+            <img style={{ objectFit: 'cover', height: '300px', width: '300px', borderRadius: '100%' }} src={logoPreview} alt="your logo" />
           )
 
         }
