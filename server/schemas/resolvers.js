@@ -124,6 +124,7 @@ const resolvers = {
       throw new AuthenticationError('Not Logged In');
     },
 
+<<<<<<< HEAD
     //commented this out for now
     // createReview: async (parent, { shopId, reviewText }, context) => {
     //   if (context.user) {
@@ -141,20 +142,34 @@ const resolvers = {
     // },
 
     //Davits code
+=======
+>>>>>>> d755c79023407f6ce1c05fee58c95059e1761630
     createReview: async (parent, { shopId, reviewText }, context) => {
       if (context.user) {
-        const updatedReview = await Shop.findOneAndUpdate(
+        const shop = await Shop.findOneAndUpdate(
           { _id: shopId },
+<<<<<<< HEAD
           // need to check
           { $push: { reviews: { reviewText, userId: context.user._id } } },
           { new: true, runValidators: true }
         );
         return updatedReview;
       }
+=======
+          { $push: { reviews: { reviewText, user: context.user._id } } },
+          { new: true, runValidators: true }
+        )
+        .populate({ path: 'reviews', populate: { path: 'user', select: "firstName lastName" } })
+        .populate({ path: 'ratings', populate: { path: 'user', select: "firstName lastName" } });
 
+>>>>>>> d755c79023407f6ce1c05fee58c95059e1761630
+
+        return shop;
+      }
       throw new AuthenticationError('Not logged in');
     },
 
+<<<<<<< HEAD
     //commented this out for now
     // createRating: async (parent, { shopId, stars, createdAt }, context) => {
     //   if (context.user) {
@@ -171,15 +186,27 @@ const resolvers = {
     // },
 
     //Davits code
+=======
+>>>>>>> d755c79023407f6ce1c05fee58c95059e1761630
     createRating: async (parent, { shopId, stars }, context) => {
       if (context.user) {
-        const updatedRating = await Shop.findOneAndUpdate(
+        const shop = await Shop.findOneAndUpdate(
           { _id: shopId },
+<<<<<<< HEAD
           // need to check
           { $push: { ratings: { stars, shop: context.user.shop } } },
           { new: true, runValidators: true }
         );
         return updatedRating;
+=======
+          { $push: { ratings: { stars, user: context.user._id } } },
+          { new: true, runValidators: true }
+        )
+        .populate({ path: 'reviews', populate: { path: 'user', select: "firstName lastName" } })
+        .populate({ path: 'ratings', populate: { path: 'user', select: "firstName lastName" } });
+
+        return shop;
+>>>>>>> d755c79023407f6ce1c05fee58c95059e1761630
       }
       throw new AuthenticationError('Not logged in');
     },
@@ -288,31 +315,23 @@ const resolvers = {
     },
     createOrder: async (parent, { orderInput }, context) => {
       if (context.user) {
-        const order = await Order.create({
-          ...orderInput,
-          customer: context.user._id
-        })
-          .populate([
-            { path: 'shop' },
-            { path: 'customer' },
-            { path: 'purchases.product' },
-          ]);
+        const order = await Order.create(orderInput);
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $push: { orderHistory: { order } } },
+          { $push: { orderHistory: order._id } },
           { new: true, runValidators: true }
         );
 
         await Shop.findOneAndUpdate(
           { _id: orderInput.shop },
-          { $push: { sales: { order } } },
+          { $push: { sales: order._id } },
           { new: true, runValidators: true }
-        );
+        ); 
 
         await orderInput.purchases.forEach(({ purchaseQuantity, product }) => {
           Product.findOneAndUpdate(
-            { _id: Product },
+            { _id: product._id },
             { $inc: { stock: purchaseQuantity * -1 } },
             { new: true, runValidators: true },
           );
