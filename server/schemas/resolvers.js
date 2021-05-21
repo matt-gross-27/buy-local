@@ -105,46 +105,6 @@ const resolvers = {
       throw new AuthenticationError('Not Logged In');
     },
 
-<<<<<<< HEAD
-    createCategory: async (parent, args, context) => {
-      if (context.user) {
-  
-        const newCategory = await Category.create({
-          name: args.name
-        });
-        
-        await Product.findByIdAndUpdate(
-          { _id: context._id },
-          { $push: { category: newCategory} },
-          { new: true, runValidators: true }
-        ).populate({ path: 'category' });
-  
-        return newCategory;
-      }
-      throw new AuthenticationError('Not Logged In');
-    },
-
-    deleteCategory: async (parent, args, context) => {
-      if (context.user) {
-
-        const deleteCategory = await Category.findByIdAndDelete(
-          { _id: args._id }
-        );
-
-        await Product.findByIdAndUpdate(
-          { _id: context._id },
-          { $pull: { category: deleteCategory} },
-          { new: true, runValidators: true }
-        ).populate( {path: 'category'});
-
-        return deleteCategory;
-      }
-      throw new AuthenticationError('Not Logged In');
-    },
-  
-
-    createReview: async (parent, { shopId, reviewText }, context) => {
-=======
     updateShop: async (parent, args, context) => {
       if (context.user) {
         const shop = await Shop.findOneAndUpdate(
@@ -164,7 +124,6 @@ const resolvers = {
     },
 
     createReview: async (parent, { shopId, reviewText, createdAt }, context) => {
->>>>>>> 1f4aab306af6f8ea1c8e5528512f02b455f0359b
       if (context.user) {
         const updatedReview = await Shop.findOneAndUpdate(
           { _id: shopId },
