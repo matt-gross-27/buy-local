@@ -139,16 +139,15 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
-    createRating: async (parent, { shopId, stars, createdAt }, context) => {
+    createRating: async (parent, { shopId, stars }, context) => {
       if (context.user) {
-        const updatedRating = await Shop.findOneAndUpdate(
+        const shop = await Shop.findOneAndUpdate(
           { _id: shopId },
-          // need to check (i updated -matt)
-          { $push: { ratings: { stars, createdAt, userId: context.user._id } } },
+          { $push: { ratings: { stars, userId: context.user._id } } },
           { new: true, runValidators: true }
-        );
+        ).populate({path: 'ratings.userId'});
 
-        return updatedRating;
+        return shop;
       }
       throw new AuthenticationError('Not logged in');
     },
@@ -249,8 +248,6 @@ const resolvers = {
           customer: context.user._id
         })
           .populate([
-            { path: 'shop' },
-            { path: 'customer' },
             { path: 'purchases.product' },
           ]);
 
