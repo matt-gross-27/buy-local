@@ -61,6 +61,17 @@ function Signup(props) {
                 />  
             </div>
 
+            <div>
+                <label htmlFor="email">Email:</label>
+                <input
+                placeholder="Please enter your email address"
+                name="email"
+                type="email"
+                id="email"
+                onChange={handleChange}
+                />  
+            </div>
+
             </form>
         </div>
     );
