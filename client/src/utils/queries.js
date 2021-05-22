@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-///may need to edit this
+///may need to edit this//
 export const GET_USER = gql`
     {
         user {
