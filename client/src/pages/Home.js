@@ -42,7 +42,7 @@ function Home() {
       <Features
         heading={
           <>
-            Amazing <HighlightedText>Services.</HighlightedText>
+            Amazing and <HighlightedText>Homemade.</HighlightedText>
           </>
         }
         cards={[
@@ -96,10 +96,6 @@ function Home() {
         imageDecoratorBlobCss={tw`left-1/2 md:w-32 md:h-32 -translate-x-1/2 opacity-25`}
         textOnLeft={true}
       />
-      {/* <Testimonial
-        subheading=""
-        heading={<>Customers <HighlightedText>Love Us.</HighlightedText></>}
-      /> */}
       <DownloadApp
         text={<>People around you are already ordering using the <HighlightedTextInverse>Buy Local App.</HighlightedTextInverse></>}
       />

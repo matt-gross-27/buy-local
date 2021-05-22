@@ -84,10 +84,10 @@ import ThreeColSimpleWithImageBlog from "components/blogs/ThreeColSimpleWithImag
 import SingleColFAQS from "components/faqs/SingleCol.js";
 // import TwoColumnPrimaryBackgroundFAQS from "components/faqs/TwoColumnPrimaryBackground.js";
 
-import SimpleContactUsForm from "components/forms/SimpleContactUs.js";
-import SimpleSubscribeNewsletterForm from "components/forms/SimpleSubscribeNewsletter.js";
-import TwoColContactUsForm from "components/forms/TwoColContactUsWithIllustration.js";
-import TwoColContactUsFullForm from "components/forms/TwoColContactUsWithIllustrationFullForm.js";
+//import SimpleContactUsForm from "components/forms/SimpleContactUs.js";
+// import SimpleSubscribeNewsletterForm from "components/forms/SimpleSubscribeNewsletter.js";
+// import TwoColContactUsForm from "components/forms/TwoColContactUsWithIllustration.js";
+ import TwoColContactUsFullForm from "components/forms/TwoColContactUsWithIllustrationFullForm.js";
 
 import GetStartedCTA from "components/cta/GetStarted.js";
 import GetStartedLightCTA from "components/cta/GetStartedLight.js";
@@ -428,26 +428,26 @@ export const components = {
     Form: {
       type: "Forms Section",
       elements: {
-        SimpleContactUs: {
-          name: "Simple Contact Us",
-          component: SimpleContactUsForm,
-          url: "/components/blocks/Form/SimpleContactUs",
-        },
-        SimpleSubscribeNewsletter: {
-          name: "Simple Subscribe newsletter",
-          component: SimpleSubscribeNewsletterForm,
-          url: "/components/blocks/Form/SimpleSubscribeNewsletter",
-        },
-        TwoColContactUs: {
-          name: "Two Column Contact Us",
-          component: TwoColContactUsForm,
-          url: "/components/blocks/Form/TwoColContactUs",
-        },
+        // SimpleContactUs: {
+        //   name: "Simple Contact Us",
+        //   component: SimpleContactUsForm,
+        //   url: "/components/blocks/Form/SimpleContactUs",
+        // },
+        // SimpleSubscribeNewsletter: {
+        //   name: "Simple Subscribe newsletter",
+        //   component: SimpleSubscribeNewsletterForm,
+        //   url: "/components/blocks/Form/SimpleSubscribeNewsletter",
+        // },
+        // TwoColContactUs: {
+        //   name: "Two Column Contact Us",
+        //   component: TwoColContactUsForm,
+        //   url: "/components/blocks/Form/TwoColContactUs",
+        // },
         TwoColContactUsFull: {
           name: "Two Column Contact Us - Full Form",
           component: TwoColContactUsFullForm,
           url: "/components/blocks/Form/TwoColContactUsFull",
-        },
+        }
       }
     },
 
