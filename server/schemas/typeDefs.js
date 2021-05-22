@@ -113,17 +113,16 @@ const typeDefs = gql`
   type Mutation {
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    
     createShop(name: String!, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
     updateShop(name: String, description: String, phone: String, instagram: String, logo: String, addressNum: String, street: String, city: String, state: String, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
-
     createCategory(name: String!): Shop
+    deleteCategory(name: String!): Category
     createProduct(name: String!, description: String, image: String, price: Float!, stock: Int!, categoryName: String): Shop
     updateProduct(name: String!, description: String!, image: String!, price: Float!, stock: Int!, categoryName: String!, _id: ID!): Shop
-    
     createRating(shopId: ID!, stars: Int!): Shop
     createReview(shopId: ID!, reviewText: String!): Shop    
     
+    #NOT WORKING YET
     createOrder(orderInput: orderInput): Order
   }
 `;
