@@ -9,10 +9,10 @@ import MainFeature from "components/features/TwoColSingleFeatureWithStats2.js";
 import MainFeature2 from "components/features/TwoColWithTwoFeaturesAndButtons.js";
 // import Portfolio from "components/cards/PortfolioTwoCardsWithImage.js";
 // import Blog from "components/blogs/ThreeColSimpleWithImageAndDashedBorder.js";
-import Testimonial from "components/testimonials/TwoColumnWithImageAndProfilePictureReview.js";
+// import Testimonial from "components/testimonials/TwoColumnWithImageAndProfilePictureReview.js";
 // import FAQ from "components/faqs/SimpleWithSideImage.js";
 import ContactUsForm from "components/forms/TwoColContactUsWithIllustration.js";
-import Footer from "components/footers/MiniCenteredFooter.js";
+// import Footer from "components/footers/MiniCenteredFooter.js";
 import customerSupportIllustrationSrc from "images/customer-support-illustration.svg";
 
 export default () => (
@@ -22,7 +22,7 @@ export default () => (
     <Features />
     <MainFeature2 />
     {/* <Portfolio /> */}
-    <Testimonial
+    {/* <Testimonial
       subheading="Testimonials"
       heading={
         <>
@@ -53,7 +53,7 @@ export default () => (
         }
       ]}
       textOnLeft={true}
-    />
+    /> */}
     {/* <FAQ
       imageSrc={customerSupportIllustrationSrc}
       imageContain={true}
@@ -67,6 +67,6 @@ export default () => (
     {/* /> */}
     {/* <Blog /> */}
     <ContactUsForm />
-    <Footer />
+
   </AnimationRevealPage>
 );

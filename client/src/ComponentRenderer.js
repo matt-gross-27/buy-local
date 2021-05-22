@@ -74,11 +74,11 @@ import ThreeColSimpleWithImageBlog from "components/blogs/ThreeColSimpleWithImag
 // import PopularAndRecentPostsBlog from "components/blogs/PopularAndRecentBlogPosts.js";
 // import GridWithFeaturedPostBlog from "components/blogs/GridWithFeaturedPost.js";
 
-import TwoColumnWithImageTestimonial from "components/testimonials/TwoColumnWithImage.js";
-import TwoColumnWithImageAndProfilePictureReviewTestimonial from "components/testimonials/TwoColumnWithImageAndProfilePictureReview.js";
-import TwoColumnWithImageAndRatingTestimonial from "components/testimonials/TwoColumnWithImageAndRating.js";
-import ThreeColumnWithProfileImageTestimonial from "components/testimonials/ThreeColumnWithProfileImage.js";
-import SimpleBackgroundTestimonial from "components/testimonials/SimplePrimaryBackground.js";
+// import TwoColumnWithImageTestimonial from "components/testimonials/TwoColumnWithImage.js";
+// import TwoColumnWithImageAndProfilePictureReviewTestimonial from "components/testimonials/TwoColumnWithImageAndProfilePictureReview.js";
+// import TwoColumnWithImageAndRatingTestimonial from "components/testimonials/TwoColumnWithImageAndRating.js";
+// import ThreeColumnWithProfileImageTestimonial from "components/testimonials/ThreeColumnWithProfileImage.js";
+// import SimpleBackgroundTestimonial from "components/testimonials/SimplePrimaryBackground.js";
 
 // import SimpleWithSideImageFAQS from "components/faqs/SimpleWithSideImage.js";
 import SingleColFAQS from "components/faqs/SingleCol.js";
@@ -94,10 +94,10 @@ import GetStartedLightCTA from "components/cta/GetStartedLight.js";
 import DownloadAppCTA from "components/cta/DownloadApp.js";
 
 import SimpleFiveColumnFooter from "components/footers/SimpleFiveColumn.js";
-import FiveColumnWithInputFormFooter from "components/footers/FiveColumnWithInputForm.js";
-import FiveColumnWithBackgroundFooter from "components/footers/FiveColumnWithBackground.js";
-import FiveColumnDarkFooter from "components/footers/FiveColumnDark.js";
-import MiniCenteredFooter from "components/footers/MiniCenteredFooter.js";
+// import FiveColumnWithInputFormFooter from "components/footers/FiveColumnWithInputForm.js";
+// import FiveColumnWithBackgroundFooter from "components/footers/FiveColumnWithBackground.js";
+// import FiveColumnDarkFooter from "components/footers/FiveColumnDark.js";
+// import MiniCenteredFooter from "components/footers/MiniCenteredFooter.js";
 
 
 export const components = {
@@ -373,36 +373,36 @@ export const components = {
       } 
     },
 
-    Testimonial: {
-      type: "Testimonial Section",
-      elements: {
-        TwoColumnWithImage: {
-          name: "Two Column With Image",
-          component: TwoColumnWithImageTestimonial,
-          url: "/components/blocks/Testimonial/TwoColumnWithImage",
-        },
-        TwoColumnWithImageAndProfilePictureReview: {
-          name: "Two Column With Image And Profile Picture Review",
-          component: TwoColumnWithImageAndProfilePictureReviewTestimonial,
-          url: "/components/blocks/Testimonial/TwoColumnWithImageAndProfilePictureReview",
-        },
-        TwoColumnWithImageAndRating: {
-          name: "Two Column With Image And Rating",
-          component: TwoColumnWithImageAndRatingTestimonial,
-          url: "/components/blocks/Testimonial/TwoColumnWithImageAndRating",
-        },
-        ThreeColumnWithProfileImage: {
-          name: "Three Column With Profile Image",
-          component: ThreeColumnWithProfileImageTestimonial,
-          url: "/components/blocks/Testimonial/ThreeColumnWithProfileImage",
-        },
-        SimplePrimaryBackground: {
-          name: "Simple With Primary Background",
-          component: SimpleBackgroundTestimonial,
-          url: "/components/blocks/Testimonial/SimplePrimaryBackground",
-        },
-      }
-    },
+    // Testimonial: {
+    //   type: "Testimonial Section",
+    //   elements: {
+    //     TwoColumnWithImage: {
+    //       name: "Two Column With Image",
+    //       component: TwoColumnWithImageTestimonial,
+    //       url: "/components/blocks/Testimonial/TwoColumnWithImage",
+    //     },
+    //     TwoColumnWithImageAndProfilePictureReview: {
+    //       name: "Two Column With Image And Profile Picture Review",
+    //       component: TwoColumnWithImageAndProfilePictureReviewTestimonial,
+    //       url: "/components/blocks/Testimonial/TwoColumnWithImageAndProfilePictureReview",
+    //     },
+    //     TwoColumnWithImageAndRating: {
+    //       name: "Two Column With Image And Rating",
+    //       component: TwoColumnWithImageAndRatingTestimonial,
+    //       url: "/components/blocks/Testimonial/TwoColumnWithImageAndRating",
+    //     },
+    //     ThreeColumnWithProfileImage: {
+    //       name: "Three Column With Profile Image",
+    //       component: ThreeColumnWithProfileImageTestimonial,
+    //       url: "/components/blocks/Testimonial/ThreeColumnWithProfileImage",
+    //     },
+    //     SimplePrimaryBackground: {
+    //       name: "Simple With Primary Background",
+    //       component: SimpleBackgroundTestimonial,
+    //       url: "/components/blocks/Testimonial/SimplePrimaryBackground",
+    //     },
+    //   }
+    // },
 
     FAQS: {
       type: "FAQs Section",
@@ -479,27 +479,27 @@ export const components = {
           name: "Simple Five Column",
           component: SimpleFiveColumnFooter,
           url: "/components/blocks/Footer/SimpleFiveColumn",
-        },
-        FiveColumnWithInputForm: {
-          name: "Five Column With Input Form",
-          component: FiveColumnWithInputFormFooter,
-          url: "/components/blocks/Footer/FiveColumnWithInputForm",
-        },
-        FiveColumnWithBackground: {
-          name: "Five Column With background",
-          component: FiveColumnWithBackgroundFooter,
-          url: "/components/blocks/Footer/FiveColumnWithBackground",
-        },
-        FiveColumnDark: {
-          name: "Five Column Dark",
-          component: FiveColumnDarkFooter,
-          url: "/components/blocks/Footer/FiveColumnDark",
-        },
-        MiniCentered: {
-          name: "Mini Centered Dark",
-          component: MiniCenteredFooter,
-          url: "/components/blocks/Footer/MiniCentered",
-        },
+        }
+        // FiveColumnWithInputForm: {
+        //   name: "Five Column With Input Form",
+        //   component: FiveColumnWithInputFormFooter,
+        //   url: "/components/blocks/Footer/FiveColumnWithInputForm",
+        // },
+        // FiveColumnWithBackground: {
+        //   name: "Five Column With background",
+        //   component: FiveColumnWithBackgroundFooter,
+        //   url: "/components/blocks/Footer/FiveColumnWithBackground",
+        // },
+        // FiveColumnDark: {
+        //   name: "Five Column Dark",
+        //   component: FiveColumnDarkFooter,
+        //   url: "/components/blocks/Footer/FiveColumnDark",
+        // },
+        // MiniCentered: {
+        //   name: "Mini Centered Dark",
+        //   component: MiniCenteredFooter,
+        //   url: "/components/blocks/Footer/MiniCentered",
+        // },
       }
     }
   }

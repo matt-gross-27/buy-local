@@ -10,10 +10,10 @@ import MainFeature from "components/features/TwoColWithTwoHorizontalFeaturesAndB
 // import FeatureStats from "components/features/ThreeColCenteredStatsPrimaryBackground.js";
 import Pricing from "components/pricing/TwoPlansWithDurationSwitcher.js";
 // import Blog from "components/blogs/GridWithFeaturedPost.js";
-import Testimonial from "components/testimonials/TwoColumnWithImageAndRating.js";
+// import Testimonial from "components/testimonials/TwoColumnWithImageAndRating.js";
 import FAQ from "components/faqs/SingleCol.js";
 import GetStarted from "components/cta/GetStartedLight.js";
-import Footer from "components/footers/FiveColumnWithInputForm.js";
+// import Footer from "components/footers/FiveColumnWithInputForm.js";
 
 const HighlightedText = tw.span`text-primary-500`
 
@@ -28,9 +28,9 @@ export default () => {
       <MainFeature
         heading={<>Cloud built by and for <HighlightedText>Professionals</HighlightedText></>}
       />
-      <Testimonial 
+      {/* <Testimonial 
         heading={<>Our Clients <HighlightedText>Love Us</HighlightedText></>}
-      />
+      /> */}
       <Pricing 
         heading={<>Flexible <HighlightedText>Plans</HighlightedText></>}
       />
@@ -42,7 +42,7 @@ export default () => {
         heading={<>We love <HighlightedText>Writing</HighlightedText></>}
       /> */}
       <GetStarted/>
-      <Footer />
+  
     </AnimationRevealPage>
   );
 }
