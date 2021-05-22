@@ -85,7 +85,7 @@ export default ({
           <MainContent>
             <Heading>{headingText}</Heading>
             <FormContainer>
-              <SocialButtonsContainer>
+              {/* <SocialButtonsContainer>
                 {socialButtons.map((socialButton, index) => (
                   <SocialButton key={index} href={socialButton.url}>
                     <span className="iconContainer">
@@ -94,7 +94,7 @@ export default ({
                     <span className="text">{socialButton.text}</span>
                   </SocialButton>
                 ))}
-              </SocialButtonsContainer>
+              </SocialButtonsContainer> */}
               <DividerTextContainer>
                 <DividerText>Or Sign in with your e-mail</DividerText>
               </DividerTextContainer>

@@ -10,6 +10,11 @@ import logo from "../../images/logo.svg";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
+import { Link } from 'react-router-dom';
+
+//testing login import
+
+
 const Header = tw.header`
   flex justify-between items-center
   max-w-screen-xl mx-auto
@@ -75,10 +80,10 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       <NavLink href="/#">About Us</NavLink>
       <NavLink href="/#">Become A Vendor!</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/#" tw="lg:ml-12!">
-        Login
+      <NavLink href="/login" tw="lg:ml-12!">
+        <Link to="/login">Login</Link>
       </NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/#">Sign Up</PrimaryLink>
+      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/signup">Sign Up</PrimaryLink>
     </NavLinks>
   ];
 
