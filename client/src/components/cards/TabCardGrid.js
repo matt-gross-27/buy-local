@@ -143,9 +143,42 @@ export default ({
         url: "#"
       }
     ],
-    Drinks: getRandomCards(),
-    Sweets: getRandomCards(),
-    Clothes: getRandomCards()
+    Drinks: [
+      {
+        imageSrc:
+          "https://wifelifekitchen.files.wordpress.com/2016/05/img_3903.jpg?w=1568",
+        title: "Michi Mixto",
+        content: "Tomato Cucumber & Mango",
+        price: "$9.99",
+        rating: "5.0",
+        reviews: "87",
+        url: "#"
+      },
+    ],
+    Sweets: [
+      {
+        imageSrc:
+          "https://sugargeekshow.com/wp-content/uploads/2021/01/chocolate_covered_strawberries_TUTORIAL.jpg",
+        title: "Fresh Dipped Strawberries",
+        content: "Assorment Chocolate",
+        price: "Starting @ $9.99 +",
+        rating: "4.8",
+        reviews: "94",
+        url: "#"
+      },
+    ],
+    Clothes: [
+      {
+        imageSrc:
+          "https://cdn.shopify.com/s/files/1/0784/3715/products/IMG_8085.jpg?v=1588858930",
+        title: "Tie Dye Shirts",
+        content: "Custom Made Shirts",
+        price: "Starting @ $15.00 +",
+        rating: "4.6",
+        reviews: "120",
+        url: "#"
+      },
+    ],
   }
 }) => {
   /*

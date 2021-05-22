@@ -5,7 +5,7 @@ import Features from "components/features/ThreeColWithSideImageWithPrimaryBackgr
 import MainFeature from "components/features/TwoColWithButton.js";
 import Pricing from "components/pricing/ThreePlansWithHalfPrimaryBackground.js";
 import Testimonial from "components/testimonials/SimplePrimaryBackground.js";
-import FAQ from "components/faqs/TwoColumnPrimaryBackground.js";
+// import FAQ from "components/faqs/TwoColumnPrimaryBackground.js";
 import Footer from "components/footers/FiveColumnDark.js";
 import serverRedundancyIllustrationImageSrc from "images/server-redundancy-illustration.svg"
 import serverSecureIllustrationImageSrc from "images/server-secure-illustration.svg"
@@ -31,7 +31,7 @@ export default () => {
         textOnLeft={false}
       />
       <Testimonial />
-      <FAQ />
+      {/* <FAQ /> */}
       <Footer />
     </AnimationRevealPage>
   );

@@ -7,9 +7,9 @@ import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import Hero from "components/hero/TwoColumnWithFeaturesAndTestimonial.js";
 import Features from "components/features/ThreeColWithSideImage.js";
 import MainFeature from "components/features/TwoColWithTwoHorizontalFeaturesAndButton.js";
-import FeatureStats from "components/features/ThreeColCenteredStatsPrimaryBackground.js";
+// import FeatureStats from "components/features/ThreeColCenteredStatsPrimaryBackground.js";
 import Pricing from "components/pricing/TwoPlansWithDurationSwitcher.js";
-import Blog from "components/blogs/GridWithFeaturedPost.js";
+// import Blog from "components/blogs/GridWithFeaturedPost.js";
 import Testimonial from "components/testimonials/TwoColumnWithImageAndRating.js";
 import FAQ from "components/faqs/SingleCol.js";
 import GetStarted from "components/cta/GetStartedLight.js";
@@ -21,7 +21,7 @@ export default () => {
   return (
     <AnimationRevealPage>
       <Hero />
-      <FeatureStats/>
+      {/* <FeatureStats/> */}
       <Features 
         heading={<>Amazing <HighlightedText>Features</HighlightedText></>}
       />
@@ -37,10 +37,10 @@ export default () => {
       <FAQ
         heading={<>Any <HighlightedText>Questions ?</HighlightedText></>}
       />
-      <Blog
+      {/* <Blog
         subheading="Blog"
         heading={<>We love <HighlightedText>Writing</HighlightedText></>}
-      />
+      /> */}
       <GetStarted/>
       <Footer />
     </AnimationRevealPage>

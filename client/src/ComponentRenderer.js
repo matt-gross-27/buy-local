@@ -57,22 +57,22 @@ import TwoColVerticalWithButtonFeatures from "components/features/TwoColWithTwoF
 import TwoColHorizontalWithButtonFeatures from "components/features/TwoColWithTwoHorizontalFeaturesAndButton.js";
 import WithStepsAndImageFeatures from "components/features/TwoColWithSteps.js";
 import ThreeColumnDashedBorderFeatures from "components/features/DashedBorderSixFeatures";
-import ThreeColCenteredStatsWithPrimaryBackgroundFeatures from "components/features/ThreeColCenteredStatsPrimaryBackground.js";
+// import ThreeColCenteredStatsWithPrimaryBackgroundFeatures from "components/features/ThreeColCenteredStatsPrimaryBackground.js";
 import WithStatsAndImageFeatures from "components/features/TwoColSingleFeatureWithStats.js";
 import WithStatsAndImage2Features from "components/features/TwoColSingleFeatureWithStats2.js";
 import VerticalWithAlternateImageAndTextFeatures from "components/features/VerticalWithAlternateImageAndText.js";
 
 import SliderCards from "components/cards/ThreeColSlider.js";
 import TrendingCards from "components/cards/TwoTrendingPreviewCardsWithImage.js";
-import PortfolioCards from "components/cards/PortfolioTwoCardsWithImage.js";
+// import PortfolioCards from "components/cards/PortfolioTwoCardsWithImage.js";
 import TabGridCards from "components/cards/TabCardGrid.js";
 import ProfileThreeColGridCards from "components/cards/ProfileThreeColGrid.js"
 import ThreeColContactDetailsCards from "components/cards/ThreeColContactDetails.js"
 
 import ThreeColSimpleWithImageBlog from "components/blogs/ThreeColSimpleWithImage.js";
-import ThreeColSimpleWithImageAndDashedBorderBlog from "components/blogs/ThreeColSimpleWithImageAndDashedBorder.js";
-import PopularAndRecentPostsBlog from "components/blogs/PopularAndRecentBlogPosts.js";
-import GridWithFeaturedPostBlog from "components/blogs/GridWithFeaturedPost.js";
+// import ThreeColSimpleWithImageAndDashedBorderBlog from "components/blogs/ThreeColSimpleWithImageAndDashedBorder.js";
+// import PopularAndRecentPostsBlog from "components/blogs/PopularAndRecentBlogPosts.js";
+// import GridWithFeaturedPostBlog from "components/blogs/GridWithFeaturedPost.js";
 
 import TwoColumnWithImageTestimonial from "components/testimonials/TwoColumnWithImage.js";
 import TwoColumnWithImageAndProfilePictureReviewTestimonial from "components/testimonials/TwoColumnWithImageAndProfilePictureReview.js";
@@ -80,9 +80,9 @@ import TwoColumnWithImageAndRatingTestimonial from "components/testimonials/TwoC
 import ThreeColumnWithProfileImageTestimonial from "components/testimonials/ThreeColumnWithProfileImage.js";
 import SimpleBackgroundTestimonial from "components/testimonials/SimplePrimaryBackground.js";
 
-import SimpleWithSideImageFAQS from "components/faqs/SimpleWithSideImage.js";
+// import SimpleWithSideImageFAQS from "components/faqs/SimpleWithSideImage.js";
 import SingleColFAQS from "components/faqs/SingleCol.js";
-import TwoColumnPrimaryBackgroundFAQS from "components/faqs/TwoColumnPrimaryBackground.js";
+// import TwoColumnPrimaryBackgroundFAQS from "components/faqs/TwoColumnPrimaryBackground.js";
 
 import SimpleContactUsForm from "components/forms/SimpleContactUs.js";
 import SimpleSubscribeNewsletterForm from "components/forms/SimpleSubscribeNewsletter.js";
@@ -288,11 +288,11 @@ export const components = {
           component: ThreeColumnDashedBorderFeatures,
           url: "/components/blocks/Features/ThreeColumnDashedBorder",
         },
-        ThreeColCenteredStatsPrimaryBackground: {
-          name: "Three Column With Centered Stats on Primary Background",
-          component: ThreeColCenteredStatsWithPrimaryBackgroundFeatures,
-          url: "/components/blocks/Features/ThreeColCenteredStatsPrimaryBackground",
-        },
+        // ThreeColCenteredStatsPrimaryBackground: {
+        //   name: "Three Column With Centered Stats on Primary Background",
+        //   component: ThreeColCenteredStatsWithPrimaryBackgroundFeatures,
+        //   url: "/components/blocks/Features/ThreeColCenteredStatsPrimaryBackground",
+        // },
         WithStatsAndImage: {
           name: "Stats With Image",
           component: WithStatsAndImageFeatures,
@@ -319,11 +319,11 @@ export const components = {
           component: SliderCards,
           url: "/components/blocks/Cards/Slider",
         },
-        Portfolio: {
-          name: "Two Column Portfolio Cards With Images ",
-          component: PortfolioCards,
-          url: "/components/blocks/Cards/Portfolio",
-        },
+        // Portfolio: {
+        //   name: "Two Column Portfolio Cards With Images ",
+        //   component: PortfolioCards,
+        //   url: "/components/blocks/Cards/Portfolio",
+        // },
         TabGrid: {
           name: "Tab Card Grid With Tab Switcher",
           component: TabGridCards,
@@ -350,26 +350,26 @@ export const components = {
     Blog: {
       type: "Blog Section",
       elements: {
-        GridWithFeaturedPost: {
-          name: "Grid With Featured Post",
-          component: GridWithFeaturedPostBlog,
-          url: "/components/blocks/Blog/GridWithFeaturedPost",
-        },
-        PopularAndRecentPosts: {
-          name: "Popular And Recent Posts",
-          component: PopularAndRecentPostsBlog,
-          url: "/components/blocks/Blog/PopularAndRecentPosts",
-        },
+        // GridWithFeaturedPost: {
+        //   name: "Grid With Featured Post",
+        //   component: GridWithFeaturedPostBlog,
+        //   url: "/components/blocks/Blog/GridWithFeaturedPost",
+        // },
+        // PopularAndRecentPosts: {
+        //   name: "Popular And Recent Posts",
+        //   component: PopularAndRecentPostsBlog,
+        //   url: "/components/blocks/Blog/PopularAndRecentPosts",
+        // },
         ThreeColSimpleWithImage: {
           name: "Simple Three Column With Image",
           component: ThreeColSimpleWithImageBlog,
           url: "/components/blocks/Blog/ThreeColSimpleWithImage",
         },
-        ThreeColSimpleWithImageAndDashedBorder: {
-          name: "Simple Three Column With Image and Dashed Border",
-          component: ThreeColSimpleWithImageAndDashedBorderBlog,
-          url: "/components/blocks/Blog/ThreeColSimpleWithImageAndDashedBorder",
-        },
+        // ThreeColSimpleWithImageAndDashedBorder: {
+        //   name: "Simple Three Column With Image and Dashed Border",
+        //   component: ThreeColSimpleWithImageAndDashedBorderBlog,
+        //   url: "/components/blocks/Blog/ThreeColSimpleWithImageAndDashedBorder",
+        // },
       } 
     },
 
@@ -407,21 +407,21 @@ export const components = {
     FAQS: {
       type: "FAQs Section",
       elements: {
-        SimpleWithSideImage: {
-          name: "Simple With Side Image",
-          component: SimpleWithSideImageFAQS,
-          url: "/components/blocks/FAQS/SimpleWithSideImage",
-        },
+      //   SimpleWithSideImage: {
+      //     name: "Simple With Side Image",
+      //     component: SimpleWithSideImageFAQS,
+      //     url: "/components/blocks/FAQS/SimpleWithSideImage",
+      //   },
         SingleCol: {
           name: "Single Column",
           component: SingleColFAQS,
           url: "/components/blocks/FAQS/SingleCol",
         },
-        TwoColumnPrimaryBackground: {
-          name: "Two Column With Primary Background",
-          component: TwoColumnPrimaryBackgroundFAQS,
-          url: "/components/blocks/FAQS/TwoColumnPrimaryBackground",
-        },
+        // TwoColumnPrimaryBackground: {
+        //   name: "Two Column With Primary Background",
+        //   component: TwoColumnPrimaryBackgroundFAQS,
+        //   url: "/components/blocks/FAQS/TwoColumnPrimaryBackground",
+        // },
       }
     },
 
