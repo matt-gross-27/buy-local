@@ -16,6 +16,7 @@ import TestCloudinary from './pages/TestCloudinary';
 // import ContactUsForm from "components/forms/SimpleContactUs.js";
 // import Footer from "components/footers/MiniCenteredFooter.js";
 import MainLandingPage from "./MainLandingPage";
+import Login from "./pages/LoginTest";
 
 /* Inner Pages */
 // import LoginPage from "pages/Login.js";
@@ -54,6 +55,7 @@ function App() {
           <Route path="/">
             <MainLandingPage />
           </Route>
+          <Route exact path="/login" component={Login}/>
         </Switch>
 
       </Router>
