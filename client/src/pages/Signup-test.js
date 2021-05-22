@@ -30,6 +30,29 @@ function Signup(props) {
             [name]: value
         });
     };
+
+    return (
+        <div className="container">
+            <Link to="/login">
+            Already have an account?
+            </Link>
+
+        <h2>Signup</h2>
+        <form onSubmit={handleFormSubmit}>
+            <div>
+                <label htmlFor="firstName">First Name:</label>
+                <input
+                placeholder="Please enter your First name"
+                name="firstName"
+                type="firstName"
+                id="firstName"
+                onChange={handleChange}
+                />
+            </div>
+
+            </form>
+        </div>
+    );
 };
 
 export default Signup;
