@@ -75,11 +75,21 @@ const typeDefs = gql`
     product: Product
   }
 
+  input purchaseInput {
+    purchaseQuantity: Int
+    product: ID
+  }
+
+  input orderInput {
+    purchases: [purchaseInput]
+    shop: ID
+  }
+
   type Order {
     createdAt: String
     purchases: [Purchase]
-    shopId: Shop
-    customerId: User
+    shop: Shop
+    customer: User
   }
 
   type Auth {
@@ -89,18 +99,31 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    getShops: [Shop]
+    shop(_id: ID): Shop
+    shops: [Shop]
     categories: [Category]
-    products(category: ID, name: String): [Product]
     product(_id: ID!): Product
+    products(category: ID, name: String): [Product]
+    myOrderHistory: [Order]
+    mySales: [Order]
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
     createShop(name: String!, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
-    updateProduct(_id: ID!, stock: Int!): Product
+    updateShop(name: String, description: String, phone: String, instagram: String, logo: String, addressNum: String, street: String, city: String, state: String, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
+    createCategory(name: String!): Shop
+    deleteCategory(name: String!): Category
+    createProduct(name: String!, description: String, image: String, price: Float!, stock: Int!, categoryName: String): Shop
+    updateProduct(name: String!, description: String!, image: String!, price: Float!, stock: Int!, categoryName: String!, _id: ID!): Shop
+    createRating(shopId: ID!, stars: Int!): Shop
+    createReview(shopId: ID!, reviewText: String!): Shop    
+    
+    #NOT WORKING YET
+    createOrder(orderInput: orderInput): Order
   }
 `;
 
+//exporting typeDefs here
 module.exports = typeDefs;
