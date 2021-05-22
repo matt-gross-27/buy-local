@@ -72,6 +72,17 @@ function Signup(props) {
                 />  
             </div>
 
+            <div>
+                <label htmlFor="password">Password:</label>
+                <input
+                placeholder="Please enter your password"
+                name="password"
+                type="password"
+                id="password"
+                onChange={handleChange}
+                />  
+            </div>
+
             </form>
         </div>
     );
