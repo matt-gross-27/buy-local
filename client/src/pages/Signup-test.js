@@ -10,6 +10,18 @@ function Signup(props) {
         password: ''
     });
     const [createUser] = useMutation(CREATE_USER);
+
+    const handleFormSubmit = async event => {
+        event.preventDefault();
+        const mutationResponse = await createUser({
+            variables: {
+                email: formState.email, password: formState.password,
+                firstName: formState.firstName, lastName: formState.lastName
+            }
+        });
+        const token = mutationResponse.data.createUser.token;
+        Auth.login(token);
+    };
 };
 
 export default Signup;
