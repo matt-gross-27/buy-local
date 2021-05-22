@@ -86,6 +86,7 @@ const typeDefs = gql`
   }
 
   type Order {
+    _id: ID!
     createdAt: String
     purchases: [Purchase]
     shop: Shop
@@ -106,6 +107,7 @@ const typeDefs = gql`
     products(category: ID, name: String): [Product]
     myOrderHistory: [Order]
     mySales: [Order]
+    allOrders: [Order]
   }
 
   type Mutation {

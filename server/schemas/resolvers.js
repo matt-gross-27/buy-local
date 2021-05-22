@@ -52,6 +52,16 @@ const resolvers = {
       return shop;
     },
 
+  
+
+    allOrders: async () => {
+      const allOrders = await Order.find()
+        .populate({ path: 'purchases' })
+        .populate({ path: 'products', populate: { path: 'category' } })
+        .populate( {path: 'user'} )
+      return allOrders;
+    },
+
     myOrderHistory: async (parent, args, context) => {
       const orderHistory = await Order.find({ customer: context.user._id })
         .populate({
@@ -259,7 +269,9 @@ const resolvers = {
     },
     createOrder: async (parent, { orderInput }, context) => {
       if (context.user) {
-        const order = await Order.create(orderInput);
+        console.log(context.user)
+        const order = await Order.create({...orderInput, customer: context.user._id});
+        console.log(orderInput)
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
