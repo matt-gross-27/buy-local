@@ -50,6 +50,17 @@ function Signup(props) {
                 />
             </div>
 
+            <div>
+                <label htmlFor="lastName">Last Name:</label>
+                <input
+                placeholder="Please enter your Last name"
+                name="lastName"
+                type="lastName"
+                id="lastName"
+                onChange={handleChange}
+                />  
+            </div>
+
             </form>
         </div>
     );
