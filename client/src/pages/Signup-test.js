@@ -83,6 +83,11 @@ function Signup(props) {
                 />  
             </div>
 
+            <div>
+                <button type="submit">
+                    Submit
+                </button>
+            </div>
             </form>
         </div>
     );
