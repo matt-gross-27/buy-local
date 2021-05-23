@@ -49,7 +49,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
-          </Route>
+          </Route> 
           <Route path="/components/:type/:name">
             <ComponentRenderer />
           </Route>
