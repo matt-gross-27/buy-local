@@ -6,9 +6,9 @@ import Features from "components/features/ThreeColSimple.js";
 
 import MainFeature2 from "components/features/TwoColSingleFeatureWithStats2.js";
 import TabGrid from "components/cards/TabCardGrid.js";
-import Testimonial from "components/testimonials/ThreeColumnWithProfileImage.js";
+// import Testimonial from "components/testimonials/ThreeColumnWithProfileImage.js";
 import DownloadApp from "components/cta/DownloadApp.js";
-import Footer from "components/footers/FiveColumnWithInputForm.js";
+import Footer from "components/footers/SimpleFiveColumn.js";
 
 import chefIconImageSrc from "images/chef-icon.svg";
 import celebrationIconImageSrc from "images/celebration-icon.svg";
@@ -25,12 +25,11 @@ function Home() {
     <AnimationRevealPage>
       <Hero
         heading={<>Interesting & Affordable <HighlightedText>Products Near You.</HighlightedText></>}
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        description="Small-scale, locally owned home-based businesses create communities that are more prosperous, connected, and generally better-off across a wide range of metrics."
         imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
         imageCss={imageCss}
         imageDecoratorBlob={true}
         primaryButtonText="Order Now"
-        watchVideoButtonText="Meet The Chefs"
       />
       {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
       <TabGrid
@@ -43,26 +42,26 @@ function Home() {
       <Features
         heading={
           <>
-            Amazing <HighlightedText>Services.</HighlightedText>
+            Amazing and <HighlightedText>Homemade.</HighlightedText>
           </>
         }
         cards={[
           {
             imageSrc: shopIconImageSrc,
-            title: "230+ Vendors",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
+            title: "30+ Vendors",
+            description: "The perfect place to showcase all your at home perfections, from food to products, no judgment here.",
             url: "https://google.com"
           },
           {
             imageSrc: chefIconImageSrc,
             title: "Homemade Chefs",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
+            description: "All the food worth our money, you know when the house smells too good it needs to be shared!",
             url: "https://timerse.com"
           },
           {
             imageSrc: celebrationIconImageSrc,
             title: "Trendy Attire",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
+            description: "Tired of your basic wardrobe, try something new and custom made",
             url: "https://reddit.com"
           }
         ]}
@@ -76,15 +75,15 @@ function Home() {
         statistics={[
           {
             key: "Orders",
-            value: "94000+",
+            value: "480+",
           },
           {
             key: "Customers",
-            value: "11000+"
+            value: "100+"
           },
           {
-            key: "Chefs",
-            value: "1500+"
+            key: "Vendors",
+            value: "500+"
           }
         ]}
         primaryButtonText="Order Now"
@@ -96,10 +95,6 @@ function Home() {
         imageDecoratorBlob={true}
         imageDecoratorBlobCss={tw`left-1/2 md:w-32 md:h-32 -translate-x-1/2 opacity-25`}
         textOnLeft={true}
-      />
-      <Testimonial
-        subheading=""
-        heading={<>Customers <HighlightedText>Love Us.</HighlightedText></>}
       />
       <DownloadApp
         text={<>People around you are already ordering using the <HighlightedTextInverse>Buy Local App.</HighlightedTextInverse></>}
