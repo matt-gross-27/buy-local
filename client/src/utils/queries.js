@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 
+///may need to edit this//
 export const GET_USER = gql`
     {
         user {
@@ -8,6 +9,15 @@ export const GET_USER = gql`
             lastName
             email
             isVendor
+            orderHistory {
+                _id
+                purchases {
+                    purchaseQuantity
+                    product {
+                        name
+                    }
+                }
+            }
             shop {
                 _id
                 name
@@ -137,6 +147,7 @@ export const GET_SHOP_BY_ID = gql`
                 }
             }
             sales {
+                _id
                 purchases {
                     purchaseQuantity
                     product {
@@ -163,7 +174,6 @@ export const GET_SHOP_BY_ID = gql`
             reviewCount
             ratingCount
             ratingAvg
-
         }
     }
 `;
@@ -186,6 +196,54 @@ export const GET_PRODUCTS = gql`
             price
             image
             stock
+        }
+    }
+`;
+
+export const ALL_ORDERS = gql`
+    {
+        allOrders {
+            _id
+            purchases {
+                purchaseQuantity
+                product {
+                    _id
+                    name
+                    price
+                }
+            }
+            shop {
+                _id
+                name
+            }
+            customer {
+                _id
+                firstName
+                lastName
+            }
+        }
+    }
+`;
+
+export const MY_ORDER_HISTORY = gql`
+    {
+        myOrderHistory {
+            _id
+            purchases {
+                purchaseQuantity
+                product {
+                    _id
+                    name
+                    price
+                }
+            }
+            shop {
+                _id
+                name
+            }
+            customer {
+                _id
+            }
         }
     }
 `;

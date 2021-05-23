@@ -3,7 +3,7 @@ import styled from "styled-components";
 import tw from "twin.macro";
 //eslint-disable-next-line
 import { css } from "styled-components/macro";
-import { SectionHeading } from "../misc/Headings";
+import { SectionHeading } from "components/misc/Headings.js";
 
 import defaultCardImage from "../../images/shield-icon.svg";
 
@@ -28,9 +28,9 @@ const Column = styled.div`
 `;
 
 const Card = styled.div`
-  ${tw`flex flex-col mx-auto max-w-xs items-center px-6 py-10 border-2 border-dashed border-blue-500 rounded-lg mt-12`}
+  ${tw`flex flex-col mx-auto max-w-xs items-center px-6 py-10 border-2 border-dashed border-primary-500 rounded-lg mt-12`}
   .imageContainer {
-    ${tw`border-2 border-blue-500 text-center rounded-full p-6 flex-shrink-0 relative`}
+    ${tw`border-2 border-primary-500 text-center rounded-full p-6 flex-shrink-0 relative`}
     img {
       ${tw`w-8 h-8`}
     }
@@ -41,11 +41,11 @@ const Card = styled.div`
   }
 
   .title {
-    ${tw`mt-2 font-bold text-xl leading-none text-gray-500`}
+    ${tw`mt-2 font-bold text-xl leading-none text-primary-500`}
   }
 
   .description {
-    ${tw`mt-3 font-semibold text-gray-100 text-sm leading-loose`}
+    ${tw`mt-3 font-semibold text-secondary-100 text-sm leading-loose`}
   }
 `;
 
@@ -78,7 +78,7 @@ export default () => {
   return (
     <Container>
       <ThreeColumnContainer>
-        <Heading>Our Professional <span tw="text-gray-500">Services</span></Heading>
+        <Heading>Our Professional <span tw="text-primary-500">Services</span></Heading>
         {cards.map((card, i) => (
           <Column key={i}>
             <Card>

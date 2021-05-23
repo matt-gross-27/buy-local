@@ -104,8 +104,9 @@ export default ({
    * Using gtag like this because we only want to use Google Analytics when Main Landing Page is rendered
    * Remove this part and the the gtag script inside public/index.html if you dont need google analytics
    */
-  window.gtag("js", new Date());
-  window.gtag("config", "UA-45799926-9");
+  //commented below lines out
+ // window.gtag("js", new Date());
+ // window.gtag("config", "UA-45799926-9");
 
   const previewImageAnimationVariants = {
     rest: {
