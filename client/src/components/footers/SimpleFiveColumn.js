@@ -62,9 +62,6 @@ export default () => {
           <ColumnHeading>Quick Links</ColumnHeading>
           <LinkList>
             <LinkListItem>
-              <Link href="#">Blog</Link>
-            </LinkListItem>
-            <LinkListItem>
               <Link href="#">FAQs</Link>
             </LinkListItem>
             <LinkListItem>
@@ -79,7 +76,7 @@ export default () => {
           <ColumnHeading>Product</ColumnHeading>
           <LinkList>
             <LinkListItem>
-              <Link href="#">Log In</Link>
+              <Link href="/login">Log In</Link>
             </LinkListItem>
             <LinkListItem>
               <Link href="#">Personal</Link>
@@ -96,16 +93,10 @@ export default () => {
           <ColumnHeading>Legal</ColumnHeading>
           <LinkList>
             <LinkListItem>
-              <Link href="#">GDPR</Link>
-            </LinkListItem>
-            <LinkListItem>
               <Link href="/privacy-policy">Privacy Policy</Link>
             </LinkListItem>
             <LinkListItem>
               <Link href="/terms-of-service">Terms of Service</Link>
-            </LinkListItem>
-            <LinkListItem>
-              <Link href="#">Disclaimer</Link>
             </LinkListItem>
           </LinkList>
         </Column>

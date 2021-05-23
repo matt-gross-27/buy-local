@@ -11,6 +11,7 @@ import Nav from './components/Nav';
 import TestCloudinary from './pages/TestCloudinary';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import AboutUs from './pages/AboutUs';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 
@@ -54,6 +55,7 @@ function App() {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/terms-of-service" component={TermsOfService} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+          <Route exact path="/about-us" component={AboutUs} />
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
           </Route> 
