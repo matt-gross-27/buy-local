@@ -12,6 +12,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import illustration from "images/signup-illustration.svg";
 import logo from "images/logo.svg";
+import signupImage from "images/signup-image.jpg";
 // import googleIconImageSrc from "images/google-icon.png";
 // import twitterIconImageSrc from "images/twitter-icon.png";
 import { ReactComponent as SignUpIcon } from "feather-icons/dist/icons/user-plus.svg";
@@ -160,7 +161,7 @@ return (
           </MainContent>
         </MainContainer>
         <IllustrationContainer>
-          <IllustrationImage imageSrc={illustration} />
+          <IllustrationImage imageSrc={signupImage} />
         </IllustrationContainer>
       </Content>
     </Container>

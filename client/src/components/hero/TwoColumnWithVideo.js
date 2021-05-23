@@ -15,10 +15,11 @@ import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/dot-pattern.svg";
 import DesignIllustration from "../../images/design-illustration.svg";
 
+
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-20 md:py-24`;
-const LeftColumn = tw.div`relative lg:w-6/12 lg:pr-12 flex-shrink-0 text-center lg:text-left`;
-const RightColumn = tw.div`relative mt-12 lg:mt-0 flex flex-col justify-center`;
+//const LeftColumn = tw.div`relative lg:w-6/12 lg:pr-12 flex-shrink-0 text-center lg:text-left`;
+const RightColumn = tw.div` mt-12 lg:mt-0 ml-64 flex flex-col justify-center`;
 
 const Heading = tw.h1`font-black text-3xl md:text-5xl leading-snug max-w-3xl`;
 const Paragraph = tw.p`my-5 lg:my-8 text-sm lg:text-base font-medium text-gray-600 max-w-lg mx-auto lg:mx-0`;
@@ -59,14 +60,13 @@ const StyledModal = styled(ReactModalAdapter)`
 const CloseModalButton = tw.button`absolute top-0 right-0 mt-8 mr-8 hocus:text-primary-500`;
 
 export default ({
-  heading = "Modern React Templates, Just For You",
- description="Our templates are easy to setup, understand and customize. Fully modular components with a variety of pages and components.",
-  primaryButtonText="Get Started",
-  primaryButtonUrl="#",
-  watchVideoButtonText="Watch Video",
-  watchVideoYoutubeUrl="https://www.youtube.com/embed/_GuOjXYl5ew",
+//   heading = "Modern React Templates, Just For You",
+//  description="Our templates are easy to setup, understand and customize. Fully modular components with a variety of pages and components.",
+//   primaryButtonText="Get Started",
+//   primaryButtonUrl="#",
+//   watchVideoButtonText="Watch Video",
+//   watchVideoYoutubeUrl="https://www.youtube.com/embed/_GuOjXYl5ew",
   imageSrc=DesignIllustration,
-  imageCss=null,
   imageDecoratorBlob = false,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -78,23 +78,22 @@ export default ({
       <Header />
       <Container>
         <TwoColumn>
-          <LeftColumn>
-            <Heading>{heading}</Heading>
-            <Paragraph>{description}</Paragraph>
+          {/* <LeftColumn> */}
+            {/* <Heading>{heading}</Heading> */}
+            {/* <Paragraph>{description}</Paragraph> */}
             <Actions>
-              <PrimaryButton as="a" href={primaryButtonUrl}>{primaryButtonText}</PrimaryButton>
-              <WatchVideoButton onClick={toggleModal}>
+              {/* <PrimaryButton as="a" href={primaryButtonUrl}>{primaryButtonText}</PrimaryButton> */}
+              {/* <WatchVideoButton onClick={toggleModal}>
                 <span className="playIconContainer">
                   <PlayIcon className="playIcon" />
                 </span>
                 <span className="playText">{watchVideoButtonText}</span>
-              </WatchVideoButton>
+              </WatchVideoButton> */}
             </Actions>
-          </LeftColumn>
+          {/* </LeftColumn> */}
           <RightColumn>
             <IllustrationContainer>
               <img
-                css={imageCss}
                 src={imageSrc}
                 alt="Hero"
               />
@@ -114,7 +113,7 @@ export default ({
             <CloseIcon tw="w-6 h-6" />
           </CloseModalButton>
           <div className="content">
-            <ResponsiveVideoEmbed url={watchVideoYoutubeUrl} tw="w-full" />
+            {/* <ResponsiveVideoEmbed url={watchVideoYoutubeUrl} tw="w-full" /> */}
           </div>
         </StyledModal>
       </Container>
