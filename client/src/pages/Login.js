@@ -38,7 +38,7 @@ const FormContainer = tw.div`w-full flex-1 mt-8`;
 // `;
 
 const DividerTextContainer = tw.div`my-12 mb-2 border-b text-center relative`;
-const DividerText = tw.div`leading-none px-2 pb-5 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform -translate-y-1/2 absolute inset-x-0 top-1/2 bg-transparent`;
+const DividerText = tw.div`leading-none px-2 pb-6 inline-block text-sm text-red-600 tracking-wide font-medium bg-white transform -translate-y-1/2 absolute inset-x-0 top-1/2 bg-transparent`;
 
 const Form = tw.form`mx-auto max-w-xs`;
 const Input = tw.input`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 first:mt-0`;
@@ -128,7 +128,7 @@ return (
               <Heading>Sign In To Buy Local</Heading>
               <FormContainer>
                 <DividerTextContainer>
-                  <DividerText>Or Sign in with your e-mail</DividerText>
+                  <DividerText>{error && <div> Login Failed </div>}</DividerText>
                 </DividerTextContainer>
                 <Form onSubmit={handleFormSubmit}>
                   <Input 
@@ -150,14 +150,14 @@ return (
                     <span className="text" type="submit">Sign In</span>
                   </SubmitButton>
                 </Form>
-                {error && <div> Login Failed </div>}
+                
                 {/* <p tw="mt-6 text-xs text-gray-600 text-center">
                   <a href={forgotPasswordUrl} tw="border-b border-gray-500 border-dotted">
                     Forgot Password ?
                 </a>
                 </p> */}
                 <p tw="mt-8 text-sm text-gray-600 text-center">
-                  Dont have an account?{" "}
+                  Don't have an account?{" "}
                   <a href="/signup" tw="border-b border-gray-500 border-dotted">
                     Sign Up
                 </a>
