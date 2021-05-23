@@ -19,10 +19,7 @@ export const CREATE_USER = gql`
         createUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
             token
             user {
-                firstName
-                lastName
-                email
-                isVendor
+               _id
             }
         }
     }
