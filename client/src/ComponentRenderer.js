@@ -21,7 +21,7 @@ import HostingCloudLandingPageImageSrc from "images/demo/HostingCloudLandingPage
 
 import LoginPage from "pages/Login.js";
 import SignupPage from "pages/Signup.js";
-import PricingPage from "pages/Pricing.js";
+// import PricingPage from "pages/Pricing.js";
 import AboutUsPage from "pages/AboutUs.js";
 import ContactUsPage from "pages/ContactUs.js";
 import BlogIndexPage from "pages/BlogIndex.js";
@@ -30,24 +30,24 @@ import PrivacyPolicyPage from "pages/PrivacyPolicy.js";
 
 import LoginPageImageSrc from "images/demo/LoginPage.jpeg";
 import SignupPageImageSrc from "images/demo/SignupPage.jpeg";
-import PricingPageImageSrc from "images/demo/PricingPage.jpeg";
+// import PricingPageImageSrc from "images/demo/PricingPage.jpeg";
 import AboutUsPageImageSrc from "images/demo/AboutUsPage.jpeg";
 import ContactUsPageImageSrc from "images/demo/ContactUsPage.jpeg";
 import BlogIndexPageImageSrc from "images/demo/BlogIndexPage.jpeg";
 import TermsOfServicePageImageSrc from "images/demo/TermsOfServicePage.jpeg";
 import PrivacyPolicyPageImageSrc from "images/demo/PrivacyPolicyPage.jpeg";
 
-import BackgroundAsImageHero from "components/hero/BackgroundAsImage.js";
+// import BackgroundAsImageHero from "components/hero/BackgroundAsImage.js";
 import IllustrationAndVideoHero from "components/hero/TwoColumnWithVideo.js";
-import IllustrationAndInputHero from "components/hero/TwoColumnWithInput.js";
-import FeaturesAndTestimonialHero from "components/hero/TwoColumnWithFeaturesAndTestimonial.js";
-import FullWidthWithImageHero from "components/hero/FullWidthWithImage.js";
-import BackgroundAsImageWithCenteredContentHero from "components/hero/BackgroundAsImageWithCenteredContent.js";
-import IllustrationAndPrimaryBackgroundHero from "components/hero/TwoColumnWithPrimaryBackground.js";
+// import IllustrationAndInputHero from "components/hero/TwoColumnWithInput.js";
+// import FeaturesAndTestimonialHero from "components/hero/TwoColumnWithFeaturesAndTestimonial.js";
+// import FullWidthWithImageHero from "components/hero/FullWidthWithImage.js";
+// import BackgroundAsImageWithCenteredContentHero from "components/hero/BackgroundAsImageWithCenteredContent.js";
+// import IllustrationAndPrimaryBackgroundHero from "components/hero/TwoColumnWithPrimaryBackground.js";
 
-import TwoPlansWithDurationSwitcherPricing from "components/pricing/TwoPlansWithDurationSwitcher.js";
-import ThreePlansWithHalfPrimaryBackgroundPricing from "components/pricing/ThreePlansWithHalfPrimaryBackground.js";
-import ThreePlansPricing from "components/pricing/ThreePlans.js";
+// import TwoPlansWithDurationSwitcherPricing from "components/pricing/TwoPlansWithDurationSwitcher.js";
+// import ThreePlansWithHalfPrimaryBackgroundPricing from "components/pricing/ThreePlansWithHalfPrimaryBackground.js";
+// import ThreePlansPricing from "components/pricing/ThreePlans.js";
 
 import ThreeColWithSideImageFeatures from "components/features/ThreeColWithSideImage.js";
 import TwoColWithButtonFeatures from "components/features/TwoColWithButton.js";
@@ -152,11 +152,11 @@ export const components = {
       imageSrc: SignupPageImageSrc,
       scrollAnimationDisabled: true,
     },
-    PricingPage: {
-      component: PricingPage,
-      url: `/components/innerPages/PricingPage`,
-      imageSrc: PricingPageImageSrc,
-    },
+    // PricingPage: {
+    //   component: PricingPage,
+    //   url: `/components/innerPages/PricingPage`,
+    //   imageSrc: PricingPageImageSrc,
+    // },
     AboutUsPage: {
       component: AboutUsPage,
       url: `/components/innerPages/AboutUsPage`,
@@ -188,63 +188,63 @@ export const components = {
     Hero: {
       type: "Hero Section",
       elements: {
-        BackgroundAsImage: {
-          name: "With Background Image",
-          component: BackgroundAsImageHero,
-          url: "/components/blocks/Hero/BackgroundAsImage",
-        },
-        IllustrationAndInput: {
-          name: "With Image Illustration and Input",
-          component: IllustrationAndInputHero,
-          url: "/components/blocks/Hero/IllustrationAndInput",
-        },
+        // BackgroundAsImage: {
+        //   name: "With Background Image",
+        //   component: BackgroundAsImageHero,
+        //   url: "/components/blocks/Hero/BackgroundAsImage",
+        // },
+        // IllustrationAndInput: {
+        //   name: "With Image Illustration and Input",
+        //   component: IllustrationAndInputHero,
+        //   url: "/components/blocks/Hero/IllustrationAndInput",
+        // },
         IllustrationAndVideo: {
           name: "With Image Illustration and Video",
           component: IllustrationAndVideoHero,
           url: "/components/blocks/Hero/IllustrationAndVideo",
-        },
-        FeaturesAndTestimonial: {
-          name: "With Features And Customer Testimonial",
-          component: FeaturesAndTestimonialHero,
-          url: "/components/blocks/Hero/FeaturesAndTestimonial",
-        },
-        FullWidthWithImage: {
-          name: "Full Width With Image",
-          component: FullWidthWithImageHero,
-          url: "/components/blocks/Hero/FullWidthWithImage",
-        },
-        BackgroundAsImageWithCenteredContent: {
-          name: "Full Width Background Image with centered content",
-          component: BackgroundAsImageWithCenteredContentHero,
-          url: "/components/blocks/Hero/BackgroundAsImageWithCenteredContent",
-        },
-        IllustrationAndPrimaryBackground: {
-          name: "Primary Background With Illustration",
-          component: IllustrationAndPrimaryBackgroundHero,
-          url: "/components/blocks/Hero/IllustrationAndPrimaryBackground",
-        },
+        }
+        // FeaturesAndTestimonial: {
+        //   name: "With Features And Customer Testimonial",
+        //   component: FeaturesAndTestimonialHero,
+        //   url: "/components/blocks/Hero/FeaturesAndTestimonial",
+        // },
+        // FullWidthWithImage: {
+        //   name: "Full Width With Image",
+        //   component: FullWidthWithImageHero,
+        //   url: "/components/blocks/Hero/FullWidthWithImage",
+        // },
+        // BackgroundAsImageWithCenteredContent: {
+        //   name: "Full Width Background Image with centered content",
+        //   component: BackgroundAsImageWithCenteredContentHero,
+        //   url: "/components/blocks/Hero/BackgroundAsImageWithCenteredContent",
+        // },
+        // IllustrationAndPrimaryBackground: {
+        //   name: "Primary Background With Illustration",
+        //   component: IllustrationAndPrimaryBackgroundHero,
+        //   url: "/components/blocks/Hero/IllustrationAndPrimaryBackground",
+        // },
       }
     },
-    Pricing: {
-      type: "Pricing Section",
-      elements: {
-        TwoPlansWithDurationSwitcher: {
-          name: "Two Plans With Duration Switcher",
-          component: TwoPlansWithDurationSwitcherPricing,
-          url: "/components/blocks/Pricing/TwoPlansWithDurationSwitcher",
-        },
-        ThreePlansWithHalfPrimaryBackground: {
-          name: "Three Plans With Primary Background at Top",
-          component: ThreePlansWithHalfPrimaryBackgroundPricing,
-          url: "/components/blocks/Pricing/ThreePlansWithHalfPrimaryBackground",
-        },
-        ThreePlans: {
-          name: "Simple Three Plans",
-          component: ThreePlansPricing,
-          url: "/components/blocks/Pricing/ThreePlans",
-        },
-      }
-    },
+    // Pricing: {
+    //   type: "Pricing Section",
+    //   elements: {
+    //     TwoPlansWithDurationSwitcher: {
+    //       name: "Two Plans With Duration Switcher",
+    //       component: TwoPlansWithDurationSwitcherPricing,
+    //       url: "/components/blocks/Pricing/TwoPlansWithDurationSwitcher",
+    //     },
+    //     ThreePlansWithHalfPrimaryBackground: {
+    //       name: "Three Plans With Primary Background at Top",
+    //       component: ThreePlansWithHalfPrimaryBackgroundPricing,
+    //       url: "/components/blocks/Pricing/ThreePlansWithHalfPrimaryBackground",
+    //     },
+    //     ThreePlans: {
+    //       name: "Simple Three Plans",
+    //       component: ThreePlansPricing,
+    //       url: "/components/blocks/Pricing/ThreePlans",
+    //     },
+    //   }
+    // },
     Features: {
       type: "Features Section",
       elements: {
