@@ -90,8 +90,8 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       
       {Auth.loggedIn() ? (
             <>
-              <NavLink to="/profile" tw="lg:ml-12!">Me</NavLink>
-              <NavLink to="/"  tw="lg:ml-12!" onClick={logout}>
+              <NavLink href="/profile" tw="lg:ml-12!">Me</NavLink>
+              <NavLink href="/"  tw="lg:ml-12!" onClick={logout}>
                 Logout
               </NavLink>
             </>

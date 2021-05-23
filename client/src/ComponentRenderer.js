@@ -89,8 +89,8 @@ import SingleColFAQS from "components/faqs/SingleCol.js";
 // import TwoColContactUsForm from "components/forms/TwoColContactUsWithIllustration.js";
  import TwoColContactUsFullForm from "components/forms/TwoColContactUsWithIllustrationFullForm.js";
 
-import GetStartedCTA from "components/cta/GetStarted.js";
-import GetStartedLightCTA from "components/cta/GetStartedLight.js";
+// import GetStartedCTA from "components/cta/GetStarted.js";
+// import GetStartedLightCTA from "components/cta/GetStartedLight.js";
 import DownloadAppCTA from "components/cta/DownloadApp.js";
 
 import SimpleFiveColumnFooter from "components/footers/SimpleFiveColumn.js";
@@ -454,16 +454,16 @@ export const components = {
     CTA: {
       type: "CTA Section",
       elements: {
-        GetStarted: {
-          name: "Get Started",
-          component: GetStartedCTA,
-          url: "/components/blocks/CTA/GetStarted",
-        },
-        GetStartedLight: {
-          name: "Get Started Light",
-          component: GetStartedLightCTA,
-          url: "/components/blocks/CTA/GetStartedLight",
-        },
+        // GetStarted: {
+        //   name: "Get Started",
+        //   component: GetStartedCTA,
+        //   url: "/components/blocks/CTA/GetStarted",
+        // },
+        // GetStartedLight: {
+        //   name: "Get Started Light",
+        //   component: GetStartedLightCTA,
+        //   url: "/components/blocks/CTA/GetStartedLight",
+        // },
         DownloadApp: {
           name: "Download App",
           component: DownloadAppCTA,

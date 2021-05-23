@@ -121,7 +121,7 @@ return (
       <Container>
         <Content>
           <MainContainer>
-            <LogoLink href="#">
+            <LogoLink href="/">
               <LogoImage src={logo} />
             </LogoLink>
             <MainContent>

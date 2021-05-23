@@ -11,6 +11,8 @@ import Nav from './components/Nav';
 import TestCloudinary from './pages/TestCloudinary';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import TermsOfService from './pages/TermsOfService';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 // import Hero from "components/hero/BackgroundAsImage.js";
 // import Features from "components/features/DashedBorderSixFeatures";
@@ -50,6 +52,8 @@ function App() {
           <Route exact path="/testCloudinary" component={TestCloudinary} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/terms-of-service" component={TermsOfService} />
+          <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
           </Route> 

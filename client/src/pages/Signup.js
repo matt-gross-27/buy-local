@@ -94,7 +94,7 @@ return (
     <Container>
       <Content>
         <MainContainer>
-          <LogoLink href="#">
+        <LogoLink href="/">
             <LogoImage src={logo} />
           </LogoLink>
           <MainContent>
@@ -139,7 +139,7 @@ return (
                 </SubmitButton>
                 <p tw="mt-6 text-xs text-gray-600 text-center">
                   I agree to abide by treact's{" "}
-                  <a href="/termsofservice" tw="border-b border-gray-500 border-dotted">
+                  <a href="/terms-of-service" tw="border-b border-gray-500 border-dotted">
                     Terms of Service
                   </a>{" "}
                   and its{" "}
