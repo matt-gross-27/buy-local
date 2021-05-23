@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Nav from './components/Nav';
 import TestCloudinary from './pages/TestCloudinary';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 // import Hero from "components/hero/BackgroundAsImage.js";
 // import Features from "components/features/DashedBorderSixFeatures";
@@ -47,6 +48,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/testCloudinary" component={TestCloudinary} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
           </Route> 

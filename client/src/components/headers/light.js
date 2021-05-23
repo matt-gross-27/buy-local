@@ -12,7 +12,7 @@ import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
 import { Link } from 'react-router-dom';
 
-//testing login import
+
 
 
 const Header = tw.header`
@@ -83,7 +83,8 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       <NavLink href="/login" tw="lg:ml-12!">
         <Link to="/login">Login</Link>
       </NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/signup">Sign Up</PrimaryLink>
+      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/signup">Sign Up
+      </PrimaryLink>
     </NavLinks>
   ];
 
