@@ -52,6 +52,16 @@ const resolvers = {
       return shop;
     },
 
+  
+
+    allOrders: async () => {
+      const allOrders = await Order.find()
+        .populate({ path: 'purchases' })
+        .populate({ path: 'products', populate: { path: 'category' } })
+        .populate( {path: 'user'} )
+      return allOrders;
+    },
+
     myOrderHistory: async (parent, args, context) => {
       const orderHistory = await Order.find({ customer: context.user._id })
         .populate({
@@ -106,42 +116,6 @@ const resolvers = {
       throw new AuthenticationError('Not Logged In');
     },
 
-    createCategory: async (parent, args, context) => {
-      if (context.user) {
-  
-        const newCategory = await Category.create({
-          name: args.name
-        });
-        
-        await Product.findByIdAndUpdate(
-          { _id: context._id },
-          { $push: { category: newCategory} },
-          { new: true, runValidators: true }
-        ).populate({ path: 'category' });
-  
-        return newCategory;
-      }
-      throw new AuthenticationError('Not Logged In');
-    },
-
-    deleteCategory: async (parent, args, context) => {
-      if (context.user) {
-
-        const deleteCategory = await Category.findByIdAndDelete(
-          { _id: args._id }
-        );
-
-        await Product.findByIdAndUpdate(
-          { _id: context._id },
-          { $pull: { category: deleteCategory} },
-          { new: true, runValidators: true }
-        ).populate( {path: 'category'});
-
-        return deleteCategory;
-      }
-      throw new AuthenticationError('Not Logged In');
-    },
-  
     updateShop: async (parent, args, context) => {
       if (context.user) {
         const shop = await Shop.findOneAndUpdate(
@@ -190,6 +164,19 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+
+    // createCategory: async (parent, { shopId, name }, context) => {
+    //   if (context.user) {
+    //     const newCategory = await Shop.findOneAndUpdate(
+    //       { _id: shopId },
+    //       // need to check
+    //       { $push: { categories: { name, shop: context.user.shop } } },
+    //       { new: true, runValidators: true }
+    //     );
+    //     return newCategory;
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
 
     createCategory: async (parent, { name }, context) => {
       if (context.user) {
@@ -282,7 +269,9 @@ const resolvers = {
     },
     createOrder: async (parent, { orderInput }, context) => {
       if (context.user) {
-        const order = await Order.create(orderInput);
+        console.log(context.user)
+        const order = await Order.create({...orderInput, customer: context.user._id});
+        console.log(orderInput)
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
