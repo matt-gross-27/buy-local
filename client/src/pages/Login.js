@@ -10,7 +10,7 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import illustration from "images/login-illustration.svg";
-import logo from "images/logo.svg";
+import logo from "images/logo.PNG";
 import loginImage from "images/login-image.jpg";
 // import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
 
@@ -123,7 +123,7 @@ return (
         <Content>
           <MainContainer>
             <LogoLink href="/">
-              <LogoImage src={logo} />
+              <LogoImage src={logo} style={{width:'70px', height: '70px'}} alt="logo" />
             </LogoLink>
             <MainContent>
               <Heading>Sign In To Buy Local</Heading>

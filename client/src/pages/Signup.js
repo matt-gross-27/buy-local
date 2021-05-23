@@ -11,7 +11,7 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import illustration from "images/signup-illustration.svg";
-import logo from "images/logo.svg";
+import logo from "images/logo.PNG";
 import signupImage from "images/signup-image.jpg";
 // import googleIconImageSrc from "images/google-icon.png";
 // import twitterIconImageSrc from "images/twitter-icon.png";
@@ -96,7 +96,7 @@ return (
       <Content>
         <MainContainer>
         <LogoLink href="/">
-            <LogoImage src={logo} />
+            <LogoImage src={logo} style={{width:'70px', height: '70px'}} alt="logo" />
           </LogoLink>
           <MainContent>
             <Heading>Sign up for Buy Local</Heading>
