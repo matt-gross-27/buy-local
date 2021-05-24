@@ -11,6 +11,13 @@ import DownloadApp from "components/cta/DownloadApp.js";
 import Footer from "components/footers/SimpleFiveColumn.js";
 
 import firstImage from "images/first-img.jpg";
+import chefIconImageSrc from "images/chef-icon.svg";
+import celebrationIconImageSrc from "images/celebration-icon.svg";
+import shopIconImageSrc from "images/shop-icon.svg";
+import GetAllShops from "../components/GetAllShops"
+import GetProducts from "../components/GetProducts"
+import GetOrderHistory from "../components/GetOrderHistory";
+import GetSingleShop from "../pages/SingleShop";
 
 function Home() {
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
@@ -31,6 +38,8 @@ function Home() {
         heading={
           <>
             Checkout our <HighlightedText>vendors!</HighlightedText>
+            <GetAllShops/>
+            <GetProducts/>
           </>
         }
       />
@@ -64,7 +73,6 @@ function Home() {
       <DownloadApp
         text={<>People around you are already ordering using the <HighlightedTextInverse>Buy Local App.</HighlightedTextInverse></>}
       />
-      <Footer />
     </AnimationRevealPage>
   );
 }

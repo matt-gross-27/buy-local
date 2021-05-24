@@ -46,6 +46,8 @@ import TwoColContactUsFullForm from "components/forms/TwoColContactUsWithIllustr
 import DownloadAppCTA from "components/cta/DownloadApp.js";
 
 import SimpleFiveColumnFooter from "components/footers/SimpleFiveColumn.js";
+import GetAllShops from "components/GetAllShops";
+import GetProducts from "components/GetProducts";
 
 
 export const components = {
@@ -200,16 +202,6 @@ export const components = {
     CTA: {
       type: "CTA Section",
       elements: {
-        // GetStarted: {
-        //   name: "Get Started",
-        //   component: GetStartedCTA,
-        //   url: "/components/blocks/CTA/GetStarted",
-        // },
-        // GetStartedLight: {
-        //   name: "Get Started Light",
-        //   component: GetStartedLightCTA,
-        //   url: "/components/blocks/CTA/GetStartedLight",
-        // },
         DownloadApp: {
           name: "Download App",
           component: DownloadAppCTA,
