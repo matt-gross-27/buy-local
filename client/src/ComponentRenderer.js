@@ -2,23 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import AnimationRevealPage from "helpers/AnimationRevealPage.js"
 
-import EventLandingPage from "demos/EventLandingPage.js";
-import HotelTravelLandingPage from "demos/HotelTravelLandingPage.js";
-import AgencyLandingPage from "demos/AgencyLandingPage.js";
-import SaaSProductLandingPage from "demos/SaaSProductLandingPage.js";
-import RestaurantLandingPage from "demos/RestaurantLandingPage.js";
-import ServiceLandingPage from "demos/ServiceLandingPage.js";
-import HostingCloudLandingPage from "demos/HostingCloudLandingPage.js";
-
-import EventLandingPageImageSrc from "images/demo/EventLandingPage.jpeg";
-import HotelTravelLandingPageImageSrc from "images/demo/HotelTravelLandingPage.jpeg";
-import AgencyLandingPageImageSrc from "images/demo/AgencyLandingPage.jpeg";
-import SaaSProductLandingPageImageSrc from "images/demo/SaaSProductLandingPage.jpeg";
-import RestaurantLandingPageImageSrc from "images/demo/RestaurantLandingPage.jpeg";
-import ServiceLandingPageImageSrc from "images/demo/ServiceLandingPage.jpeg";
-import HostingCloudLandingPageImageSrc from "images/demo/HostingCloudLandingPage.jpeg";
-
-
 import LoginPage from "pages/Login.js";
 import SignupPage from "pages/Signup.js";
 import PricingPage from "pages/Pricing.js";
@@ -52,27 +35,18 @@ import ThreePlansPricing from "components/pricing/ThreePlans.js";
 import ThreeColWithSideImageFeatures from "components/features/ThreeColWithSideImage.js";
 import TwoColWithButtonFeatures from "components/features/TwoColWithButton.js";
 import ThreeColSimpleFeatures from "components/features/ThreeColSimple.js";
-import ThreeColWithSideImageWithPrimaryBackgroundFeatures from "components/features/ThreeColWithSideImageWithPrimaryBackground.js";
-import TwoColVerticalWithButtonFeatures from "components/features/TwoColWithTwoFeaturesAndButtons.js";
-import TwoColHorizontalWithButtonFeatures from "components/features/TwoColWithTwoHorizontalFeaturesAndButton.js";
-import WithStepsAndImageFeatures from "components/features/TwoColWithSteps.js";
-import ThreeColumnDashedBorderFeatures from "components/features/DashedBorderSixFeatures";
-// import ThreeColCenteredStatsWithPrimaryBackgroundFeatures from "components/features/ThreeColCenteredStatsPrimaryBackground.js";
+
 import WithStatsAndImageFeatures from "components/features/TwoColSingleFeatureWithStats.js";
 import WithStatsAndImage2Features from "components/features/TwoColSingleFeatureWithStats2.js";
-import VerticalWithAlternateImageAndTextFeatures from "components/features/VerticalWithAlternateImageAndText.js";
+
 
 import SliderCards from "components/cards/ThreeColSlider.js";
 import TrendingCards from "components/cards/TwoTrendingPreviewCardsWithImage.js";
-// import PortfolioCards from "components/cards/PortfolioTwoCardsWithImage.js";
 import TabGridCards from "components/cards/TabCardGrid.js";
 import ProfileThreeColGridCards from "components/cards/ProfileThreeColGrid.js"
 import ThreeColContactDetailsCards from "components/cards/ThreeColContactDetails.js"
 
 import ThreeColSimpleWithImageBlog from "components/blogs/ThreeColSimpleWithImage.js";
-// import ThreeColSimpleWithImageAndDashedBorderBlog from "components/blogs/ThreeColSimpleWithImageAndDashedBorder.js";
-// import PopularAndRecentPostsBlog from "components/blogs/PopularAndRecentBlogPosts.js";
-// import GridWithFeaturedPostBlog from "components/blogs/GridWithFeaturedPost.js";
 
 import TwoColumnWithImageTestimonial from "components/testimonials/TwoColumnWithImage.js";
 import TwoColumnWithImageAndProfilePictureReviewTestimonial from "components/testimonials/TwoColumnWithImageAndProfilePictureReview.js";
@@ -80,9 +54,7 @@ import TwoColumnWithImageAndRatingTestimonial from "components/testimonials/TwoC
 import ThreeColumnWithProfileImageTestimonial from "components/testimonials/ThreeColumnWithProfileImage.js";
 import SimpleBackgroundTestimonial from "components/testimonials/SimplePrimaryBackground.js";
 
-// import SimpleWithSideImageFAQS from "components/faqs/SimpleWithSideImage.js";
 import SingleColFAQS from "components/faqs/SingleCol.js";
-// import TwoColumnPrimaryBackgroundFAQS from "components/faqs/TwoColumnPrimaryBackground.js";
 
 import SimpleContactUsForm from "components/forms/SimpleContactUs.js";
 import SimpleSubscribeNewsletterForm from "components/forms/SimpleSubscribeNewsletter.js";
@@ -101,43 +73,6 @@ import MiniCenteredFooter from "components/footers/MiniCenteredFooter.js";
 
 
 export const components = {
-  landingPages: {
-    RestaurantLandingPage: {
-      component: RestaurantLandingPage,
-      imageSrc: RestaurantLandingPageImageSrc,
-      url: "/components/landingPages/RestaurantLandingPage",
-    },
-    HotelTravelLandingPage: {
-      component: HotelTravelLandingPage,
-      imageSrc: HotelTravelLandingPageImageSrc,
-      url: "/components/landingPages/HotelTravelLandingPage",
-    },
-    SaaSProductLandingPage: {
-      component: SaaSProductLandingPage,
-      imageSrc: SaaSProductLandingPageImageSrc,
-      url: "/components/landingPages/SaaSProductLandingPage",
-    },
-    ServiceLandingPage: {
-      component: ServiceLandingPage,
-      imageSrc: ServiceLandingPageImageSrc,
-      url: "/components/landingPages/ServiceLandingPage",
-    },
-    EventLandingPage: {
-      component: EventLandingPage,
-      imageSrc: EventLandingPageImageSrc,
-      url: "/components/landingPages/EventLandingPage",
-    },
-    AgencyLandingPage: {
-      component: AgencyLandingPage,
-      imageSrc: AgencyLandingPageImageSrc,
-      url: "/components/landingPages/AgencyLandingPage",
-    },
-    HostingCloudLandingPage: {
-      component: HostingCloudLandingPage,
-      imageSrc: HostingCloudLandingPageImageSrc,
-      url: "/components/landingPages/HostingCloudLandingPage",
-    },
-  },
 
   innerPages: {
     LoginPage: {
@@ -263,36 +198,6 @@ export const components = {
           component: ThreeColSimpleFeatures,
           url: "/components/blocks/Features/ThreeColSimple",
         },
-        ThreeColWithSideImageWithPrimaryBackground: {
-          name: "Three Column With Side Image With Primary Background",
-          component: ThreeColWithSideImageWithPrimaryBackgroundFeatures,
-          url: "/components/blocks/Features/ThreeColWithSideImageWithPrimaryBackground",
-        },
-        TwoColHorizontalWithButton: {
-          name: "Two Column With Button and Horizonatal Features with Icon",
-          component: TwoColHorizontalWithButtonFeatures,
-          url: "/components/blocks/Features/TwoColHorizontalWithButton",
-        },
-        TwoColVerticalWithButton: {
-          name: "Two Column With Vertical Features and Button",
-          component: TwoColVerticalWithButtonFeatures,
-          url: "/components/blocks/Features/TwoColVerticalWithButton",
-        },
-        WithStepsAndImage: {
-          name: "Steps with Image",
-          component: WithStepsAndImageFeatures,
-          url: "/components/blocks/Features/WithStepsAndImage",
-        },
-        ThreeColumnDashedBorder: {
-          name: "Three Column With Dashed Primary Border",
-          component: ThreeColumnDashedBorderFeatures,
-          url: "/components/blocks/Features/ThreeColumnDashedBorder",
-        },
-        // ThreeColCenteredStatsPrimaryBackground: {
-        //   name: "Three Column With Centered Stats on Primary Background",
-        //   component: ThreeColCenteredStatsWithPrimaryBackgroundFeatures,
-        //   url: "/components/blocks/Features/ThreeColCenteredStatsPrimaryBackground",
-        // },
         WithStatsAndImage: {
           name: "Stats With Image",
           component: WithStatsAndImageFeatures,
@@ -302,11 +207,6 @@ export const components = {
           name: "Stats With Image 2",
           component: WithStatsAndImage2Features,
           url: "/components/blocks/Features/WithStatsAndImage2",
-        },
-        VerticalWithAlternateImageAndText: {
-          name: "Vertical Feature Cards With Alternate Image and Text",
-          component: VerticalWithAlternateImageAndTextFeatures,
-          url: "/components/blocks/Features/VerticalWithAlternateImageAndText",
         },
       }
     },
@@ -319,11 +219,6 @@ export const components = {
           component: SliderCards,
           url: "/components/blocks/Cards/Slider",
         },
-        // Portfolio: {
-        //   name: "Two Column Portfolio Cards With Images ",
-        //   component: PortfolioCards,
-        //   url: "/components/blocks/Cards/Portfolio",
-        // },
         TabGrid: {
           name: "Tab Card Grid With Tab Switcher",
           component: TabGridCards,
@@ -350,26 +245,11 @@ export const components = {
     Blog: {
       type: "Blog Section",
       elements: {
-        // GridWithFeaturedPost: {
-        //   name: "Grid With Featured Post",
-        //   component: GridWithFeaturedPostBlog,
-        //   url: "/components/blocks/Blog/GridWithFeaturedPost",
-        // },
-        // PopularAndRecentPosts: {
-        //   name: "Popular And Recent Posts",
-        //   component: PopularAndRecentPostsBlog,
-        //   url: "/components/blocks/Blog/PopularAndRecentPosts",
-        // },
         ThreeColSimpleWithImage: {
           name: "Simple Three Column With Image",
           component: ThreeColSimpleWithImageBlog,
           url: "/components/blocks/Blog/ThreeColSimpleWithImage",
-        },
-        // ThreeColSimpleWithImageAndDashedBorder: {
-        //   name: "Simple Three Column With Image and Dashed Border",
-        //   component: ThreeColSimpleWithImageAndDashedBorderBlog,
-        //   url: "/components/blocks/Blog/ThreeColSimpleWithImageAndDashedBorder",
-        // },
+        }
       } 
     },
 
@@ -407,21 +287,11 @@ export const components = {
     FAQS: {
       type: "FAQs Section",
       elements: {
-      //   SimpleWithSideImage: {
-      //     name: "Simple With Side Image",
-      //     component: SimpleWithSideImageFAQS,
-      //     url: "/components/blocks/FAQS/SimpleWithSideImage",
-      //   },
         SingleCol: {
           name: "Single Column",
           component: SingleColFAQS,
           url: "/components/blocks/FAQS/SingleCol",
-        },
-        // TwoColumnPrimaryBackground: {
-        //   name: "Two Column With Primary Background",
-        //   component: TwoColumnPrimaryBackgroundFAQS,
-        //   url: "/components/blocks/FAQS/TwoColumnPrimaryBackground",
-        // },
+        }
       }
     },
 

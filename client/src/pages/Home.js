@@ -75,7 +75,7 @@ function Home() {
         statistics={[
           {
             key: "Orders",
-            value: "480+",
+            value: "40+",
           },
           {
             key: "Customers",
@@ -83,7 +83,7 @@ function Home() {
           },
           {
             key: "Vendors",
-            value: "500+"
+            value: "50+"
           }
         ]}
         primaryButtonText="Order Now"
