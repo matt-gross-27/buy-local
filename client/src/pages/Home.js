@@ -2,7 +2,7 @@ import React from 'react';
 import tw from "twin.macro";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import Hero from "components/hero/TwoColumnWithVideo.js";
-import Features from "components/features/ThreeColSimple.js";
+
 
 import MainFeature2 from "components/features/TwoColSingleFeatureWithStats2.js";
 import TabGrid from "components/cards/TabCardGrid.js";
@@ -10,9 +10,6 @@ import TabGrid from "components/cards/TabCardGrid.js";
 import DownloadApp from "components/cta/DownloadApp.js";
 import Footer from "components/footers/SimpleFiveColumn.js";
 
-import chefIconImageSrc from "images/chef-icon.svg";
-import celebrationIconImageSrc from "images/celebration-icon.svg";
-import shopIconImageSrc from "images/shop-icon.svg";
 import firstImage from "images/first-img.jpg";
 
 function Home() {
@@ -36,36 +33,6 @@ function Home() {
             Checkout our <HighlightedText>vendors!</HighlightedText>
           </>
         }
-      />
-      <Features
-        heading={
-          <>
-            Amazing and <HighlightedText>Homemade.</HighlightedText>
-          </>
-        }
-        cards={[
-          {
-            imageSrc: shopIconImageSrc,
-            title: "30+ Vendors",
-            description: "The perfect place to showcase all your at home perfections, from food to products, no judgment here.",
-            url: "https://google.com"
-          },
-          {
-            imageSrc: chefIconImageSrc,
-            title: "Homemade Chefs",
-            description: "All the food worth our money, you know when the house smells too good it needs to be shared!",
-            url: "https://timerse.com"
-          },
-          {
-            imageSrc: celebrationIconImageSrc,
-            title: "Trendy Attire",
-            description: "Tired of your basic wardrobe, try something new and custom made",
-            url: "https://reddit.com"
-          }
-        ]}
-
-        imageContainerCss={tw`p-2!`}
-        imageCss={tw`w-20! h-20!`}
       />
       <MainFeature2
         subheading={<Subheading>A Reputed Brand</Subheading>}
