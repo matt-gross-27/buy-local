@@ -8,6 +8,11 @@ import {SectionDescription} from "components/misc/Typography";
 import { ReactComponent as TwitterIcon} from "images/twitter-icon.svg";
 import { ReactComponent as LinkedinIcon} from "images/linkedin-icon.svg";
 import { ReactComponent as GithubIcon } from "images/github-icon.svg";
+import davitShirkhanyan from "images/davitshirkhanyan.jpg";
+import alexGiannini from "images/alexgiannini.png";
+import jenniferGomez from "images/jennifergomez.jpg";
+import mattMcGinley from "images/mattmcginley.jpg";
+import mattGross from "images/mattgross.jpg";
 
 const HeadingContainer = tw.div``
 const Heading = tw(SectionHeading)``
@@ -46,18 +51,18 @@ export default ({
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   cards = [
     {
-      imageSrc: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=2.95&w=512&h=512&q=80",
+      imageSrc: alexGiannini,
       position: "Sr. Developer",
       name: "Alex Giannini",
       links: [
         {
-          url: "https://github.com",
+          url: "https://github.com/alexandergiannini",
           icon: GithubIcon,
         },
       ],
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=2.95&w=512&h=512&q=80",
+      imageSrc: davitShirkhanyan,
       position: "Sr. Developer",
       name: "Davit Shirkhanyan",
       links: [
@@ -68,7 +73,7 @@ export default ({
       ],
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=2.95&w=512&h=512&q=80",
+      imageSrc: jenniferGomez,
       position: "Sr. Developer",
       name: "Jennifer Gomez",
       links: [
@@ -79,7 +84,7 @@ export default ({
       ],
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=2.95&w=512&h=512&q=80",
+      imageSrc: mattGross,
       position: "Lead Developer",
       name: "Matt Gross",
       links: [
@@ -90,7 +95,7 @@ export default ({
       ],
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1546820389-44d77e1f3b31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=3.45&w=512&h=512&q=80",
+      imageSrc: mattMcGinley,
       position: "Sr. Developer",
       name: "Matt McGinley",
       links: [
