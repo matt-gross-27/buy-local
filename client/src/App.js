@@ -16,7 +16,12 @@ import TestCloudinary from './pages/TestCloudinary';
 // import ContactUsForm from "components/forms/SimpleContactUs.js";
 // import Footer from "components/footers/MiniCenteredFooter.js";
 import MainLandingPage from "./MainLandingPage";
-import Login from "./pages/LoginTest";
+import { Link } from 'react-router-dom';
+
+
+import GetSingleShop from "./pages/SingleShop";
+
+//import GetOrderHistory from "./pages/GetOrderHistory";
 
 /* Inner Pages */
 // import LoginPage from "pages/Login.js";
@@ -46,16 +51,16 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/testCloudinary" component={TestCloudinary} />
+          <Route exact path="/shop/:id?" component={GetSingleShop}/>
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
           </Route>
-          <Route path="/components/:type/:name">
+          {/* <Route path="/components/:type/:name">
             <ComponentRenderer />
           </Route>
           <Route path="/">
             <MainLandingPage />
-          </Route>
-          <Route exact path="/login" component={Login}/>
+          </Route> */}
         </Switch>
 
       </Router>

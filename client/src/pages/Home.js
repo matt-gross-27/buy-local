@@ -13,6 +13,10 @@ import Footer from "components/footers/FiveColumnWithInputForm.js";
 import chefIconImageSrc from "images/chef-icon.svg";
 import celebrationIconImageSrc from "images/celebration-icon.svg";
 import shopIconImageSrc from "images/shop-icon.svg";
+import GetAllShops from "../components/GetAllShops"
+import GetProducts from "../components/GetProducts"
+import GetOrderHistory from "../components/GetOrderHistory";
+import GetSingleShop from "../pages/SingleShop";
 
 function Home() {
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
@@ -37,6 +41,8 @@ function Home() {
         heading={
           <>
             Checkout our <HighlightedText>vendors!</HighlightedText>
+            <GetAllShops/>
+            <GetProducts/>
           </>
         }
       />
@@ -46,26 +52,26 @@ function Home() {
             Amazing <HighlightedText>Services.</HighlightedText>
           </>
         }
-        cards={[
-          {
-            imageSrc: shopIconImageSrc,
-            title: "230+ Vendors",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
-            url: "https://google.com"
-          },
-          {
-            imageSrc: chefIconImageSrc,
-            title: "Homemade Chefs",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
-            url: "https://timerse.com"
-          },
-          {
-            imageSrc: celebrationIconImageSrc,
-            title: "Trendy Attire",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
-            url: "https://reddit.com"
-          }
-        ]}
+        // cards={[
+        //   {
+        //     imageSrc: shopIconImageSrc,
+        //     title: "230+ Vendors",
+        //     description: "Lorem ipsum donor amet siti ceali placeholder text",
+        //     url: "https://google.com"
+        //   },
+        //   {
+        //     imageSrc: chefIconImageSrc,
+        //     title: "Homemade Chefs",
+        //     description: "Lorem ipsum donor amet siti ceali placeholder text",
+        //     url: "https://timerse.com"
+        //   },
+        //   {
+        //     imageSrc: celebrationIconImageSrc,
+        //     title: "Trendy Attire",
+        //     description: "Lorem ipsum donor amet siti ceali placeholder text",
+        //     url: "https://reddit.com"
+        //   }
+        // ]}
 
         imageContainerCss={tw`p-2!`}
         imageCss={tw`w-20! h-20!`}
@@ -101,10 +107,10 @@ function Home() {
         subheading=""
         heading={<>Customers <HighlightedText>Love Us.</HighlightedText></>}
       />
+      <GetOrderHistory/>
       <DownloadApp
         text={<>People around you are already ordering using the <HighlightedTextInverse>Buy Local App.</HighlightedTextInverse></>}
       />
-      <Footer />
     </AnimationRevealPage>
   );
 }

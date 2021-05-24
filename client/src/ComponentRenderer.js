@@ -98,6 +98,8 @@ import FiveColumnWithInputFormFooter from "components/footers/FiveColumnWithInpu
 import FiveColumnWithBackgroundFooter from "components/footers/FiveColumnWithBackground.js";
 import FiveColumnDarkFooter from "components/footers/FiveColumnDark.js";
 import MiniCenteredFooter from "components/footers/MiniCenteredFooter.js";
+import GetAllShops from "components/GetAllShops";
+import GetProducts from "components/GetProducts";
 
 
 export const components = {
@@ -163,12 +165,12 @@ export const components = {
       imageSrc: AboutUsPageImageSrc,
     },
     ContactUsPage: {
-      component: ContactUsPage,
+      component: GetAllShops,//ContactUsPage,
       url: `/components/innerPages/ContactUsPage`,
       imageSrc: ContactUsPageImageSrc,
     },
     BlogIndexPage: {
-      component: BlogIndexPage,
+      component: GetProducts,//BlogIndexPage,
       url: `/components/innerPages/BlogIndexPage`,
       imageSrc: BlogIndexPageImageSrc,
     },
