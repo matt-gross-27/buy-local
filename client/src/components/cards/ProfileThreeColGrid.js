@@ -32,8 +32,8 @@ const CardContent = styled.div`
   }
   .name {
     ${tw`mt-1 text-xl font-medium text-gray-900`}
-  9
-`
+  }
+ `
 
 const CardLinks = styled.div`
   ${tw`mt-6 flex`}
