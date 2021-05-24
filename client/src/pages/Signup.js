@@ -9,7 +9,6 @@ import { Container as ContainerBase } from "components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import illustration from "images/signup-illustration.svg";
 import logo from "images/logo.PNG";
 import signupImage from "images/signup-image.jpg";
 // import googleIconImageSrc from "images/google-icon.png";
