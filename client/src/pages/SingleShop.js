@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'; ///new react hook
 
 import { useQuery } from '@apollo/react-hooks';
 import { GET_SHOP_BY_ID } from '../utils/queries';
+import {Image, Transformation } from 'cloudinary-react';
 
 // adding the cards with slider
 import Slider from "react-slick";
@@ -147,14 +148,15 @@ const GetSingleShop = props => {
     return (
        <>
        <div>
-          <div className="card mb-3">
-            <p className="card-header">
-              <span style={{ fontWeight: 700 }} className="text-light">
+          <div className="single-shop-page">
+            <p>
+              <span style={{ fontWeight: 700 }} className="text-light single-shop-name">
                 {shop.name}
               </span>
             </p>
-            <p>Store Instagram: {shop.instagram}</p>
-            <div className="card-body">
+            <img src={shop.logo}></img>
+            <p>Checkout our Instagram: {shop.instagram}</p>
+            <div>
               <p>Description: {shop.description}</p>
               <p>Location: {shop.city}, {shop.state}</p>
               <p>Phone Number: {shop.phone}</p>
@@ -163,14 +165,14 @@ const GetSingleShop = props => {
               <p>Shipping Allowed? {shop.shipping}</p>
               <p>Rating Average: {shop.ratingAvg} stars</p>
             </div>
-            <div className="card-body">
+            <div>
                 <h2>Shop Reviews</h2>
                 <p>Total Reviews: {shop.reviewCount}</p>
             </div>
-            <div className="card-body">
+            <div>
                 <h2>Products</h2>
 
-                <div className="card-body">
+                <div>
                {products &&
                 products.map(product => (
                     <div>
@@ -183,7 +185,7 @@ const GetSingleShop = props => {
                 ))}
               </div>
 
-              <div className="card-body">
+              <div>
                {reviews &&
                 reviews.map(review => (
                     <div>
