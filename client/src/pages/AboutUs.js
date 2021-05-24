@@ -13,7 +13,7 @@ import MainFeature1 from "components/features/TwoColWithButton.js";
 import TeamCardGrid from "components/cards/ProfileThreeColGrid.js";
 
 const Subheading = tw.span`uppercase tracking-wider text-sm`;
-export default () => {
+function AboutUs() {
   return (
     <AnimationRevealPage>
       <Header />
@@ -32,3 +32,4 @@ export default () => {
     </AnimationRevealPage>
   );
 };
+export default AboutUs;

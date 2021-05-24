@@ -33,12 +33,12 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 `;
 
 
-export default ({
+function HeroDisplay ({
   heading = "Eat, Drink, Shop Local",
  description="Support local independent homemakers! Purchasing through Buy Local proceeds will go directly to amazing unique vendors in your community!",
   imageSrc=DesignIllustration,
   imageDecoratorBlob = false,
-}) => {
+}) {
 
   return (
     <>
@@ -74,3 +74,4 @@ export default ({
     </>
   );
 };
+export default HeroDisplay;

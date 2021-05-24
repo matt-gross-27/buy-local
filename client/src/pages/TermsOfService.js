@@ -35,7 +35,7 @@ const Text = styled.div`
   }
 `;
 
-export default ({ headingText = "Terms And Condition" }) => {
+function ToS({ headingText = "Terms And Condition" }) {
   return (
     <AnimationRevealPage>
       <Header />
@@ -273,3 +273,4 @@ export default ({ headingText = "Terms And Condition" }) => {
     </AnimationRevealPage>
   );
 };
+export default ToS;

@@ -28,8 +28,6 @@ import ThreeColSimpleFeatures from "components/features/ThreeColSimple.js";
 import WithStatsAndImageFeatures from "components/features/TwoColSingleFeatureWithStats.js";
 import WithStatsAndImage2Features from "components/features/TwoColSingleFeatureWithStats2.js";
 
-
-import SliderCards from "components/cards/ThreeColSlider.js";
 import TrendingCards from "components/cards/TwoTrendingPreviewCardsWithImage.js";
 import TabGridCards from "components/cards/TabCardGrid.js";
 import ProfileThreeColGridCards from "components/cards/ProfileThreeColGrid.js"
@@ -138,11 +136,6 @@ export const components = {
     Cards: {
       type: "Cards",
       elements: {
-        Slider: {
-          name: "Three Column Slider",
-          component: SliderCards,
-          url: "/components/blocks/Cards/Slider",
-        },
         TabGrid: {
           name: "Tab Card Grid With Tab Switcher",
           component: TabGridCards,
@@ -223,7 +216,7 @@ export const components = {
   }
 }
 
-export default () => {
+function Component() {
   const { type, subtype, name } = useParams()
 
   try {
@@ -247,3 +240,5 @@ export default () => {
     return <div>Error: Component Not Found</div>
   }
 }
+
+export default Component;

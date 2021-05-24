@@ -39,7 +39,7 @@ const DecoratorBlob = styled(SvgDotPattern)(props => [
   tw`w-20 h-20 absolute right-0 bottom-0 transform translate-x-1/2 translate-y-1/2 fill-current text-primary-500 -z-10`
 ]);
 
-export default ({
+function TwoCol2 ({
   subheading = "Our Track Record",
   heading = (
     <>
@@ -57,7 +57,7 @@ export default ({
   imageInsideDiv = true,
   statistics = null,
   textOnLeft = false
-}) => {
+}) {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
   //Change the statistics variable as you like, add or delete objects
   const defaultStatistics = [
@@ -106,3 +106,4 @@ export default ({
     </Container>
   );
 };
+export default TwoCol2;

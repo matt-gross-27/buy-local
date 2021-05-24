@@ -55,7 +55,7 @@ const CardMetaFeature = styled.div`
 `;
 const CardAction = tw(PrimaryButtonBase)`w-full mt-8`;
 
-export default () => {
+function TwoCards() {
   const cards = [
     {
       imageSrc:
@@ -127,3 +127,4 @@ export default () => {
     </Container>
   );
 };
+export default TwoCards;
