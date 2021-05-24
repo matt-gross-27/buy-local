@@ -2,7 +2,7 @@ import React from 'react';
 import tw from "twin.macro";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import Hero from "components/hero/TwoColumnWithVideo.js";
-import Features from "components/features/ThreeColSimple.js";
+
 
 import MainFeature2 from "components/features/TwoColSingleFeatureWithStats2.js";
 import TabGrid from "components/cards/TabCardGrid.js";
@@ -10,64 +10,38 @@ import TabGrid from "components/cards/TabCardGrid.js";
 import DownloadApp from "components/cta/DownloadApp.js";
 import Footer from "components/footers/SimpleFiveColumn.js";
 
+import firstImage from "images/first-img.jpg";
 import chefIconImageSrc from "images/chef-icon.svg";
 import celebrationIconImageSrc from "images/celebration-icon.svg";
 import shopIconImageSrc from "images/shop-icon.svg";
+import GetAllShops from "../components/GetAllShops"
+import GetProducts from "../components/GetProducts"
+import GetOrderHistory from "../components/GetOrderHistory";
+import GetSingleShop from "../pages/SingleShop";
 
 function Home() {
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
   const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
   const HighlightedTextInverse = tw.span`bg-gray-100 text-primary-500 px-4 transform -skew-x-12 inline-block`;
-  const Description = tw.span`inline-block mt-8`;
+  // const Description = tw.span`inline-block mt-8`;
   const imageCss = tw`rounded-4xl`;
+  
 
   return (
     <AnimationRevealPage>
       <Hero
-        heading={<>Interesting & Affordable <HighlightedText>Products Near You.</HighlightedText></>}
-        description="Small-scale, locally owned home-based businesses create communities that are more prosperous, connected, and generally better-off across a wide range of metrics."
-        imageSrc="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80"
-        imageCss={imageCss}
+        imageSrc={firstImage}
         imageDecoratorBlob={true}
-        primaryButtonText="Order Now"
       />
       {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
       <TabGrid
         heading={
           <>
             Checkout our <HighlightedText>vendors!</HighlightedText>
+            <GetAllShops/>
+            <GetProducts/>
           </>
         }
-      />
-      <Features
-        heading={
-          <>
-            Amazing and <HighlightedText>Homemade.</HighlightedText>
-          </>
-        }
-        cards={[
-          {
-            imageSrc: shopIconImageSrc,
-            title: "30+ Vendors",
-            description: "The perfect place to showcase all your at home perfections, from food to products, no judgment here.",
-            url: "https://google.com"
-          },
-          {
-            imageSrc: chefIconImageSrc,
-            title: "Homemade Chefs",
-            description: "All the food worth our money, you know when the house smells too good it needs to be shared!",
-            url: "https://timerse.com"
-          },
-          {
-            imageSrc: celebrationIconImageSrc,
-            title: "Trendy Attire",
-            description: "Tired of your basic wardrobe, try something new and custom made",
-            url: "https://reddit.com"
-          }
-        ]}
-
-        imageContainerCss={tw`p-2!`}
-        imageCss={tw`w-20! h-20!`}
       />
       <MainFeature2
         subheading={<Subheading>A Reputed Brand</Subheading>}
@@ -75,7 +49,7 @@ function Home() {
         statistics={[
           {
             key: "Orders",
-            value: "480+",
+            value: "40+",
           },
           {
             key: "Customers",
@@ -83,7 +57,7 @@ function Home() {
           },
           {
             key: "Vendors",
-            value: "500+"
+            value: "50+"
           }
         ]}
         primaryButtonText="Order Now"
@@ -99,7 +73,6 @@ function Home() {
       <DownloadApp
         text={<>People around you are already ordering using the <HighlightedTextInverse>Buy Local App.</HighlightedTextInverse></>}
       />
-      <Footer />
     </AnimationRevealPage>
   );
 }

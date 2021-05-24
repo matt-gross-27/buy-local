@@ -6,11 +6,11 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 
-import logo from "../../images/logo.svg";
+import logo from "../../images/logo.PNG";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
-import { Link } from 'react-router-dom';
+
 import Auth from '../../utils/auth.js';
 
 
@@ -75,7 +75,6 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
    * changing the defaultLinks variable below below.
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
-  const loggedIn = Auth.loggedIn();
 
   const logout = event => {
     event.preventDefault();
@@ -84,9 +83,9 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/#">About Us</NavLink>
+      <NavLink href="/about-us">About Us</NavLink>
       <NavLink href="/#">Become A Vendor!</NavLink>
-      <NavLink href="/#">Contact Us</NavLink>
+      {/* <NavLink href="/#">Contact Us</NavLink> */}
       
       {Auth.loggedIn() ? (
             <>
@@ -114,8 +113,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
   const defaultLogoLink = (
     <LogoLink href="/">
-      <img src={logo} alt="logo" />
-      Buy Local
+      <img src={logo} style={{width:'150px'}} alt="logo" />
     </LogoLink>
   );
 

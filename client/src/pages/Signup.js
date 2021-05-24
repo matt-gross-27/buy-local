@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
 import { CREATE_USER } from "../utils/mutations";
@@ -10,8 +9,8 @@ import { Container as ContainerBase } from "components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import illustration from "images/signup-illustration.svg";
-import logo from "images/logo.svg";
+import logo from "images/logo.PNG";
+import signupImage from "images/signup-image.jpg";
 // import googleIconImageSrc from "images/google-icon.png";
 // import twitterIconImageSrc from "images/twitter-icon.png";
 import { ReactComponent as SignUpIcon } from "feather-icons/dist/icons/user-plus.svg";
@@ -95,7 +94,7 @@ return (
       <Content>
         <MainContainer>
         <LogoLink href="/">
-            <LogoImage src={logo} />
+            <LogoImage src={logo} style={{width:'70px', height: '70px'}} alt="logo" />
           </LogoLink>
           <MainContent>
             <Heading>Sign up for Buy Local</Heading>
@@ -160,7 +159,7 @@ return (
           </MainContent>
         </MainContainer>
         <IllustrationContainer>
-          <IllustrationImage imageSrc={illustration} />
+          <IllustrationImage imageSrc={signupImage} />
         </IllustrationContainer>
       </Content>
     </Container>

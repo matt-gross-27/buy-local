@@ -11,15 +11,19 @@ import Nav from './components/Nav';
 import TestCloudinary from './pages/TestCloudinary';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import GetSingleShop from "./pages/SingleShop";
+import AboutUs from './pages/AboutUs';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+//import GetOrderHistory from "./pages/GetOrderHistory";
 
 // import Hero from "components/hero/BackgroundAsImage.js";
 // import Features from "components/features/DashedBorderSixFeatures";
 // import Portfolio from "components/cards/PortfolioTwoCardsWithImage.js";
 // import ContactUsForm from "components/forms/SimpleContactUs.js";
 // import Footer from "components/footers/MiniCenteredFooter.js";
-import MainLandingPage from "./MainLandingPage";
+// import MainLandingPage from "./MainLandingPage";
+
 
 
 /* Inner Pages */
@@ -54,17 +58,15 @@ function App() {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/terms-of-service" component={TermsOfService} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+          <Route exact path="/about-us" component={AboutUs} />
+          <Route exact path="/shop/:id?" component={GetSingleShop}/>
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
           </Route> 
           <Route path="/components/:type/:name">
             <ComponentRenderer />
           </Route>
-          <Route path="/">
-            <MainLandingPage />
-          </Route>
         </Switch>
-
       </Router>
     </ApolloProvider>
   );
