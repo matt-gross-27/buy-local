@@ -16,20 +16,6 @@
     /* transform: translateY(-150%); */
 }
 
-/* .column {
-    float: left;
-    width: 25%;
-    padding: 0 10px;
-} */
-
-/* .row {
-    margin: 0 -5px;
-} */
-
-/* .card-all-shops {
-    display: inline-flex;
-} */
-
 .container-all-shops {
     margin: 10px;
 }
@@ -39,21 +25,21 @@
 }
 
 .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  content: "";
+  display: table;
+  clear: both;
+}
 
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-    padding: 16px;
-    text-align: center;
-    background-color: #f1f1f1;
-    height: 300px;
-    width: 200px;
-  }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  height: 300px;
+  width: 200px;
+}
 
-  .card-text {
-      font-size: 12px;
-      margin-bottom: 15px;
-  }
+.card-text {
+    font-size: 12px;
+    margin-bottom: 15px;
+}

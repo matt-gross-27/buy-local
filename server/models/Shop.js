@@ -9,6 +9,11 @@ const shopSchema = new Schema(
       required: true,
       unique: true
     },
+    
+    shopType: {
+      type: String,
+      enum: ['Food', 'Sweets', 'Clothing', 'Other']
+    },
 
     description: {
       type: String,
@@ -21,9 +26,14 @@ const shopSchema = new Schema(
       match: [/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, 'invalid url']
     },
 
+    hero: {
+      type: String,
+      default: "shopping-bags-500x500_vpqouy" 
+    },
+
     logo: {
       type: String,
-      default: "https://res.cloudinary.com/dly1i5lwp/image/upload/v1621391331/buy-local-logo_tko5dc.png",
+      default: "Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi",
       match: [/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, 'invalid url'],
     },
 
@@ -64,6 +74,7 @@ const shopSchema = new Schema(
 
     stripeKey: {
       type: String,
+      default: 'pk_test_TYooMQauvdEDq54NiTphI7jx'
     },
 
     stripeKeyVerified: {
@@ -93,7 +104,8 @@ const shopSchema = new Schema(
 
     owner: {
       type: Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      unique: true
     },
 
     categories: [

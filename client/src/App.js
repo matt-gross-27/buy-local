@@ -15,7 +15,10 @@ import GetSingleShop from "./pages/SingleShop";
 import AboutUs from './pages/AboutUs';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import AddShop from './pages/AddShop';
 //import GetOrderHistory from "./pages/GetOrderHistory";
+
+import './index.css'
 
 // import Hero from "components/hero/BackgroundAsImage.js";
 // import Features from "components/features/DashedBorderSixFeatures";
@@ -23,8 +26,6 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 // import ContactUsForm from "components/forms/SimpleContactUs.js";
 // import Footer from "components/footers/MiniCenteredFooter.js";
 // import MainLandingPage from "./MainLandingPage";
-
-
 
 /* Inner Pages */
 // import LoginPage from "pages/Login.js";
@@ -49,23 +50,25 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/testCloudinary" component={TestCloudinary} />
+          <Route exact path="/create-shop" component={AddShop} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/terms-of-service" component={TermsOfService} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/about-us" component={AboutUs} />
           <Route exact path="/shop/:id?" component={GetSingleShop}/>
+          
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
-          </Route> 
+          </Route>
           <Route path="/components/:type/:name">
             <ComponentRenderer />
           </Route>
+          
         </Switch>
       </Router>
     </ApolloProvider>

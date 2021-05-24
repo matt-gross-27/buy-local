@@ -44,6 +44,8 @@ const typeDefs = gql`
     _id: ID
     name: String
     description: String
+    shopType: String
+    hero: String
     instagram: String
     logo: String
     phone: String
@@ -113,8 +115,8 @@ const typeDefs = gql`
   type Mutation {
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    createShop(name: String!, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
-    updateShop(name: String, description: String, phone: String, instagram: String, logo: String, addressNum: String, street: String, city: String, state: String, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
+    createShop(name: String!, shopType: String, hero: String, description: String!, phone: String!, instagram: String, logo: String, addressNum: String, street: String, city: String!, state: String!, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
+    updateShop(name: String, shopType: String, hero: String, description: String, phone: String, instagram: String, logo: String, addressNum: String, street: String, city: String, state: String, zip: String, stripeKey: String, pickup: Boolean, delivery: Boolean, shipping: Boolean): Shop
     createCategory(name: String!): Shop
     deleteCategory(name: String!): Category
     createProduct(name: String!, description: String, image: String, price: Float!, stock: Int!, categoryName: String): Shop
