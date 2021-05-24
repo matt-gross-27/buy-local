@@ -6,6 +6,8 @@ import { GET_SHOP_BY_ID } from '../utils/queries';
 import {Image, Transformation } from 'cloudinary-react';
 import {Logo} from "../components/Logo";
 
+
+
 // adding the cards with slider
 import Slider from "react-slick";
 import tw from "twin.macro";
@@ -18,7 +20,7 @@ import { ReactComponent as StarIcon } from "feather-icons/dist/icons/star.svg";
 import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
 import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
 // end imports for cards and slider
-
+const { SocialIcon } = require('react-social-icons');
 //styling for cards and slider
 const Container = tw.div`relative`;
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`;
@@ -77,9 +79,6 @@ const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`;
 const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`;
 
 
-
-
-
 const GetSingleShop = props => {
         // Slider functionality
         const [sliderRef, setSliderRef] = useState(null);
@@ -104,36 +103,20 @@ const GetSingleShop = props => {
         };
   
   const { id: shopId } = useParams();
-    // console.log(shopId); ///console.logs the id of the single shop (6090916bf7ee46cede452b7d) -> http://localhost:3000/thought/6090916bf7ee46cede452b7d
-  
+   
     const { loading, data } = useQuery(GET_SHOP_BY_ID, {
       variables: { _id: shopId }
     });
   
     const shop = data?.shop || [];
 
-    console.log(shop)
-
     const products = shop.products
-
-    console.log(products);
 
     const reviews = shop.reviews
   
     if (loading) {
       return <div>Loading single Shop</div>;
     }
-
-  // let shopProducts = function () {
-  //   for (let i = 0; i < products.length; i++) {
-  //     const shopProducts = products[i]
-  //     return shopProducts
-  //   }
-  // } 
-  
- // return shopProducts
-
-
 
     // Cards import dynamically from products
     const cards = [
@@ -149,54 +132,33 @@ const GetSingleShop = props => {
     return (
        <>
        <div>
-          <div className="single-shop-page">
-            <p>
-              <span style={{ fontWeight: 700 }} className="text-light single-shop-name">
+          <div>
+            <p className="single-shop-name">
+              <span style={{ fontWeight: 700 }} id="single-shop-name">
                 {shop.name}
               </span>
             </p>
-            <img src={shop.logo}></img>
-            <p>Checkout our Instagram: {shop.instagram}</p>
-            <div>
+            <div className="heroDiv">
+            <Image style={{ objectFit: 'cover', height: '100%' }} cloudName='dylyqjirh' publicId={shop.hero || 'shopping-bags-500x500_vpqouy'}>
+            <Transformation height={600} width={972} crop="fill" />
+           </Image>
+            </div>
+            <div className="single-shop-body">
               <p>Description: {shop.description}</p>
               <p>Location: {shop.city}, {shop.state}</p>
               <p>Phone Number: {shop.phone}</p>
               <p>Pickup Allowed? {shop.pickup}</p>
               <p>Delivery Allowed? {shop.delivery}</p>
               <p>Shipping Allowed? {shop.shipping}</p>
-              <p>Rating Average: {shop.ratingAvg} stars</p>
+              <p>Rating Average: {shop.ratingAvg} <StarIcon /></p>
+              <p>{shop.reviewCount} Reviews about this Shop</p>
+            </div>
+            <div className="single-shop-instagram">
+            Checkout our Instagram: {shop.instagram && <SocialIcon url={shop.instagram} target="_blank" rel="noreferrer" />}
             </div>
             <div>
-                <h2>Shop Reviews</h2>
-                <p>Total Reviews: {shop.reviewCount}</p>
-            </div>
-            <div>
-                <h2>Products</h2>
-
                 <div>
-               {products &&
-                products.map(product => (
-                    <div>
-                      <p>{product.name}</p>
-                      <p>{product.description}</p>
-                      <p>Selling for ${product.price}</p>
-                      <p>In Stock: {product.stock}</p>
-                    </div>
-                    
-                ))}
               </div>
-
-              <div>
-               {reviews &&
-                reviews.map(review => (
-                    <div>
-                      <p>{review.reviewText}</p>
-                      <p>{review.createdAt}</p>
-                    </div>
-                    
-                ))}
-              </div>
-
             </div>
           </div>
         </div>
@@ -225,20 +187,48 @@ const GetSingleShop = props => {
                 </TitleReviewContainer>
                 <SecondaryInfoContainer>
                   <IconWithText>
-                    <IconContainer>
-                      <LocationIcon />
-                    </IconContainer>
                   </IconWithText>
                   <IconWithText>
                     <IconContainer>
                       <PriceIcon />
                     </IconContainer>
-                    <Text>{product.price}</Text>
+                    <Text>Selling for: ${product.price}</Text>
                   </IconWithText>
                 </SecondaryInfoContainer>
-                <Description>{product.description}</Description>
+                <Description>Product Description: {product.description}</Description>
+                <Text>Stock left: {product.stock}</Text>
               </TextInfo>
-              <PrimaryButton>Buy Now</PrimaryButton>
+              <PrimaryButton>Add to Cart</PrimaryButton>
+            </Card>
+          ))}
+        </CardSlider>
+
+
+        <HeadingWithControl>
+          <Heading>See reviews for this shop</Heading>
+          <Controls>
+            <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
+            <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
+          </Controls>
+        </HeadingWithControl>
+        <CardSlider ref={setSliderRef} {...sliderSettings}>
+          {reviews &&
+          reviews.map((review, index) => (
+            <Card key={index}>
+              <TextInfo>
+                <TitleReviewContainer>
+                  <Title>"{review.reviewText}"</Title>
+                  <RatingsInfo>
+                    <StarIcon />
+                    <Rating>{review.stars}</Rating>
+                  </RatingsInfo>
+                </TitleReviewContainer>
+                <SecondaryInfoContainer>
+                  <IconWithText>
+                    <Text>Wrote on: {review.createdAt}</Text>
+                  </IconWithText>
+                </SecondaryInfoContainer>
+              </TextInfo>
             </Card>
           ))}
         </CardSlider>
