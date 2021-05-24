@@ -9,9 +9,9 @@ import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 import logo from "../../images/logo.PNG";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
-
-
 import Auth from '../../utils/auth.js';
+import { useQuery } from "@apollo/client";
+import { GET_USER } from '../../utils/queries';
 
 
 
@@ -75,6 +75,10 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
    * changing the defaultLinks variable below below.
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
+  const { data, loading, error } = useQuery(GET_USER)
+  const user = data?.user || false
+
+  console.log(user)
 
   const logout = event => {
     event.preventDefault();
@@ -89,10 +93,12 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
       {Auth.loggedIn() ? (
             <>
               <NavLink href="/profile" tw="lg:ml-12!">Me</NavLink>
-              <NavLink href="/create-shop">Become A Vendor!</NavLink>
-              <NavLink href="/"  tw="lg:ml-12!" onClick={logout}>
-                Logout
-              </NavLink>
+              {user.isVendor ? (
+                <NavLink href="/my-shop">My Shop</NavLink>
+              ) : (
+                <NavLink href="/create-shop">Become A Vendor!</NavLink>
+              )}
+              <NavLink href="/"  tw="lg:ml-12!" onClick={logout}>Logout</NavLink>
             </>
           ) : (
             <>
@@ -100,11 +106,6 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
               <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/signup">Sign Up</PrimaryLink>
             </>
           )}
-      
-      
-      
-
-      
     </NavLinks>
   ];
 
