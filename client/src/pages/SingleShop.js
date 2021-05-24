@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'; ///new react hook
 import { useQuery } from '@apollo/react-hooks';
 import { GET_SHOP_BY_ID } from '../utils/queries';
 import {Image, Transformation } from 'cloudinary-react';
+import {Logo} from "../components/Logo";
 
 // adding the cards with slider
 import Slider from "react-slick";
