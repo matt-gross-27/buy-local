@@ -26,18 +26,18 @@ export const CREATE_USER = gql`
 `;
 
 export const CREATE_SHOP = gql`
-    mutation createShop($name: String!, $description: String!, $phone: String!, $instagram: String, $logo: String, $addressNum: String, $street: String, $city: String!, $state: String!, $zip: String, $stripeKey: String, $pickup: Boolean, $delivery: Boolean, $shipping: Boolean) {
-        createShop(name: $name, description: $description, phone: $phone, instagram: $instagram, logo: $logo, addressNum: $addressNum, street: $street, city: $city, state: $state, zip: $zip, stripeKey: $stripeKey, pickup: $pickup, delivery: $delivery, shipping: $shipping) {
+    mutation createShop($name: String!, $shopType: String, $hero: String, $description: String!, $phone: String!, $instagram: String, $logo: String, $addressNum: String, $street: String, $city: String!, $state: String!, $zip: String, $stripeKey: String, $pickup: Boolean, $delivery: Boolean, $shipping: Boolean) {
+        createShop(name: $name, shopType: $shopType, hero: $hero, description: $description, phone: $phone, instagram: $instagram, logo: $logo, addressNum: $addressNum, street: $street, city: $city, state: $state, zip: $zip, stripeKey: $stripeKey, pickup: $pickup, delivery: $delivery, shipping: $shipping) {
+            _id
             owner {
               _id
-              firstName
-              lastName
             }
             name
             description
+            shopType
             phone
-            instagram
             logo
+            hero
             addressNum
             street
             city
@@ -47,34 +47,36 @@ export const CREATE_SHOP = gql`
             pickup
             delivery
             shipping
+            instagram
         }
     }
 `;
 
 export const UPDATE_SHOP = gql`
-  mutation updateShop($name: String!, $description: String!, $phone: String!, $instagram: String, $logo: String, $addressNum: String, $street: String, $city: String!, $state: String!, $zip: String, $stripeKey: String, $pickup: Boolean, $delivery: Boolean, $shipping: Boolean) {
-    updateShop(name: $name, description: $description, phone: $phone, instagram: $instagram, logo: $logo, addressNum: $addressNum, street: $street, city: $city, state: $state, zip: $zip, stripeKey: $stripeKey, pickup: $pickup, delivery: $delivery, shipping: $shipping) {
+  mutation updateShop($name: String!, $shopType: String, $hero: String, $description: String!, $phone: String!, $instagram: String, $logo: String, $addressNum: String, $street: String, $city: String!, $state: String!, $zip: String, $stripeKey: String, $pickup: Boolean, $delivery: Boolean, $shipping: Boolean) {
+    updateShop(name: $name, shopType: $shopType, hero: $hero, description: $description, phone: $phone, instagram: $instagram, logo: $logo, addressNum: $addressNum, street: $street, city: $city, state: $state, zip: $zip, stripeKey: $stripeKey, pickup: $pickup, delivery: $delivery, shipping: $shipping) {
+      _id
       owner {
-              _id
-              firstName
-              lastName
-            }
-            name
-            description
-            phone
-            instagram
-            logo
-            addressNum
-            street
-            city
-            state
-            zip
-            stripeKey
-            pickup
-            delivery
-            shipping
+         _id
       }
-   }
+      name
+      shopType
+      hero
+      description
+      phone
+      instagram
+      logo
+      addressNum
+      street
+      city
+      state
+      zip
+      stripeKey
+      pickup
+      delivery
+      shipping
+    }
+  }
 `;
 
 export const CREATE_CATEGORY = gql`

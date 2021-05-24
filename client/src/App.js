@@ -4,7 +4,7 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-import ComponentRenderer from "./ComponentRenderer";
+// import ComponentRenderer from "./ComponentRenderer";
 
 import Home from './pages/Home';
 import Nav from './components/Nav';
@@ -13,14 +13,15 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import AddShop from './pages/AddShop';
+import './index.css'
 
 // import Hero from "components/hero/BackgroundAsImage.js";
 // import Features from "components/features/DashedBorderSixFeatures";
 // import Portfolio from "components/cards/PortfolioTwoCardsWithImage.js";
 // import ContactUsForm from "components/forms/SimpleContactUs.js";
 // import Footer from "components/footers/MiniCenteredFooter.js";
-import MainLandingPage from "./MainLandingPage";
-
+// import MainLandingPage from "./MainLandingPage";
 
 /* Inner Pages */
 // import LoginPage from "pages/Login.js";
@@ -45,24 +46,27 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/testCloudinary" component={TestCloudinary} />
+          <Route exact path="/create-shop" component={AddShop} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/terms-of-service" component={TermsOfService} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
-          <Route path="/components/:type/:subtype/:name">
+          
+          
+          {/* <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
-          </Route> 
-          <Route path="/components/:type/:name">
+          </Route>  */}
+          {/* <Route path="/components/:type/:name">
             <ComponentRenderer />
-          </Route>
-          <Route path="/">
+          </Route> */}
+          {/* <Route path="/">
             <MainLandingPage />
-          </Route>
+          </Route> */}
+          
         </Switch>
 
       </Router>

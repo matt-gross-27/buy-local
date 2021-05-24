@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-function UploadLogo(props) {
+function UploadHero(props) {
   const { formState, setFormState } = props;
   const [imgFile, setImgFile] = useState('');
-  const [logoPreview, setLogoPreview] = useState('');
-  const [message, setMessage] = useState('Preview Logo');
+  const [heroPreview, setHeroPreview] = useState('');
+  const [message, setMessage] = useState('Preview Hero');
 
   const handleChange = (event) => {
     setFormState({
       ...formState,
-      logo: null
+      hero: null
     });
 
     const file = event.target.files[0];
@@ -17,7 +17,7 @@ function UploadLogo(props) {
 
     const reader = new FileReader();
     reader.onload = (e) => {
-      setLogoPreview(reader.result);
+      setHeroPreview(reader.result);
     };
 
     if (file) {
@@ -46,7 +46,7 @@ function UploadLogo(props) {
 
           setFormState({
             ...formState,
-            logo: data.public_id
+            hero: data.public_id
           });
         })
         .catch(err => console.log(err));
@@ -58,8 +58,8 @@ function UploadLogo(props) {
 
   return (
     <div style={{ textAlign: 'center', margin: '0 auto' }}>
-      <div id='logo-form' encType="multipart/form-data">
-        <div style={{ width: '100%', padding: '.5rem 0', background: '#6415ff', borderRadius: '0.5rem', color: 'white', fontWeight: 'bold', borderBottom: '1px solid black', borderRight: '1px solid black', fontSize: 'small' }}>
+      <div id='hero-form' encType="multipart/form-data">
+        <div id="choose-hero" style={{ width: '100%', padding: '.5rem 0', background: '#6415ff', borderRadius: '0.5rem', color: 'white', fontWeight: 'bold', borderBottom: '1px solid black', borderRight: '1px solid black', fontSize: 'small' }}>
           Choose File
         </div>
 
@@ -68,18 +68,18 @@ function UploadLogo(props) {
           onChange={handleChange}
           className="file-upload"
           accept='image/*'
-          name="logo-upload"
+          name="hero-upload"
           type="file"
-          data-form-data="{ 'transformation': {'crop':'fill','width':300,'height':300, radius='max' }}"
+          data-form-data="{ 'transformation': {'crop':'fill','width':300px,'height':185px }}"
         />
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '300px', width: '300px', boxShadow: '0 0 5px silver', margin: '0 auto', borderRadius: '100%' }} className="img-preview">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '185px', width: '300px', boxShadow: '0 0 5px silver', margin: '0 auto' }} className="img-preview">
           {!imgFile ?
             (
               <p>{message}</p>
             ) :
             (
-              <img style={{ objectFit: 'cover', height: '300px', width: '300px', borderRadius: '100%' }} src={logoPreview} alt="your logo" />
+              <img style={{ objectFit: 'cover', height: '185px', width: '300px' }} src={heroPreview} alt="your hero" />
             )
 
           }
@@ -87,24 +87,24 @@ function UploadLogo(props) {
 
         <button
           onClick={handleSubmit}
-          disabled={!imgFile || formState.logo ? true : false}
+          disabled={!imgFile || formState.hero ? true : false}
           style={{
             marginTop: '64px', 
             width: '100%',
             padding: '.5rem',
-            background: !formState.logo ? '#f56565' : 'lightGreen',
+            background: !formState.hero ? '#f56565' : 'lightGreen',
             borderRadius: '0.5rem',
-            color: !formState.logo ? 'white' : 'black',
+            color: !formState.hero ? 'white' : 'black',
             fontWeight: 'bold',
             position: 'relative',
             top: '-36px'
           }}
         >
-          {!formState.logo ? 'Upload File' : 'Success'}
+          {!formState.hero ? 'Upload File' : 'Success'}
         </button>
       </div>
     </div>
   )
 }
 
-export default UploadLogo;
+export default UploadHero;

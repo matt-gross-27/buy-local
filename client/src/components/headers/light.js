@@ -85,12 +85,12 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const defaultLinks = [
     <NavLinks key={1}>
       <NavLink href="/#">About Us</NavLink>
-      <NavLink href="/#">Become A Vendor!</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
       
       {Auth.loggedIn() ? (
             <>
               <NavLink href="/profile" tw="lg:ml-12!">Me</NavLink>
+              <NavLink href="/create-shop">Become A Vendor!</NavLink>
               <NavLink href="/"  tw="lg:ml-12!" onClick={logout}>
                 Logout
               </NavLink>

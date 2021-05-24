@@ -138,20 +138,20 @@ return (
                   <span className="text">Submit</span>
                 </SubmitButton>
                 <p tw="mt-6 text-xs text-gray-600 text-center">
-                  I agree to abide by treact's{" "}
-                  <a href="/terms-of-service" tw="border-b border-gray-500 border-dotted">
+                  I agree to abide by Buy Locals{" "}
+                  <a href="/terms-of-service" >
                     Terms of Service
                   </a>{" "}
                   and its{" "}
-                  <a href="/privacy-policy" tw="border-b border-gray-500 border-dotted">
+                  <a href="/privacy-policy">
                     Privacy Policy
                   </a>
                 </p>
 
                 <p tw="mt-8 text-sm text-gray-600 text-center">
                   Already have an account?{" "}
-                  <a href="/login" tw="border-b border-gray-500 border-dotted">
-                    Sign In
+                  <a href="/login">
+                    Login
                   </a>
                 </p>
               </Form>
