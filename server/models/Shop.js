@@ -33,14 +33,12 @@ const shopSchema = new Schema(
 
     logo: {
       type: String,
-      default: "Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi",
-      match: [/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, 'invalid url'],
+      default: "Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi"
     },
 
     phone: {
       type: String,
       minLength: 10,
-      maxLength: 10,
       required: true,
       match: [/[0-9]+/, 'must be 10 digits']
 
