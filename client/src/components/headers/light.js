@@ -6,9 +6,14 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 
-import logo from "../../images/logo.svg";
+import logo from "../../images/logo.PNG";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
+
+
+import Auth from '../../utils/auth.js';
+
+
 
 const Header = tw.header`
   flex justify-between items-center
@@ -70,16 +75,37 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
    * changing the defaultLinks variable below below.
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
+  const loggedIn = Auth.loggedIn();
+
+  const logout = event => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/#">About Us</NavLink>
-      <NavLink href="/#">Write A Review</NavLink>
+      <NavLink href="/about-us">About Us</NavLink>
       <NavLink href="/#">Become A Vendor!</NavLink>
-      <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/#" tw="lg:ml-12!">
-        Login
-      </NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/#">Sign Up</PrimaryLink>
+      {/* <NavLink href="/#">Contact Us</NavLink> */}
+      
+      {Auth.loggedIn() ? (
+            <>
+              <NavLink href="/profile" tw="lg:ml-12!">Me</NavLink>
+              <NavLink href="/"  tw="lg:ml-12!" onClick={logout}>
+                Logout
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink href="/login" tw="lg:ml-12!">Login</NavLink>
+              <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/signup">Sign Up</PrimaryLink>
+            </>
+          )}
+      
+      
+      
+
+      
     </NavLinks>
   ];
 
@@ -88,8 +114,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
   const defaultLogoLink = (
     <LogoLink href="/">
-      <img src={logo} alt="logo" />
-      Buy Local
+      <img src={logo} style={{width:'150px'}} alt="logo" />
     </LogoLink>
   );
 

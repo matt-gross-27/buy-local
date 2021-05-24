@@ -86,6 +86,7 @@ const typeDefs = gql`
   }
 
   type Order {
+    _id: ID!
     createdAt: String
     purchases: [Purchase]
     shop: Shop
@@ -101,11 +102,12 @@ const typeDefs = gql`
     user: User
     shop(_id: ID): Shop
     shops: [Shop]
-    categories: [Category]
     product(_id: ID!): Product
+    categories: [Category]
     products(category: ID, name: String): [Product]
     myOrderHistory: [Order]
     mySales: [Order]
+    allOrders: [Order]
   }
 
   type Mutation {
@@ -124,6 +126,6 @@ const typeDefs = gql`
     createOrder(orderInput: orderInput): Order
   }
 `;
-
+// /////createdAt: String removed from createRating/createReview until we can figure out how to fix the user: null issue
 //exporting typeDefs here
 module.exports = typeDefs;
