@@ -19,7 +19,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 // import Portfolio from "components/cards/PortfolioTwoCardsWithImage.js";
 // import ContactUsForm from "components/forms/SimpleContactUs.js";
 // import Footer from "components/footers/MiniCenteredFooter.js";
-import MainLandingPage from "./MainLandingPage";
+// import MainLandingPage from "./MainLandingPage";
 
 
 /* Inner Pages */
@@ -59,9 +59,6 @@ function App() {
           </Route> 
           <Route path="/components/:type/:name">
             <ComponentRenderer />
-          </Route>
-          <Route path="/">
-            <MainLandingPage />
           </Route>
         </Switch>
 

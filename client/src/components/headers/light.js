@@ -10,7 +10,7 @@ import logo from "../../images/logo.svg";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
-import { Link } from 'react-router-dom';
+
 import Auth from '../../utils/auth.js';
 
 
@@ -88,7 +88,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       <NavLink href="/#">Become A Vendor!</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
       
-      {Auth.loggedIn() ? (
+      {loggedIn() ? (
             <>
               <NavLink href="/profile" tw="lg:ml-12!">Me</NavLink>
               <NavLink href="/"  tw="lg:ml-12!" onClick={logout}>
