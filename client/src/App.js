@@ -1,10 +1,12 @@
 import './styles/globalStyles.css';
 // import "./tailwindcss/dist/base.css";
 import React from "react";
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import ComponentRenderer from "./ComponentRenderer";
+import { useQuery } from '@apollo/react-hooks'
+import { USER } from './utils/queries'
 
 import Home from './pages/Home';
 import Nav from './components/Nav';
@@ -16,6 +18,7 @@ import AboutUs from './pages/AboutUs';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AddShop from './pages/AddShop';
+import MyShop from './pages/MyShop';
 //import GetOrderHistory from "./pages/GetOrderHistory";
 
 import './index.css'
@@ -60,15 +63,16 @@ function App() {
           <Route exact path="/terms-of-service" component={TermsOfService} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/about-us" component={AboutUs} />
-          <Route exact path="/shop/:id?" component={GetSingleShop}/>
-          
+          <Route exact path="/shop/:id?" component={GetSingleShop} />
+          <Route exact path="/my-shop/" component={MyShop} />
+
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
           </Route>
           <Route path="/components/:type/:name">
             <ComponentRenderer />
           </Route>
-          
+
         </Switch>
       </Router>
     </ApolloProvider>

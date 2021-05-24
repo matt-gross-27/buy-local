@@ -43,11 +43,20 @@ const resolvers = {
       return shops;
     },
 
-    shop: async (parent, { _id }) => {
-      const shop = await Shop.findById(_id)
+    shop: async (parent, args, context) => {
+      let shop;
+
+      if (args._id) {
+        shop = await Shop.findById(args._id)
+          .populate({ path: 'owner' })
+          .populate({ path: 'categories' })
+          .populate({ path: 'products', populate: { path: 'category' } })
+      } else {
+        shop = await Shop.findOne({ owner: context.user._id })
         .populate({ path: 'owner' })
         .populate({ path: 'categories' })
         .populate({ path: 'products', populate: { path: 'category' } })
+      }
 
       return shop;
     },

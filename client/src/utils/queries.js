@@ -41,6 +41,8 @@ export const GET_SHOPS = gql`
         shops {
             _id
             name
+            hero
+            shopType
             description
             instagram
             logo
@@ -105,9 +107,11 @@ export const GET_SHOPS = gql`
 `;
 
 export const GET_SHOP_BY_ID = gql`
-    query getShopById($_id: ID!) {
+    query getShopById($_id: ID) {
         shop(_id: $_id) {
             _id
+            hero
+            shopType
             name
             description
             instagram
@@ -243,6 +247,28 @@ export const MY_ORDER_HISTORY = gql`
             }
             customer {
                 _id
+            }
+        }
+    }
+`;
+
+export const MY_SALES = gql`
+    {
+        mySales {
+            _id
+            createdAt
+            purchases {
+                purchaseQuantity
+                product {
+                    _id
+                    name
+                    price
+                }
+            }
+            customer {
+                _id
+                firstName
+                lastName
             }
         }
     }
