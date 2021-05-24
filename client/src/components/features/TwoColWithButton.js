@@ -40,7 +40,7 @@ const PrimaryButton = styled(PrimaryButtonBase)(props => [
 ]);
 
 
-export default ({
+function TwoColBtn ({
   subheading = "Our Expertise",
   heading = (
     <>
@@ -59,7 +59,7 @@ export default ({
   imageDecoratorBlob = false,
   imageDecoratorBlobCss = null,
   textOnLeft = true
-}) => {
+}) {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
 
   return (
@@ -83,3 +83,4 @@ export default ({
     </Container>
   );
 };
+export default TwoColBtn;

@@ -34,7 +34,7 @@ const SocialLink = styled.a`
   }
 `;
 
-export default () => {
+function SimpleFive() {
   return (
     <Container>
       <FiveColumns>
@@ -104,3 +104,4 @@ export default () => {
     </Container>
   );
 };
+export default SimpleFive;

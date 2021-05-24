@@ -34,7 +34,7 @@ const Text = styled.div`
     }
   }
 `;
-export default ({ headingText = "Privacy Policy" }) => {
+function Ppolicy({ headingText = "Privacy Policy" }) {
   return (
     <AnimationRevealPage>
       <Header />
@@ -389,3 +389,4 @@ export default ({ headingText = "Privacy Policy" }) => {
     </AnimationRevealPage>
   );
 };
+export default Ppolicy;

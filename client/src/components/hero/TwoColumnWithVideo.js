@@ -59,7 +59,7 @@ const StyledModal = styled(ReactModalAdapter)`
 `;
 const CloseModalButton = tw.button`absolute top-0 right-0 mt-8 mr-8 hocus:text-primary-500`;
 
-export default ({
+function HeroDisplay ({
   heading = "Eat, Drink, Shop Local",
  description="Support local independent homemakers! Purchasing through Buy Local proceeds will go directly to amazing unique vendors in your community!",
   primaryButtonText="Get Started",
@@ -68,7 +68,7 @@ export default ({
   watchVideoYoutubeUrl="https://www.youtube.com/embed/_GuOjXYl5ew",
   imageSrc=DesignIllustration,
   imageDecoratorBlob = false,
-}) => {
+}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const toggleModal = () => setModalIsOpen(!modalIsOpen);
@@ -120,3 +120,4 @@ export default ({
     </>
   );
 };
+export default HeroDisplay;

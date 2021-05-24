@@ -49,9 +49,11 @@ function AnimatedSlideInComponent({ direction = "left", offset = 30, children })
     </motion.section>
   );
 }
+export default AnimatedSlideInComponent;
 
-export default props => (
-  <StyledDiv className="App">
-    <AnimationReveal {...props} />
-  </StyledDiv>
-);
+// function AppProps(props) {
+//   <StyledDiv className="App">
+//     <AnimationReveal {...props} />
+//   </StyledDiv>
+// }
+// export default AppProps;

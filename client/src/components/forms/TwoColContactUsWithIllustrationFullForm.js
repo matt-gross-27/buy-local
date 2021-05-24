@@ -33,7 +33,7 @@ const Textarea = styled(Input).attrs({as: "textarea"})`
 
 const SubmitButton = tw(PrimaryButtonBase)`inline-block mt-8`
 
-export default ({
+function FormsTwoCol ({
   subheading = "Contact Us",
   heading = <>Feel free to <span tw="text-primary-500">get in touch</span><wbr/> with us.</>,
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -41,7 +41,7 @@ export default ({
   formAction = "#",
   formMethod = "get",
   textOnLeft = true,
-}) => {
+}) {
   // The textOnLeft boolean prop can be used to display either the text on left or right side of the image.
 
   return (
@@ -68,3 +68,4 @@ export default ({
     </Container>
   );
 };
+export default FormsTwoCol;

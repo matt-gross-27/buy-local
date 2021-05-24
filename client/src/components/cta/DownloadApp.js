@@ -34,7 +34,7 @@ const ImageContainer = tw(ColumnContainer)`mt-16 lg:mt-0 lg:ml-16 flex justify-e
 const DecoratorBlobContainer = tw.div`absolute inset-0 overflow-hidden rounded-lg`
 const DecoratorBlob1 = tw(SvgDecoratorBlob1)`absolute bottom-0 left-0 w-80 h-80 transform -translate-x-20 translate-y-32 text-gray-800 opacity-50`
 const DecoratorBlob2 = tw(SvgDecoratorBlob1)`absolute top-0 right-0 w-80 h-80 transform  translate-x-20 -translate-y-64 text-gray-800 opacity-50`
-export default ({
+function AppDownload ({
   subheading = "Download App",
   text = "Developers all over the world are happily using Buy Local.",
   link1Text = "App Store",
@@ -45,7 +45,7 @@ export default ({
   link2IconSrc = googlePlayIconImageSrc,
   pushDownFooter = false,
   imageSrc = mockupImageSrc,
-}) => {
+}) {
   return (
     <Container css={pushDownFooter && tw`mb-20 lg:mb-24`}>
       <Content>
@@ -76,3 +76,4 @@ export default ({
     </Container>
   );
 };
+export default AppDownload;

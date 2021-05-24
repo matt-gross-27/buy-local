@@ -5,8 +5,7 @@ import { css } from "styled-components/macro";
 import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
 import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings";
 import {SectionDescription} from "components/misc/Typography";
-import { ReactComponent as TwitterIcon} from "images/twitter-icon.svg";
-import { ReactComponent as LinkedinIcon} from "images/linkedin-icon.svg";
+// import { ReactComponent as LinkedinIcon} from "images/linkedin-icon.svg";
 import { ReactComponent as GithubIcon } from "images/github-icon.svg";
 
 const HeadingContainer = tw.div``
@@ -40,7 +39,7 @@ const CardLinks = styled.div`
   }
 `
 
-export default ({
+function Team ({
   heading = "Meet These Fine Folks.",
   subheading = "Our Team",
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -102,7 +101,7 @@ export default ({
     },
     
   ]
-}) => {
+}) {
   return (
     <Container>
       <ContentWithPaddingXl>
@@ -133,3 +132,5 @@ export default ({
     </Container>
   );
 };
+
+export default Team;
