@@ -20,6 +20,7 @@ import { ReactComponent as LocationIcon } from "feather-icons/dist/icons/map-pin
 import { ReactComponent as StarIcon } from "feather-icons/dist/icons/star.svg";
 import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
 import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
+import RatingIcon from './CreateRating';
 // end imports for cards and slider
 const { SocialIcon } = require('react-social-icons');
 //styling for cards and slider
@@ -81,6 +82,18 @@ const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-fu
 
 
 const GetSingleShop = props => {
+
+        const [rating, setRating] = useState(0);
+        const [hoverRating, setHoverRating] = React.useState(0);
+        const onMouseEnter = (index) => {
+          setHoverRating(index);
+        };
+        const onMouseLeave = () => {
+          setHoverRating(0);
+        };
+        const onSaveRating = (index) => {
+          setRating(index);
+        };
         // Slider functionality
         const [sliderRef, setSliderRef] = useState(null);
         const sliderSettings = {
@@ -156,6 +169,19 @@ const GetSingleShop = props => {
               <p>Delivery Allowed? {shop.delivery}</p>
               <p>Shipping Allowed? {shop.shipping}</p>
               <p>Rating Average: {shop.ratingAvg} <StarIcon /></p>
+              <div className="box flex">
+      {[1, 2, 3, 4, 5].map((index) => {
+        return (
+          <RatingIcon 
+            index={index} 
+            rating={rating} 
+            hoverRating={hoverRating} 
+            onMouseEnter={onMouseEnter} 
+            onMouseLeave={onMouseLeave} 
+            onSaveRating={onSaveRating} />
+        )
+      })}
+    </div>
               <p>{shop.reviewCount} Reviews about this Shop</p>
             </div>
             <div className="single-shop-instagram">
@@ -172,6 +198,7 @@ const GetSingleShop = props => {
       <Content>
         <HeadingWithControl>
           <Heading className="products-header">See our Products</Heading>
+          
           <Controls>
             <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
