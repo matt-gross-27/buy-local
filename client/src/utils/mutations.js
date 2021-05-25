@@ -145,8 +145,8 @@ export const CREATE_RATING = gql`
 `;
 
 export const UPDATE_PRODUCT = gql`
-  mutation updateProduct($_id: ID!, $name: String!, $description: String!, $image: String!, $price: Float!, $stock: Int!, $categoryName: String!) {
-    updateProduct(_id: $id, name: $name, description: $description, image: $image, price: $price, stock: $stock, categoryName: $categoryName) {
+  mutation updateProduct($_id: ID!, $name: String!, $description: String!, $image: String, $price: Float!, $stock: Int!, $categoryName: String!) {
+    updateProduct(_id: $_id, name: $name, description: $description, image: $image, price: $price, stock: $stock, categoryName: $categoryName) {
       products {
         _id
         name

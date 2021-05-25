@@ -1,6 +1,6 @@
 import './styles/globalStyles.css';
 // import "./tailwindcss/dist/base.css";
-import React, {useState} from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
