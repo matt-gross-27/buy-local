@@ -18,6 +18,7 @@ const RightColumn = tw.div` mt-12 lg:mt-0 ml-4 flex flex-col justify-center`;
 
 const Heading = tw.h1`font-black text-purple-300 md:text-5xl leading-snug max-w-3xl`;
 const Paragraph = tw.p`my-5 lg:my-8 text-sm lg:text-base font-medium text-gray-600 max-w-lg mx-auto lg:mx-0`;
+const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
 
 const Actions = tw.div`flex flex-col items-center sm:flex-row justify-center lg:justify-start mt-8`;
 
@@ -34,7 +35,7 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 
 
 function HeroDisplay ({
-  heading = "Eat, Drink, Shop Local",
+  heading = "Eat, Drink, Shop  ",
  description="Support local independent homemakers! Purchasing through Buy Local proceeds will go directly to amazing unique vendors in your community!",
   imageSrc=DesignIllustration,
   imageDecoratorBlob = false,
@@ -46,7 +47,9 @@ function HeroDisplay ({
       <Container>
         <TwoColumn>
            <LeftColumn> 
-            <Heading>{heading}</Heading>
+            <Heading>{heading}
+            <HighlightedText>Local</HighlightedText>
+            </Heading>
             <Paragraph>{description}</Paragraph>
             <Actions>
               {/* <PrimaryButton as="a" href={primaryButtonUrl}>{primaryButtonText}</PrimaryButton> */}

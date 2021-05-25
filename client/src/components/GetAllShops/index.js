@@ -19,23 +19,45 @@ const GetAllShops = () => {
     }
 
 const tabs = {
-        Clothing: shops.filter(shop => shop.shopType === 'Clothing').map(shop => {
+       Food: shops.filter(shop => shop.shopType === 'Food').map(shop => {
             return {
                 imageSrc: `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${shop.hero}`,
                 title: shop.name,
                 content: shop.description,
-                price: "",
+                location: `${shop.city}, ${shop.state}`,
                 rating: shop.ratingAvg,
                 reviews: shop.reviewCount,
                 url: `/shop/${shop._id}`
-            }
+        }
         }),
         Sweets: shops.filter(shop => shop.shopType === 'Sweets').map(shop =>{
             return {
                 imageSrc: `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${shop.hero}`,
                 title: shop.name,
                 content: shop.description,
-                price: "",
+                location: `${shop.city}, ${shop.state}`,
+                rating: shop.ratingAvg,
+                reviews: shop.reviewCount,
+                url: `/shop/${shop._id}`
+            }
+        }),
+        Clothing: shops.filter(shop => shop.shopType === 'Clothing').map(shop => {
+            return {
+                imageSrc: `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${shop.hero}`,
+                title: shop.name,
+                content: shop.description,
+                location: `${shop.city}, ${shop.state}`,
+                rating: shop.ratingAvg,
+                reviews: shop.reviewCount,
+                url: `/shop/${shop._id}`
+            }
+        }),
+        Other: shops.filter(shop => shop.shopType === 'Other').map(shop =>{
+            return {
+                imageSrc: `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${shop.hero}`,
+                title: shop.name,
+                content: shop.description,
+                location: `${shop.city}, ${shop.state}`,
                 rating: shop.ratingAvg,
                 reviews: shop.reviewCount,
                 url: `/shop/${shop._id}`
