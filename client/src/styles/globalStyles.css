@@ -159,13 +159,12 @@
 }
 
 .editBtn {
-  float: right;
-  align-self: right;
-  background-color: primary;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 26px;
   width: 26px;
-  background-color: #6415ff;
-  color: white;
+  background-color: white;
   font-weight: bold;
   font-size: 24px;
   line-height: 1;
@@ -173,6 +172,27 @@
   border-radius: 6px;
 }
 
+.UploadProductEditBtn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.product-input {
+  padding-top: 0;
+  padding-bottom: 0;
+  border: none;
+  border-radius: 5px;
+  flex-grow: 1;
+}
+
+.productImgDiv {
+  text-align: center;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
 
 @media screen and (max-width: 700px) {
   .shopHeader {
@@ -183,10 +203,5 @@
 @media screen and (max-width: 767px) {
   .productImg {
     height: 200px;
-  }
-
-  .productImgDiv {
-    text-align: center;
-    overflow: hidden;
   }
 }

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Auth from '../utils/auth';
 import { Redirect } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { GET_SHOP_BY_ID, MY_SALES } from '../utils/queries'
-import { CREATE_CATEGORY, CREATE_PRODUCT, UPDATE_SHOP, UPDATE_PRODUCT } from '../utils/mutations'
+import { GET_SHOP_BY_ID } from '../utils/queries'
+// add MY_SALES
+import { CREATE_CATEGORY, CREATE_PRODUCT } from '../utils/mutations'
 import { Image, Transformation } from 'cloudinary-react';
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -143,8 +144,6 @@ function MyShop() {
     return <h2>Loading...</h2>
   }
 
-  console.log(productFormState)
-
   // Auth
   if (!Auth.loggedIn()) {
     return <Redirect to='/' />
@@ -157,7 +156,7 @@ function MyShop() {
         <h2 onClick={() => setNavState('home')} className='text-center'>{shop.name}</h2>
         <nav className="d-flex justify-content-around flex-wrap">
 
-          <span title='Click To Toggle' className='shopNav'>{shop.open ? 'Open' : 'Closed'}</span>
+          <span className='shopNav' onClick={() => setNavState('home')}>Review Shop</span>
           <span className='shopNav' onClick={() => setNavState('update-shop')}>Edit Shop Info</span>
           <span className='shopNav' onClick={() => setNavState('add-category')}>Add Category</span>
           <span className='shopNav' onClick={() => setNavState('add-product')}>Add Product</span>
