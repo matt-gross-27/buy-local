@@ -48,10 +48,10 @@ const CardButton = tw(PrimaryButtonBase)`text-sm`;
 
 const CardReview = tw.div`font-medium text-xs text-gray-600`;
 
-const CardText = tw.div`p-4 text-gray-900`;
+const CardText = tw.div`h-32 p-4 text-gray-900`;
 const CardTitle = tw.h5`text-lg font-semibold group-hover:text-primary-500`;
 const CardContent = tw.p`mt-1 text-sm font-medium text-gray-600`;
-const CardPrice = tw.p`mt-4 text-xl font-bold`;
+const CardLocation = tw.p`mt-4 text-base font-bold`;
 
 const DecoratorBlob1 = styled(SvgDecoratorBlob1)`
   ${tw`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-15 transform translate-x-2/3 -translate-y-12 text-pink-400`}
@@ -124,13 +124,13 @@ function Category ({
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <CardButton>Buy Now</CardButton>
+                      <CardButton>See Vendor</CardButton>
                     </CardHoverOverlay>
                   </CardImageContainer>
-                  <CardText>
+                  <CardText style={{overflowY: "scroll"}}>
                     <CardTitle>{card.title}</CardTitle>
+                    <CardLocation>{card.location}</CardLocation>
                     <CardContent>{card.content}</CardContent>
-                    <CardPrice>{card.price}</CardPrice>
                   </CardText>
                 </Card>
               </CardContainer>

@@ -110,6 +110,10 @@
   justify-content: center;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 @media screen and (max-width: 700px) {
   .shopHeader {
     position: relative;
