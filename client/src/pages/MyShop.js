@@ -8,9 +8,10 @@ import { Image, Transformation } from 'cloudinary-react';
 import tw from "twin.macro";
 import styled from "styled-components";
 import { ReactComponent as StarIcon } from "images/star-icon.svg";
-import Logo from '../components/Logo'
-import MyShopProductList from '../components/MyShopProductList'
-import UploadProduct from '../components/UploadProduct'
+import Logo from '../components/Logo';
+import MyShopProductList from '../components/MyShopProductList';
+import UploadProduct from '../components/UploadProduct';
+import EditShop from '../components/EditShop';
 
 const Form = tw.form`mx-auto mb-5 max-w-xs px-4 `;
 const Label = tw.label`max-w-full text-sm`;
@@ -320,6 +321,8 @@ function MyShop() {
           </section>
         </main>
       )}
+
+      {navState === "update-shop" && <EditShop shop={shop} setNavState={setNavState}/>}
 
     </>
 
