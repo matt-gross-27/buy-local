@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'; ///new react hook
 
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_SHOP_BY_ID } from '../utils/queries';
 import {Image, Transformation } from 'cloudinary-react';
 import {Logo} from "../components/Logo";
+import { CREATE_RATING, CREAT_REVIEW } from "../utils/mutations";
 
 
 
@@ -110,24 +111,28 @@ const GetSingleShop = props => {
   
     const shop = data?.shop || [];
 
+    console.log(shop)
+
     const products = shop.products
 
     const reviews = shop.reviews
+
+    const ratings = shop.ratings
   
     if (loading) {
       return <div>Loading single Shop</div>;
     }
 
     // Cards import dynamically from products
-    const cards = [
-      {
-        imageSrc: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-        title: `${products.name}`,
-        description: `${products.description}`,
-        pricingText: `${products.price}`,
-        rating: "4.8",
-      },
-    ]
+    // const cards = [
+    //   {
+    //     imageSrc: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
+    //     title: `${products.name}`,
+    //     description: `${products.description}`,
+    //     pricingText: `${products.price}`,
+    //     rating: "4.8",
+    //   },
+    // ]
 
     return (
        <>
@@ -166,7 +171,7 @@ const GetSingleShop = props => {
       <Container>
       <Content>
         <HeadingWithControl>
-          <Heading>See our Products</Heading>
+          <Heading className="products-header">See our Products</Heading>
           <Controls>
             <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
@@ -176,14 +181,10 @@ const GetSingleShop = props => {
           {products &&
           products.map((product, index) => (
             <Card key={index}>
-              <CardImage imageSrc={"https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80"} />
+              <CardImage imageSrc={product.image} />
               <TextInfo>
                 <TitleReviewContainer>
                   <Title>{product.name}</Title>
-                  <RatingsInfo>
-                    <StarIcon />
-                    <Rating>{"4.8"}</Rating>
-                  </RatingsInfo>
                 </TitleReviewContainer>
                 <SecondaryInfoContainer>
                   <IconWithText>
@@ -232,6 +233,8 @@ const GetSingleShop = props => {
             </Card>
           ))}
         </CardSlider>
+        <PrimaryButton className="add-rating-button">Add a Rating</PrimaryButton>
+        <PrimaryButton className="add-review-button">Add a Review</PrimaryButton>
       </Content>
     </Container>
 

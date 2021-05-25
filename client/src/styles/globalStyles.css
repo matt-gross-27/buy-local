@@ -110,6 +110,14 @@
   justify-content: center;
 }
 
+.add-rating-button {
+  margin-bottom: 10px;
+}
+
+.products-header {
+  margin-bottom: 100px;
+}
+
 @media screen and (max-width: 700px) {
   .shopHeader {
     position: relative;
