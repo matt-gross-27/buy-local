@@ -5,14 +5,12 @@ import Hero from "components/hero/TwoColumnWithVideo.js";
 
 
 import MainFeature2 from "components/features/TwoColSingleFeatureWithStats2.js";
-import TabGrid from "components/cards/TabCardGrid.js";
 // import Testimonial from "components/testimonials/ThreeColumnWithProfileImage.js";
 import DownloadApp from "components/cta/DownloadApp.js";
 import Footer from "components/footers/SimpleFiveColumn.js";
 
 import firstImage from "images/first-img.jpg";
 import GetAllShops from "../components/GetAllShops"
-import GetProducts from "../components/GetProducts"
 
 function Home() {
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
@@ -29,15 +27,8 @@ function Home() {
         imageDecoratorBlob={true}
       />
       {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
-      <TabGrid
-        heading={
-          <>
-            Checkout our <HighlightedText>vendors!</HighlightedText>
-            <GetAllShops/>
-            <GetProducts/>
-          </>
-        }
-      />
+      
+      <GetAllShops/>
       <MainFeature2
         subheading={<Subheading>A Reputed Brand</Subheading>}
         heading={<>Why <HighlightedText>Choose Us ?</HighlightedText></>}

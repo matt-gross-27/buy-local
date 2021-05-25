@@ -1,42 +1,69 @@
-import React, { useState } from "react";
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { GET_SHOPS, GET_SHOP_BY_ID } from "../../utils/queries"
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
-import GetSingleShop from "../../pages/SingleShop";
+import React from "react";
+import { useQuery } from '@apollo/react-hooks';
+import tw from "twin.macro";
+import { GET_SHOPS } from "../../utils/queries"
+import TabGrid from "components/cards/TabCardGrid.js";
+
+const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
+
 
 const GetAllShops = () => {
 
+
     const { loading, data }  = useQuery(GET_SHOPS);
-    const shopsData = data?.shops || [];
-    console.log(shopsData)
+    const shops = data?.shops || [];
+    console.log(shops)
 
     if (loading) {
         return <h2>Loading Shop...</h2>
     }
 
+const tabs = {
+        Clothing: shops.filter(shop => shop.shopType === 'Clothing').map(shop => {
+            return {
+                imageSrc: `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${shop.hero}`,
+                title: shop.name,
+                content: shop.description,
+                price: "",
+                rating: shop.ratingAvg,
+                reviews: shop.reviewCount,
+                url: `/shop/${shop._id}`
+            }
+        }),
+        Sweets: shops.filter(shop => shop.shopType === 'Sweets').map(shop =>{
+            return {
+                imageSrc: `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${shop.hero}`,
+                title: shop.name,
+                content: shop.description,
+                price: "",
+                rating: shop.ratingAvg,
+                reviews: shop.reviewCount,
+                url: `/shop/${shop._id}`
+            }
+        }),
+
+    }
+
  // const {data: shopsData} = useQuery(GET_SHOPS)
 
 
-
 return (
-        <div className="all-shops-cards">
-            {shopsData.map(shop => (
-            <div className="card-all-shops row">
-                <div className="container container-all-shops column card">
-                    <div className="card-text">{shop.name}</div>
-                    <div className="card-text">{shop.description}</div>
-                    <div className="card-text">{shop.instagram}</div>
-                    <div className="card-text">Average Rating: {shop.ratingAvg} Stars</div>
-                      <Link 
-                      to={`/shop/${shop._id}`}>
-                          <button>View Shop</button>
-                      </Link>
-                </div>
-            </div>
-            ))}
-        </div>
+        
+    <TabGrid
+        heading={
+          <>
+            Checkout our <HighlightedText>vendors!</HighlightedText>
+
+          </>
+        }
+        tabs={
+            tabs
+        }
+        
+      />
+
 
   );
 }
+
 export default GetAllShops

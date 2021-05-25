@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import ComponentRenderer from "./ComponentRenderer";
-import { useQuery } from '@apollo/react-hooks'
-import { USER } from './utils/queries'
+// import { useQuery } from '@apollo/react-hooks'
+// import { USER } from './utils/queries'
 
 import Home from './pages/Home';
 import Nav from './components/Nav';
