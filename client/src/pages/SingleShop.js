@@ -129,23 +129,10 @@ const GetSingleShop = props => {
     const products = shop.products
 
     const reviews = shop.reviews
-
-    const ratings = shop.ratings
   
     if (loading) {
       return <div>Loading single Shop</div>;
     }
-
-    // Cards import dynamically from products
-    // const cards = [
-    //   {
-    //     imageSrc: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-    //     title: `${products.name}`,
-    //     description: `${products.description}`,
-    //     pricingText: `${products.price}`,
-    //     rating: "4.8",
-    //   },
-    // ]
 
     return (
        <>
@@ -165,13 +152,13 @@ const GetSingleShop = props => {
               <p>Description: {shop.description}</p>
               <p>Location: {shop.city}, {shop.state}</p>
               <p>Phone Number: {shop.phone}</p>
-              <p>Pickup Allowed? {shop.pickup}</p>
-              <p>Delivery Allowed? {shop.delivery}</p>
-              <p>Shipping Allowed? {shop.shipping}</p>
-              <div className="box flex">Rating:
+              <p>Pickup Allowed: {shop.pickup ? '✅' : '❌'}</p>
+              <p>Delivery Allowed: {shop.delivery ? '✅' : '❌'}</p>
+              <p>Shipping Allowed: {shop.shipping ? '✅' : '❌'}</p>
+              <div className="box flex">Give the Shop a Rating:
               {[1, 2, 3, 4, 5].map((index) => {
                 return (
-                  <RatingIcon 
+                  <RatingIcon
                     index={index} 
                     rating={rating} 
                     hoverRating={hoverRating} 
@@ -198,21 +185,20 @@ const GetSingleShop = props => {
       <Container>
       <Content>
         <HeadingWithControl>
-          <Heading className="products-header">See our Products</Heading>
-          
+          <Heading className="products-header">See our Products:</Heading>
           <Controls>
             <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
           </Controls>
         </HeadingWithControl>
-        <CardSlider ref={setSliderRef} {...sliderSettings}>
+        <CardSlider ref={setSliderRef} className="product-slider">
           {products &&
           products.map((product, index) => (
             <Card key={index}>
               <CardImage imageSrc={product.image} />
               <TextInfo>
                 <TitleReviewContainer>
-                  <Title>{product.name}</Title>
+                  <Title>{product.name === [] || product.name === null ? "No products displayed yet!": product.name}</Title>
                 </TitleReviewContainer>
                 <SecondaryInfoContainer>
                   <IconWithText>
@@ -234,13 +220,13 @@ const GetSingleShop = props => {
 
 
         <HeadingWithControl>
-          <Heading>See reviews for this shop</Heading>
-          <Controls>
+          <Heading className="review-header">See reviews for this shop:</Heading>
+          {/* <Controls>
             <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
-          </Controls>
+          </Controls> */}
         </HeadingWithControl>
-        <CardSlider ref={setSliderRef} {...sliderSettings}>
+        <CardSlider ref={setSliderRef}>
           {reviews &&
           reviews.map((review, index) => (
             <Card key={index}>
@@ -248,7 +234,6 @@ const GetSingleShop = props => {
                 <TitleReviewContainer>
                   <Title>"{review.reviewText}"</Title>
                   <RatingsInfo>
-                    <StarIcon />
                     <Rating>{review.stars}</Rating>
                   </RatingsInfo>
                 </TitleReviewContainer>
@@ -261,13 +246,9 @@ const GetSingleShop = props => {
             </Card>
           ))}
         </CardSlider>
-        <PrimaryButton className="add-rating-button">Add a Rating</PrimaryButton>
         <PrimaryButton className="add-review-button">Add a Review</PrimaryButton>
       </Content>
     </Container>
-
-
-
         </>
       );
    

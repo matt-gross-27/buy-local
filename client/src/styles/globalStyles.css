@@ -127,12 +127,26 @@
     display: none;
 }
 
+.product-slider {
+  display: inline;
+  margin-right: 40px;
+}
+
 .add-rating-button {
   margin-bottom: 10px;
 }
 
-.products-header {
-  margin-bottom: 100px;
+/* .add-review-button {
+  width: 50px;
+  size: 100px;
+} */
+
+/* .products-header {
+  margin-bottom: 50px;
+} */
+
+.review-header {
+  margin-top: 60px;
 }
 
 .w-6 {
