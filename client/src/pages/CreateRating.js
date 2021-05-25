@@ -52,7 +52,8 @@ function RatingIcon(props) {
         onMouseEnter={() => onMouseEnter(index)} 
         onMouseLeave={() => onMouseLeave()} 
         onClick={() => onSaveRating(index)}
-        onClick={() => handleClick(index)}>
+        onClick={() => handleClick(index)}
+        >
         <StarIcon fill={fill} />
       </div>
   )

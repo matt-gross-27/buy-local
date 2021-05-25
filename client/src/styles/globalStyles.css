@@ -146,6 +146,11 @@
 }
 .cursor-pointer {
   cursor: pointer;
+  margin-left: 10px;
+}
+
+.box {
+  margin-bottom: 10px;
 }
 
 

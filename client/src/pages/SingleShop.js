@@ -168,20 +168,21 @@ const GetSingleShop = props => {
               <p>Pickup Allowed? {shop.pickup}</p>
               <p>Delivery Allowed? {shop.delivery}</p>
               <p>Shipping Allowed? {shop.shipping}</p>
+              <div className="box flex">Rating:
+              {[1, 2, 3, 4, 5].map((index) => {
+                return (
+                  <RatingIcon 
+                    index={index} 
+                    rating={rating} 
+                    hoverRating={hoverRating} 
+                    onMouseEnter={onMouseEnter} 
+                    onMouseLeave={onMouseLeave} 
+                    onSaveRating={onSaveRating} />
+                )
+              })}
+            </div>
               <p>Rating Average: {shop.ratingAvg} <StarIcon /></p>
-              <div className="box flex">
-      {[1, 2, 3, 4, 5].map((index) => {
-        return (
-          <RatingIcon 
-            index={index} 
-            rating={rating} 
-            hoverRating={hoverRating} 
-            onMouseEnter={onMouseEnter} 
-            onMouseLeave={onMouseLeave} 
-            onSaveRating={onSaveRating} />
-        )
-      })}
-    </div>
+              
               <p>{shop.reviewCount} Reviews about this Shop</p>
             </div>
             <div className="single-shop-instagram">
