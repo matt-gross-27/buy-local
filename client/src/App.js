@@ -1,6 +1,6 @@
 import './styles/globalStyles.css';
 // import "./tailwindcss/dist/base.css";
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
@@ -20,6 +20,7 @@ import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AddShop from './pages/AddShop';
 import MyShop from './pages/MyShop';
+
 //import GetOrderHistory from "./pages/GetOrderHistory";
 
 import './index.css'
@@ -48,7 +49,6 @@ const client = new ApolloClient({
   },
   uri: '/graphql',
 })
-
 
 function App() {
   return (
