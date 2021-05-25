@@ -9,6 +9,7 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { ReactComponent as StarIcon } from "images/star-icon.svg";
 import Logo from '../components/Logo'
+import MyShopProductList from '../components/MyShopProductList'
 
 const Form = tw.form`mx-auto max-w-xs`;
 const Label = tw.label`max-w-full text-sm`;
@@ -42,7 +43,11 @@ function MyShop() {
   const [newCategory, setNewCategory] = useState('')
 
   // Mutations
-  const { error } = useMutation(CREATE_CATEGORY)
+  const [createCategory] = useMutation(CREATE_CATEGORY, {
+    refetchQueries: [{
+      query: GET_SHOP_BY_ID
+    }]
+  });
 
   // Handle Form Change
   const handleChangeCategoryForm = (e) => {
@@ -50,9 +55,15 @@ function MyShop() {
     setNewCategory(e.target.value)
   }
 
-  const handleSubmitCategoryForm = (e) => {
+  const handleSubmitCategoryForm = async (e) => {
     e.preventDefault();
-    console.log(e)
+
+    try {
+      await createCategory({ variables: { name: newCategory } });
+      setNewCategory('');
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   // Query Shop
@@ -70,8 +81,8 @@ function MyShop() {
   return (
     <>
       <div className='shopHeader'>
-        <Logo logo={shop.logo || 'Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi'} logoScale={80} />
-        <h2 className='text-center'>{shop.name}</h2>
+        <Logo onClick={() => setNavState('home')} logo={shop.logo || 'Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi'} logoScale={80} />
+        <h2 onClick={() => setNavState('home')} className='text-center'>{shop.name}</h2>
         <nav className="d-flex justify-content-around flex-wrap">
 
           <span title='Click To Toggle' className='shopNav'>{shop.open ? 'Open' : 'Closed'}</span>
@@ -126,12 +137,22 @@ function MyShop() {
             <p>StripeKey Verified: {shop.stripeKeyVerified ? '✅' : '❌'}</p>
           </div>
 
-          <h3>Product Categories {shop.categoryCount}</h3>
+          <h3>Categories</h3>
           <p className='pl-36'>
             {shop.categories.map((category, i) => (
-              <span key={category._id}>{category}{i !== shop.categories.length - 1 && ', '}</span>
+              <span key={category._id}>{category.name}{i !== shop.categories.length - 1 && ', '}</span>
             ))}
           </p>
+
+          <h3>Products</h3>
+          {shop.categories.map(category => (
+            
+            <MyShopProductList 
+              key={category._id}
+              category={category}
+              products={shop.products.filter(product => product.category._id = category._id)}
+          />
+          ))}
 
         </main>
       )}
@@ -139,14 +160,14 @@ function MyShop() {
       { navState === 'add-category' && (
         <main className="d-flex-col" style={{ height: 'calc(100vh - 226px)' }}>
           <section>
-            <h3 className='text-center'>Product Categories {shop.categoryCount}</h3>
-            <p className='pl-36'>
+            <h4 className='text-center mb-3'>Current Categories</h4>
+            <p>
               {shop.categories.map((category, i) => (
-                <span key={category._id}>{category}{i !== shop.categories.length - 1 && ', '}</span>
+                <span key={category._id}>{category.name}{i !== shop.categories.length - 1 && ', '}</span>
               ))}
             </p>
             <Form onSubmit={handleSubmitCategoryForm}>
-              <Label htmlFor="categoryName">Shop Name</Label>
+              <Label htmlFor="categoryName">Add Category Name</Label>
               <Input
                 placeholder="Enter your new category name"
                 name="categoryName"
@@ -167,11 +188,6 @@ function MyShop() {
       <footer className='text-center mb-5'>
         {shop.instagram && <SocialIcon url={shop.instagram} target="_blank" rel="noreferrer" />}
       </footer>
-      {/* <li>{shop.ratings}</li>
-      <li>{shop.products}</li>
-      <li>{shop.reviews}</li>
-      <li>{shop.sales}</li>
-      <li>{shop.categories}</li> */}
 
     </>
 
