@@ -88,7 +88,7 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
   const defaultLinks = [
     <NavLinks key={1}>
       <NavLink href="/about-us">About Us</NavLink>
-      <NavLink href="/#">Contact Us</NavLink>
+      <NavLink href="/contact-us">Contact Us</NavLink>
       
       {Auth.loggedIn() ? (
             <>
