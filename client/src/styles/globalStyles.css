@@ -24,6 +24,10 @@
     display: inline-flex;
 }
 
+#root {
+  overflow: hidden;
+}
+
 .row:after {
   content: "";
   display: table;
