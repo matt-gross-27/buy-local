@@ -153,9 +153,40 @@
   margin-bottom: 10px;
 }
 
+.productImg {
+  object-fit: cover;
+  height: 140px;
+}
+
+.editBtn {
+  float: right;
+  align-self: right;
+  background-color: primary;
+  height: 26px;
+  width: 26px;
+  background-color: #6415ff;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1;
+  padding: 1px;
+  border-radius: 6px;
+}
+
 
 @media screen and (max-width: 700px) {
   .shopHeader {
     position: relative;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .productImg {
+    height: 200px;
+  }
+
+  .productImgDiv {
+    text-align: center;
+    overflow: hidden;
   }
 }
