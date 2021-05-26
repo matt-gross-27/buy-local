@@ -5,11 +5,12 @@
     min-width: 20%;
     max-width: 30%;
     max-height: 60%;
-    background-color: var(--light);
+    background-color: #D6BCFA;
     overflow: auto;
     padding: .5rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
     border-bottom-left-radius: .5rem;
+    z-index: 10000
 }
 
 .cart h2 {
@@ -25,6 +26,7 @@
     right: .5rem;
     cursor: pointer;
     color: var(--tertiary);
+    z-index: 10000
 }
 
 .cart .close:hover {
@@ -37,11 +39,15 @@
     right: 1%;
     font-size: 2rem;
     cursor: pointer;
-    background-color: var(--secondary);
     border-radius: 50%;
     padding: .25rem;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
+    background-color: #D6BCFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000
 }
 
 .cart-closed:hover {
@@ -61,15 +67,18 @@
 
 @media screen and (max-width: 768px) {
     .cart {
-        position: relative;
+        bottom: 14px;
+        top: unset;
         max-width: 100%;
+        width: 100%;
         max-height: auto;
         box-shadow: none;
-        background-color: inherit;
     }
 
     .cart-closed {
-        position: relative;
-        margin: 0 auto;
+      bottom: 14px;
+      left: calc(50% - 30px);
+      top: unset;
+      right: unset;
     }
 }

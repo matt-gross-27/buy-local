@@ -125,7 +125,7 @@ function MyShop() {
 
     try {
       await createProduct({ variables: { ...productFormState } });
-      setProductFormState('');
+      setProductFormState({});
       setProdDescriptionText('');
       setProdDescriptionCharCount(0);
       setCreateProductError(false);

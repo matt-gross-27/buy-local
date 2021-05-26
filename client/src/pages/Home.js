@@ -13,7 +13,6 @@ import firstImage from "images/first-img.jpg";
 import GetAllShops from "../components/GetAllShops"
 
 import Cart from '../components/Cart';
-import ProductList from "../components/ProductList";
 
 function Home() {
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
@@ -25,6 +24,7 @@ function Home() {
 
   return (
     <AnimationRevealPage>
+      <div className='container-fluid'>
       <Hero
         imageSrc={firstImage}
         imageDecoratorBlob={true}
@@ -33,6 +33,7 @@ function Home() {
       <div className="container">
       <Cart />
       </div>
+      <span id='vendors'></span>
       <GetAllShops/>
       <MainFeature2
         subheading={<Subheading>A Reputed Brand</Subheading>}
@@ -52,7 +53,7 @@ function Home() {
           }
         ]}
         primaryButtonText="Order Now"
-        primaryButtonUrl="https://order.now.com"
+        primaryButtonUrl="#vendors"
         imageInsideDiv={false}
         imageSrc="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEzNzI2fQ&auto=format&fit=crop&w=768&q=80"
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
@@ -66,6 +67,8 @@ function Home() {
       />
 
       <Footer />
+      </div>
+      <div className='mb-5'></div>
     </AnimationRevealPage>
   );
 }

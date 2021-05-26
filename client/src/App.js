@@ -57,7 +57,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
       <Provider store={store}>
-        <Header />
+      <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/testCloudinary" component={TestCloudinary} />

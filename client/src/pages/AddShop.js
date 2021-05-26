@@ -9,16 +9,12 @@ import { Container as ContainerBase } from "components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import illustration from "images/signup-illustration.svg";
-import logo from "images/logo.svg";
 import UploadLogo from '../components/UploadLogo'
 import UploadHero from '../components/UploadHero'
-import Header from "components/headers/light.js";
 
 const Container = tw(ContainerBase)`min-h-screen bg-gray-900 text-white font-medium flex justify-center -m-8`;
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`;
 const MainContainer = tw.div`lg:w-1/2 xl:w-5/12 p-6 sm:p-12 px-0`;
-const LogoLink = tw.a``;
-const LogoImage = tw.img`h-12 mx-auto`;
 const MainContent = tw.div`mt-12 flex flex-col items-center`;
 const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`;
 const FormContainer = tw.div`w-full flex-1 mt-8`;
@@ -44,8 +40,9 @@ const IllustrationImage = styled.div`
 
 const errStyle = { color: 'red', margin: '0' }
 
-function AddShop(props) {
+function AddShop() {
   const [createShop, { error }] = useMutation(CREATE_SHOP);
+  const [success, setSuccess] = useState(false)
   const [descriptionCharCount, setDescriptionCharCount] = useState(0);
   const [descriptionText, setDescriptionText] = useState('');
   const [phoneCharCount, setPhoneCharCount] = useState(0);
@@ -120,8 +117,6 @@ function AddShop(props) {
     }
   };
 
-  console.log(formState)
-
   const handleFormSubmit = async event => {
     event.preventDefault();
 
@@ -131,9 +126,10 @@ function AddShop(props) {
         const { data } = await createShop({
           variables: { ...formState }
         });
-        
-        <Redirect to={`/shop/${data.createShop._id}`} />
-        console.log(data);
+
+        if (data) {
+          setSuccess(true);
+        }
       }
 
     } catch (error) {
@@ -141,15 +137,16 @@ function AddShop(props) {
     }
   };
 
+  if (success) {
+    return <Redirect to={`/my-shop`} />
+  }
+
+
   return (
     <AnimationRevealPage>
-    <Header />
       <Container>
         <Content>
           <MainContainer>
-            <LogoLink href="/">
-              <LogoImage src={logo} />
-            </LogoLink>
             <MainContent>
               <Heading>Create a Shop</Heading>
               <FormContainer>

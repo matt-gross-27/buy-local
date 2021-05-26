@@ -15,8 +15,7 @@ import { GET_USER } from '../../utils/queries';
 
 
 const Header = tw.header`
-  flex justify-between items-center
-  max-w-screen-xl mx-auto
+  flex justify-between items-center mx-6 md:mx-20 z-50 
 `;
 
 export const NavLinks = tw.div`inline-block`;

@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from "react-slick";
 import tw from "twin.macro";
 import styled from "styled-components";
-import { Subheading } from "components/misc/Headings";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
 
 const CardSlider = styled(Slider)`
