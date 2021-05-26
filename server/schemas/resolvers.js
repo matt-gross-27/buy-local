@@ -87,29 +87,29 @@ const resolvers = {
       });
       
       const { purchases } = await order.populate('purchases.product').execPopulate();
-      const products = purchases.map(purchaseItem => purchaseItem.product);
     
       const line_items = [];
 
-      for (let i = 0; i < products.length; i++) {
+      for (let i = 0; i < purchases.length; i++) {
+        console.log(i);
         // generate product id
         const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description
-
+          name: purchases[i].product.name,
+          description: purchases[i].product.description,
+          images: [purchases[i].product.image ? `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${purchases[i].product.image}` : 'https://res.cloudinary.com/dylyqjirh/image/upload/v1621475439/Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi.png']
         });
 
         // generate price id using the product id
         const price = await stripe.prices.create({
           product: product.id,
-          unit_amount: products[i].price * 100,
+          unit_amount: purchases[i].product.price * 100,
           currency: 'usd',
         });
 
         // add price id to the line items array
         line_items.push({
           price: price.id,
-          quantity: 1
+          quantity: purchases[i].purchaseQuantity
         });
       }
 

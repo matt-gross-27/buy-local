@@ -8,12 +8,14 @@ import { idbPromise } from "../../utils/helpers";
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { loadStripe } from '@stripe/stripe-js';
+import { useParams } from 'react-router-dom';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 function Cart() {
   const dispatch = useDispatch();
   const state = useSelector(state => state);
+  const { id: shop } = useParams();
 
   useEffect(() => {
     async function getCart() {
@@ -53,16 +55,22 @@ function Cart() {
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   function submitCheckout() {
-    const productIds = [];
+    const orderInput = {
+      shop,
+      purchases: []
+    }
 
     state.cart.forEach(item => {
-      for (let i = 0; i < item.purchaseQuantity; i++) {
-        productIds.push(item._id);
-      }
+      orderInput.purchases.push({
+        purchaseQuantity: item.purchaseQuantity,
+        product: item._id,
+      });
     });
 
+    console.log(orderInput)
+
     getCheckout({
-      variables: { products: productIds }
+      variables: { orderInput }
     });
   }
 
