@@ -14,7 +14,6 @@ import { useQuery } from "@apollo/client";
 import { GET_USER } from '../../utils/queries';
 
 
-
 const Header = tw.header`
   flex justify-between items-center
   max-w-screen-xl mx-auto
@@ -123,6 +122,7 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
 
   return (
     <Header className={className || "header-light"}>
+
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
         {logoLink}
         {links}
@@ -138,6 +138,7 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
         </NavToggle>
       </MobileNavLinksContainer>
     </Header>
+    
   );
 };
 export default HeaderLight;
@@ -146,6 +147,18 @@ export default HeaderLight;
  * to the toggleable mobile navbar at "sm", "md" or "lg" or "xl" above using the collapseBreakpointClass prop
  * Its written like this because we are using macros and we can not insert dynamic variables in macros
  */
+
+// const Cart = () => {
+//   return (
+//     <div className="container">
+//       <CategoryMenu />
+//       <ProductList />
+//       <Cart />
+//     </div>
+//   );
+// };
+
+// export default Cart;
 
 const collapseBreakPointCssMap = {
   sm: {
