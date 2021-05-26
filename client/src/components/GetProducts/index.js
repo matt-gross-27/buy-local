@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import { Link } from "react-router-dom";
+import React from "react";
+import { useQuery } from '@apollo/react-hooks';
 import { GET_PRODUCTS } from "../../utils/queries";
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 
 const GetProducts = () => {

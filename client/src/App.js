@@ -9,7 +9,7 @@ import ComponentRenderer from "./ComponentRenderer";
 // import { USER } from './utils/queries'
 
 import Home from './pages/Home';
-import Nav from './components/Nav';
+import Header from './components/headers/light.js';
 import TestCloudinary from './pages/TestCloudinary';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -57,7 +57,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
       <Provider store={store}>
-        <Nav />
+        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/testCloudinary" component={TestCloudinary} />

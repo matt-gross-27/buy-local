@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 //eslint-disable-next-line
-import { css } from "styled-components/macro";
 
-import Header from "../headers/light.js";
+
+
 
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-1.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/dot-pattern.svg";
@@ -43,7 +43,6 @@ function HeroDisplay ({
 
   return (
     <>
-      <Header />
       <Container>
         <TwoColumn>
            <LeftColumn> 

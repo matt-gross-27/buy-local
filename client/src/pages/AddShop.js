@@ -70,6 +70,7 @@ function AddShop(props) {
     hero: '',
   });
 
+
   const [validInstagram, SetValidInstagram] = useState(true)
   const validateInstagram = (event) => {
     const regex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
@@ -282,6 +283,8 @@ function AddShop(props) {
 
                   <p style={errStyle}>{error && 'Something Went Wrong!'}</p>
                 </Form>
+
+                {/* //https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_JVdwQhlDfaZdhVDt13Hu6sFH20cqHbHM&scope=read_write */}
 
               </FormContainer>
             </MainContent>
