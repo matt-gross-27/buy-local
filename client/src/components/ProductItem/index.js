@@ -10,9 +10,9 @@ function ProductItem(item) {
   const { cart } = state;
 
   const {
-    image,
-    name,
     _id,
+    name,
+    image,
     price,
     stock
   } = item;
