@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'; ///new react hook
 
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_SHOP_BY_ID } from '../utils/queries';
 import {Image, Transformation } from 'cloudinary-react';
 import {Logo} from "../components/Logo";
+import { CREATE_RATING, CREAT_REVIEW } from "../utils/mutations";
 
 
 
@@ -19,9 +20,10 @@ import { ReactComponent as LocationIcon } from "feather-icons/dist/icons/map-pin
 import { ReactComponent as StarIcon } from "feather-icons/dist/icons/star.svg";
 import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
 import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
+import RatingIcon from './CreateRating';
 // end imports for cards and slider
 const { SocialIcon } = require('react-social-icons');
-//styling for cards and slider
+//styling for cards and slider//
 const Container = tw.div`relative`;
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`;
 
@@ -80,6 +82,18 @@ const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-fu
 
 
 const GetSingleShop = props => {
+
+        const [rating, setRating] = useState(0);
+        const [hoverRating, setHoverRating] = React.useState(0);
+        const onMouseEnter = (index) => {
+          setHoverRating(index);
+        };
+        const onMouseLeave = () => {
+          setHoverRating(0);
+        };
+        const onSaveRating = (index) => {
+          setRating(index);
+        };
         // Slider functionality
         const [sliderRef, setSliderRef] = useState(null);
         const sliderSettings = {
@@ -110,6 +124,8 @@ const GetSingleShop = props => {
   
     const shop = data?.shop || [];
 
+    console.log(shop)
+
     const products = shop.products
 
     const reviews = shop.reviews
@@ -117,17 +133,6 @@ const GetSingleShop = props => {
     if (loading) {
       return <div>Loading single Shop</div>;
     }
-
-    // Cards import dynamically from products
-    const cards = [
-      {
-        imageSrc: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-        title: `${products.name}`,
-        description: `${products.description}`,
-        pricingText: `${products.price}`,
-        rating: "4.8",
-      },
-    ]
 
     return (
        <>
@@ -147,10 +152,24 @@ const GetSingleShop = props => {
               <p>Description: {shop.description}</p>
               <p>Location: {shop.city}, {shop.state}</p>
               <p>Phone Number: {shop.phone}</p>
-              <p>Pickup Allowed? {shop.pickup}</p>
-              <p>Delivery Allowed? {shop.delivery}</p>
-              <p>Shipping Allowed? {shop.shipping}</p>
+              <p>Pickup Allowed: {shop.pickup ? '✅' : '❌'}</p>
+              <p>Delivery Allowed: {shop.delivery ? '✅' : '❌'}</p>
+              <p>Shipping Allowed: {shop.shipping ? '✅' : '❌'}</p>
+              <div className="box flex">Give the Shop a Rating:
+              {[1, 2, 3, 4, 5].map((index) => {
+                return (
+                  <RatingIcon
+                    index={index} 
+                    rating={rating} 
+                    hoverRating={hoverRating} 
+                    onMouseEnter={onMouseEnter} 
+                    onMouseLeave={onMouseLeave} 
+                    onSaveRating={onSaveRating} />
+                )
+              })}
+            </div>
               <p>Rating Average: {shop.ratingAvg} <StarIcon /></p>
+              
               <p>{shop.reviewCount} Reviews about this Shop</p>
             </div>
             <div className="single-shop-instagram">
@@ -166,24 +185,20 @@ const GetSingleShop = props => {
       <Container>
       <Content>
         <HeadingWithControl>
-          <Heading>See our Products</Heading>
+          <Heading className="products-header">See our Products:</Heading>
           <Controls>
             <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
           </Controls>
         </HeadingWithControl>
-        <CardSlider ref={setSliderRef} {...sliderSettings}>
+        <CardSlider ref={setSliderRef} className="product-slider">
           {products &&
           products.map((product, index) => (
             <Card key={index}>
-              <CardImage imageSrc={"https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80"} />
+              <CardImage imageSrc={product.image} />
               <TextInfo>
                 <TitleReviewContainer>
-                  <Title>{product.name}</Title>
-                  <RatingsInfo>
-                    <StarIcon />
-                    <Rating>{"4.8"}</Rating>
-                  </RatingsInfo>
+                  <Title>{product.name === [] || product.name === null ? "No products displayed yet!": product.name}</Title>
                 </TitleReviewContainer>
                 <SecondaryInfoContainer>
                   <IconWithText>
@@ -205,13 +220,13 @@ const GetSingleShop = props => {
 
 
         <HeadingWithControl>
-          <Heading>See reviews for this shop</Heading>
-          <Controls>
+          <Heading className="review-header">See reviews for this shop:</Heading>
+          {/* <Controls>
             <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
-          </Controls>
+          </Controls> */}
         </HeadingWithControl>
-        <CardSlider ref={setSliderRef} {...sliderSettings}>
+        <CardSlider ref={setSliderRef}>
           {reviews &&
           reviews.map((review, index) => (
             <Card key={index}>
@@ -219,7 +234,6 @@ const GetSingleShop = props => {
                 <TitleReviewContainer>
                   <Title>"{review.reviewText}"</Title>
                   <RatingsInfo>
-                    <StarIcon />
                     <Rating>{review.stars}</Rating>
                   </RatingsInfo>
                 </TitleReviewContainer>
@@ -232,11 +246,9 @@ const GetSingleShop = props => {
             </Card>
           ))}
         </CardSlider>
+        <PrimaryButton className="add-review-button">Add a Review</PrimaryButton>
       </Content>
     </Container>
-
-
-
         </>
       );
    

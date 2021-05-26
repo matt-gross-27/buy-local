@@ -272,7 +272,7 @@ function AddShop(props) {
                   
 
                   <Label htmlFor="stripeKey">Your Stripe "Publishable API Key"{' '}
-                    <a href="https://help.sharetribe.com/en/articles/1055989-configure-stripe-and-get-api-keys-for-a-marketplace" target="_blank">Help</a>
+                    <a href="https://help.sharetribe.com/en/articles/1055989-configure-stripe-and-get-api-keys-for-a-marketplace" target="_blank" rel="noreferrer">Help</a>
                   </Label>
                   <Input type="text" id="stripeKey" name="stripeKey" onChange={handleChange} placeholder="pk_test_51IuQkzK8LDLnAfHfS1K5CwJUrqEy882guKDlt5gmtKXHZQ9lbfoYj6Yd87o6ukuaGqVuRB5ombT8kujXkXno3dzp00GtbMjd56"/>
 

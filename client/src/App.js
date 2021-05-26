@@ -15,10 +15,12 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import GetSingleShop from "./pages/SingleShop";
 import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AddShop from './pages/AddShop';
 import MyShop from './pages/MyShop';
+
 //import GetOrderHistory from "./pages/GetOrderHistory";
 
 import './index.css'
@@ -48,7 +50,6 @@ const client = new ApolloClient({
   uri: '/graphql',
 })
 
-
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -63,6 +64,7 @@ function App() {
           <Route exact path="/terms-of-service" component={TermsOfService} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/about-us" component={AboutUs} />
+          <Route exact path="/contact-us" component={ContactUs} />
           <Route exact path="/shop/:id?" component={GetSingleShop} />
           <Route exact path="/my-shop/" component={MyShop} />
 
