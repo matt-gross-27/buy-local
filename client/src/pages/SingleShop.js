@@ -23,7 +23,7 @@ import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/che
 import RatingIcon from './CreateRating';
 // end imports for cards and slider
 const { SocialIcon } = require('react-social-icons');
-//styling for cards and slider
+//styling for cards and slider//
 const Container = tw.div`relative`;
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`;
 
