@@ -12,6 +12,9 @@ import Footer from "components/footers/SimpleFiveColumn.js";
 import firstImage from "images/first-img.jpg";
 import GetAllShops from "../components/GetAllShops"
 
+import Cart from '../components/Cart';
+import ProductList from "../components/ProductList";
+
 function Home() {
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
   const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
@@ -27,7 +30,9 @@ function Home() {
         imageDecoratorBlob={true}
       />
       {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
-      
+      <div className="container">
+      <Cart />
+      </div>
       <GetAllShops/>
       <MainFeature2
         subheading={<Subheading>A Reputed Brand</Subheading>}
