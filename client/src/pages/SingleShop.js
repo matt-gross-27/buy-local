@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'; ///new react hook
 
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { GET_SHOP_BY_ID } from '../utils/queries';
-import {Image, Transformation } from 'cloudinary-react';
-import {Logo} from "../components/Logo";
-import { CREATE_RATING, CREAT_REVIEW } from "../utils/mutations";
-
+import { Image, Transformation } from 'cloudinary-react';
+// import { Logo } from "../components/Logo";
+// import { CREATE_RATING, CREAT_REVIEW } from "../utils/mutations";
+import SingleShopProducts from '../components/SingleShopProduct'
 
 
 // adding the cards with slider
@@ -15,29 +15,30 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { SectionHeading } from "components/misc/Headings";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
-import { ReactComponent as PriceIcon } from "feather-icons/dist/icons/dollar-sign.svg";
-import { ReactComponent as LocationIcon } from "feather-icons/dist/icons/map-pin.svg";
+// import { ReactComponent as PriceIcon } from "feather-icons/dist/icons/dollar-sign.svg";
+// import { ReactComponent as LocationIcon } from "feather-icons/dist/icons/map-pin.svg";
 import { ReactComponent as StarIcon } from "feather-icons/dist/icons/star.svg";
-import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
-import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
+// import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
+// import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
 import RatingIcon from './CreateRating';
+import Category from 'components/cards/TabCardGrid';
+const CardRatingContainer = tw.div`leading-none absolute inline-flex bg-gray-100 bottom-0 left-0 ml-4 mb-4 rounded-full px-5 py-2 items-end`;
+const CardRating = styled.div`
+  ${tw`mr-1 text-sm font-bold flex items-end`}
+  svg {
+    ${tw`w-4 h-4 fill-current text-orange-400 mr-1`}
+  }
+`;
 // end imports for cards and slider
+
+const CardReview = tw.div`font-medium text-xs text-gray-600`;
 const { SocialIcon } = require('react-social-icons');
 //styling for cards and slider//
-const Container = tw.div`relative`;
+const Container = tw.div`relative mx-5`;
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`;
 
 const HeadingWithControl = tw.div`flex flex-col items-center sm:items-stretch sm:flex-row justify-between`;
 const Heading = tw(SectionHeading)``;
-const Controls = tw.div`flex items-center`;
-const ControlButton = styled(PrimaryButtonBase)`
-  ${tw`mt-4 sm:mt-0 first:ml-0 ml-6 rounded-full p-2`}
-  svg {
-    ${tw`w-6 h-6`}
-  }
-`;
-const PrevButton = tw(ControlButton)``;
-const NextButton = tw(ControlButton)``;
 
 const CardSlider = styled(Slider)`
   ${tw`mt-16`}
@@ -45,7 +46,7 @@ const CardSlider = styled(Slider)`
     ${tw`flex`}
   }
   .slick-slide {
-    ${tw`h-auto flex justify-center mb-1`}
+    ${tw`flex justify-center mb-1`}
   }
 `;
 const Card = tw.div`h-full flex! flex-col sm:border max-w-sm sm:rounded-tl-4xl sm:rounded-br-5xl relative focus:outline-none`;
@@ -54,7 +55,7 @@ const CardImage = styled.div(props => [
   tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
 ]);
 
-const TextInfo = tw.div`py-6 sm:px-10 sm:py-6`;
+const TextInfo = tw.div`py-1 sm:px-1 sm:py-1`;
 const TitleReviewContainer = tw.div`flex flex-col sm:flex-row sm:justify-between sm:items-center`;
 const Title = tw.h5`text-2xl font-bold`;
 
@@ -66,9 +67,9 @@ const RatingsInfo = styled.div`
 `;
 const Rating = tw.span`ml-2 font-bold`;
 
-const Description = tw.p`text-sm leading-loose mt-2 sm:mt-4`;
+const Description = tw.p`text-sm leading-loose mt-0 sm:mt-4`;
 
-const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-2 sm:mt-4`;
+const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-0 sm:mt-4`;
 const IconWithText = tw.div`flex items-center mr-6 my-2 sm:my-0`;
 const IconContainer = styled.div`
   ${tw`inline-block rounded-full p-2 bg-gray-700 text-gray-100`}
@@ -83,175 +84,183 @@ const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-fu
 
 const GetSingleShop = props => {
 
-        const [rating, setRating] = useState(0);
-        const [hoverRating, setHoverRating] = React.useState(0);
-        const onMouseEnter = (index) => {
-          setHoverRating(index);
-        };
-        const onMouseLeave = () => {
-          setHoverRating(0);
-        };
-        const onSaveRating = (index) => {
-          setRating(index);
-        };
-        // Slider functionality
-        const [sliderRef, setSliderRef] = useState(null);
-        const sliderSettings = {
-          arrows: false,
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = React.useState(0);
+  const onMouseEnter = (index) => {
+    setHoverRating(index);
+  };
+  const onMouseLeave = () => {
+    setHoverRating(0);
+  };
+  const onSaveRating = (index) => {
+    setRating(index);
+  };
+  // Slider functionality
+  const [sliderRef, setSliderRef] = useState(null);
+  const sliderSettings = {
+    arrows: true,
+    slidesToShow: 4,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        }
+      },
+
+      {
+        breakpoint: 1000,
+        settings: {
           slidesToShow: 3,
-          responsive: [
-            {
-              breakpoint: 1280,
-              settings: {
-                slidesToShow: 2,
-              }
-            },
-      
-            {
-              breakpoint: 900,
-              settings: {
-                slidesToShow: 1,
-              }
-            },
-          ]
-        };
-  
+          slidesToScroll: 3,
+        }
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
   const { id: shopId } = useParams();
-   
-    const { loading, data } = useQuery(GET_SHOP_BY_ID, {
-      variables: { _id: shopId }
-    });
-  
-    const shop = data?.shop || [];
 
-    console.log(shop)
+  const { loading, data } = useQuery(GET_SHOP_BY_ID, {
+    variables: { _id: shopId }
+  });
 
-    const products = shop.products
+  const shop = data?.shop || [];
 
-    const reviews = shop.reviews
-  
-    if (loading) {
-      return <div>Loading single Shop</div>;
-    }
+  console.log(shop)
 
-    return (
-       <>
-       <div>
-          <div>
-            <p className="single-shop-name">
-              <span style={{ fontWeight: 700 }} id="single-shop-name">
-                {shop.name}
-              </span>
-            </p>
-            <div className="heroDiv">
+  const products = shop.products
+
+  if (loading) {
+    return <div>Loading single Shop</div>;
+  }
+
+  return (
+    <>
+      <div>
+        <div>
+          <Heading>{shop.name}</Heading>
+          <div className="heroDiv">
             <Image style={{ objectFit: 'cover', height: '100%' }} cloudName='dylyqjirh' publicId={shop.hero || 'shopping-bags-500x500_vpqouy'}>
-            <Transformation height={600} width={972} crop="fill" />
-           </Image>
-            </div>
-            <div className="single-shop-body">
-              <p>Description: {shop.description}</p>
-              <p>Location: {shop.city}, {shop.state}</p>
-              <p>Phone Number: {shop.phone}</p>
-              <p>Pickup Allowed: {shop.pickup ? '✅' : '❌'}</p>
-              <p>Delivery Allowed: {shop.delivery ? '✅' : '❌'}</p>
-              <p>Shipping Allowed: {shop.shipping ? '✅' : '❌'}</p>
-              <div className="box flex">Give the Shop a Rating:
-              {[1, 2, 3, 4, 5].map((index) => {
-                return (
-                  <RatingIcon
-                    index={index} 
-                    rating={rating} 
-                    hoverRating={hoverRating} 
-                    onMouseEnter={onMouseEnter} 
-                    onMouseLeave={onMouseLeave} 
-                    onSaveRating={onSaveRating} />
-                )
-              })}
-            </div>
-              <p>Rating Average: {shop.ratingAvg} <StarIcon /></p>
-              
-              <p>{shop.reviewCount} Reviews about this Shop</p>
-            </div>
-            <div className="single-shop-instagram">
-            Checkout our Instagram: {shop.instagram && <SocialIcon url={shop.instagram} target="_blank" rel="noreferrer" />}
-            </div>
-            <div>
-                <div>
+              <Transformation height={600} width={972} crop="fill" />
+            </Image>
+
+
+            <div className='d-flex justify-content-between px-2'>
+              <div style={{ marginTop: '8px' }}>
+                {shop.city}, {shop.state} <br />
+                <p>Phone: {shop.phone}</p>
+              </div>
+
+              <div>
+                <CardRatingContainer style={{ position: 'relative', marginTop: '8px', marginBottom: '0', background: 'lightGrey' }}>
+                  <CardRating>
+                    {shop.ratingAvg}/5
+                     <StarIcon />'s
+                   </CardRating>
+
+                  <CardReview>({shop.reviewCount} 'reviews')</CardReview>
+                </CardRatingContainer>
+
+                <div className="box flex"> {[1, 2, 3, 4, 5].map((index) => {
+                  return (
+                    <RatingIcon
+                      key={index}
+                      index={index}
+                      rating={rating}
+                      hoverRating={hoverRating}
+                      onMouseEnter={onMouseEnter}
+                      onMouseLeave={onMouseLeave}
+                      onSaveRating={onSaveRating} />
+                  )
+                })}
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
       <Container>
-      <Content>
-        <HeadingWithControl>
-          <Heading className="products-header">See our Products:</Heading>
-          <Controls>
-            <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
-            <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
-          </Controls>
-        </HeadingWithControl>
-        <CardSlider ref={setSliderRef} className="product-slider">
-          {products &&
-          products.map((product, index) => (
-            <Card key={index}>
-              <CardImage imageSrc={product.image} />
-              <TextInfo>
-                <TitleReviewContainer>
-                  <Title>{product.name === [] || product.name === null ? "No products displayed yet!": product.name}</Title>
-                </TitleReviewContainer>
-                <SecondaryInfoContainer>
-                  <IconWithText>
-                  </IconWithText>
-                  <IconWithText>
-                    <IconContainer>
-                      <PriceIcon />
-                    </IconContainer>
-                    <Text>Selling for: ${product.price}</Text>
-                  </IconWithText>
-                </SecondaryInfoContainer>
-                <Description>Product Description: {product.description}</Description>
-                <Text>Stock left: {product.stock}</Text>
-              </TextInfo>
-              <PrimaryButton>Add to Cart</PrimaryButton>
-            </Card>
+        <Content>
+
+          <Heading className="products-header">Our Products</Heading>
+
+          <div className='d-flex flex-wrap justify-content-around'>
+            {
+              shop.categories.map(category => {
+                return shop.products.filter(p => p.category._id === category._id).length === 0 ? (<></>) : (
+                  <a key={category._id}
+                    href={`#${category.name}-slider`}
+                    style={{ padding: '12px' }}
+                  >
+                    {category.name}
+                  </a>
+                )
+              })
+            }
+          </div>
+
+          <Container>
+            <CardSlider ref={setSliderRef} {...sliderSettings} className="product-slider">
+              {products &&
+                products.map((product, index) => (
+                  <Card key={index} style={{ width: '300px' }}>
+                    <CardImage imageSrc={
+                      product.image ? `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${product.image}` : 'https://res.cloudinary.com/dylyqjirh/image/upload/v1621475439/Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi.png'
+                    } />
+                    <TextInfo>
+                      <TitleReviewContainer>
+                        <Title>{product.name}<br />
+                          <small style={{ color: 'dark' }}>${product.price}</small>
+
+                        </Title>
+                      </TitleReviewContainer>
+
+                      <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
+                        {product.description}
+                      </Description>
+
+                      <p>{product.stock} item(s) left</p>
+                    </TextInfo>
+                    <PrimaryButton>{product.stock === 0 ? 'Sold Out' : 'Add to Cart'}</PrimaryButton>
+                  </Card>
+                ))}
+            </CardSlider>
+          </Container>
+
+          {shop.categories.map(category => (
+            <SingleShopProducts
+              key={category._id}
+              category={category}
+              products={
+                shop.products.filter(product => product.category._id === category._id)
+              }
+              setSliderRef={setSliderRef}
+              sliderSettings={sliderSettings}
+            />
           ))}
-        </CardSlider>
 
 
-        <HeadingWithControl>
-          <Heading className="review-header">See reviews for this shop:</Heading>
-          {/* <Controls>
-            <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
-            <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
-          </Controls> */}
-        </HeadingWithControl>
-        <CardSlider ref={setSliderRef}>
-          {reviews &&
-          reviews.map((review, index) => (
-            <Card key={index}>
-              <TextInfo>
-                <TitleReviewContainer>
-                  <Title>"{review.reviewText}"</Title>
-                  <RatingsInfo>
-                    <Rating>{review.stars}</Rating>
-                  </RatingsInfo>
-                </TitleReviewContainer>
-                <SecondaryInfoContainer>
-                  <IconWithText>
-                    <Text>Wrote on: {review.createdAt}</Text>
-                  </IconWithText>
-                </SecondaryInfoContainer>
-              </TextInfo>
-            </Card>
-          ))}
-        </CardSlider>
-        <PrimaryButton className="add-review-button">Add a Review</PrimaryButton>
-      </Content>
-    </Container>
-        </>
-      );
-   
+        </Content>
+      </Container>
+    </>
+  );
+
 }
 
 export default GetSingleShop;
