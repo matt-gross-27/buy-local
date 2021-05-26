@@ -55,6 +55,7 @@ function ProductCard({ item }) {
       <CardImage imageSrc={
         item.image ? `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${item.image}` : 'https://res.cloudinary.com/dylyqjirh/image/upload/v1621475439/Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi.png'
       } />
+
       <TextInfo>
         <TitleReviewContainer>
           <Title>{item.name}<br />
@@ -67,8 +68,9 @@ function ProductCard({ item }) {
           {item.description}
         </Description>
 
-        <p>{item.stock} item(s) left</p>
+        <p style={{bottom: '64px', position: 'absolute'}}>{item.stock} item(s) left</p>
       </TextInfo>
+
       <PrimaryButton onClick={addToCart}>{item.stock === 0 ? 'Sold Out' : 'Add to Cart'}</PrimaryButton>
     </Card>
   )

@@ -40,7 +40,7 @@ export const LogoLink = styled(NavLink)`
   ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
 
   img {
-    ${tw`w-10 mr-3`}
+    ${tw`mr-3`}
   }
 `;
 
@@ -112,7 +112,7 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
 
   const defaultLogoLink = (
     <LogoLink href="/">
-      <img src={logo} style={{width:'150px'}} alt="logo" />
+      <img src={logo} alt="logo" />
     </LogoLink>
   );
 

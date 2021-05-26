@@ -166,7 +166,7 @@ function MyShop() {
       { navState === 'home' && (
         <main className='container my-3'>
           <div className='heroDiv'>
-            <Image style={{ objectFit: 'cover', height: '100%' }} cloudName='dylyqjirh' publicId={shop.hero || 'shopping-bags-500x500_vpqouy'}>
+            <Image className='heroImg' cloudName='dylyqjirh' publicId={shop.hero || 'shopping-bags-500x500_vpqouy'}>
               <Transformation height={600} width={972} crop="fill" />
             </Image>
           </div>
