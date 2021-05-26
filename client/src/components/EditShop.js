@@ -8,9 +8,10 @@ import { Container as ContainerBase } from "components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import illustration from "images/signup-illustration.svg";
-import logo from "images/logo.svg";
+import logo from "images/logo.PNG";
 import UploadLogo from './UploadLogo'
 import UploadHero from './UploadHero'
+import editShopImg from 'images/editshop.jpg';
 
 const Container = tw(ContainerBase)`min-h-screen bg-gray-900 text-white font-medium flex justify-center -m-8`;
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`;
@@ -285,7 +286,7 @@ function UpdateShop({ shop, setNavState }) {
             </MainContent>
           </MainContainer>
           <IllustrationContainer>
-            <IllustrationImage imageSrc={illustration} />
+            <IllustrationImage imageSrc={editShopImg} />
           </IllustrationContainer>
         </Content>
       </Container>
