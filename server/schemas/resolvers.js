@@ -80,7 +80,7 @@ const resolvers = {
         
         await orderInput.purchases.forEach(({ purchaseQuantity, product }) => {
           Product.findOneAndUpdate(
-            { _id: product._id },
+            { _id: product },
             { $inc: { stock: purchaseQuantity * -1 } },
             { new: true, runValidators: true },
             );
@@ -343,8 +343,6 @@ const resolvers = {
       if (context.user) {
         console.log(context.user)
         const order = await Order.create({...orderInput, customer: context.user._id});
-        await order.populate('purchases.product').execPopulate();
-        
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -360,11 +358,13 @@ const resolvers = {
 
         await orderInput.purchases.forEach(({ purchaseQuantity, product }) => {
           Product.findOneAndUpdate(
-            { _id: product._id },
+            { _id: product },
             { $inc: { stock: purchaseQuantity * -1 } },
             { new: true, runValidators: true },
           );
         });
+
+        await order.populate('purchases.product').execPopulate();
 
         return order;
       }
