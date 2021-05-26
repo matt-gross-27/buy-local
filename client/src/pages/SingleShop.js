@@ -1,26 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; ///new react hook
 import { useQuery } from '@apollo/react-hooks';
 import { GET_SHOP_BY_ID } from '../utils/queries';
 import { Image, Transformation } from 'cloudinary-react';
 // import { Logo } from "../components/Logo";
 // import { CREATE_RATING, CREAT_REVIEW } from "../utils/mutations";
-import SingleShopProducts from '../components/SingleShopProduct'
-
-
+import SingleShopProducts from '../components/SingleShopProducts'
 // adding the cards with slider
 import Slider from "react-slick";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { SectionHeading } from "components/misc/Headings";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
-// import { ReactComponent as PriceIcon } from "feather-icons/dist/icons/dollar-sign.svg";
-// import { ReactComponent as LocationIcon } from "feather-icons/dist/icons/map-pin.svg";
 import { ReactComponent as StarIcon } from "feather-icons/dist/icons/star.svg";
-// import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
-// import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
 import RatingIcon from './CreateRating';
-// import Category from 'components/cards/TabCardGrid';
+// for cart
+import Cart from '../components/Cart';
+import ProductCard from '../components/ProductCard'
 const CardRatingContainer = tw.div`leading-none absolute inline-flex bg-gray-100 bottom-0 left-0 ml-4 mb-4 rounded-full px-5 py-2 items-end`;
 const CardRating = styled.div`
   ${tw`mr-1 text-sm font-bold flex items-end`}
@@ -57,8 +53,7 @@ const Title = tw.h5`text-2xl font-bold`;
 const Description = tw.p`text-sm leading-loose mt-0 sm:mt-4`;
 const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`;
 
-const GetSingleShop = props => {
-
+function GetSingleShop() {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = React.useState(0);
   const onMouseEnter = (index) => {
@@ -71,12 +66,12 @@ const GetSingleShop = props => {
     setRating(index);
   };
   // Slider functionality
-  const [sliderRef, setSliderRef] = useState(null);
-  const [sliderSettings, setSliderSettings] = useState({
-    arrows: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    infinite: false,
+  // const [sliderRef, setSliderRef] = useState(null);
+  // const [sliderSettings, setSliderSettings] = useState({
+  //   arrows: true,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   infinite: false,
     // responsive: [
     //   {
     //     breakpoint: 1242,
@@ -93,26 +88,23 @@ const GetSingleShop = props => {
     //     }
     //   }
     // ]
-  });
-
+  // });
+  
   const { id: shopId } = useParams();
 
   const { loading, data } = useQuery(GET_SHOP_BY_ID, {
     variables: { _id: shopId }
   });
 
-  const shop = data?.shop || [];
-
-  console.log(shop)
-
-  const products = shop.products
-
+  const shop = data?.shop || [];  
+  
   if (loading) {
     return <div>Loading single Shop</div>;
   }
 
   return (
     <>
+    <Cart />
       <div>
         <div>
           <Heading>{shop.name}</Heading>
@@ -180,28 +172,9 @@ const GetSingleShop = props => {
 
           <Container>
             <CardSlider className="product-slider">
-              {products &&
-                products.map((product, index) => (
-                  <Card key={index} style={{ width: '300px' }}>
-                    <CardImage imageSrc={
-                      product.image ? `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${product.image}` : 'https://res.cloudinary.com/dylyqjirh/image/upload/v1621475439/Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi.png'
-                    } />
-                    <TextInfo>
-                      <TitleReviewContainer>
-                        <Title>{product.name}<br />
-                          <small style={{ color: 'dark' }}>${product.price}</small>
-
-                        </Title>
-                      </TitleReviewContainer>
-
-                      <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
-                        {product.description}
-                      </Description>
-
-                      <p>{product.stock} item(s) left</p>
-                    </TextInfo>
-                    <PrimaryButton>{product.stock === 0 ? 'Sold Out' : 'Add to Cart'}</PrimaryButton>
-                  </Card>
+              {shop.products &&
+                shop.products.map((product, index) => (
+                  <ProductCard item={product} key={index}/>
                 ))}
             </CardSlider>
           </Container>
@@ -213,8 +186,6 @@ const GetSingleShop = props => {
               products={
                 shop.products.filter(product => product.category._id === category._id)
               }
-              setSliderRef={setSliderRef}
-              sliderSettings={sliderSettings}
             />
           ))}
 
