@@ -22,6 +22,7 @@ import AddShop from './pages/AddShop';
 import MyShop from './pages/MyShop';
 import { Provider } from 'react-redux';
 import store from './utils/store';
+import Success from './pages/Success';
 
 //import GetOrderHistory from "./pages/GetOrderHistory";
 
@@ -70,6 +71,7 @@ function App() {
           <Route exact path="/contact-us" component={ContactUs} />
           <Route exact path="/shop/:id?" component={GetSingleShop} />
           <Route exact path="/my-shop/" component={MyShop} />
+          <Route exact path="/success" component={Success} />
 
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />

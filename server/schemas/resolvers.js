@@ -118,7 +118,7 @@ const resolvers = {
         line_items,
         mode: 'payment',
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/cancel`
+        cancel_url: `${url}/shop`
       });
       
       return { session: session.id };
