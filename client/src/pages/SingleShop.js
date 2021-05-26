@@ -145,8 +145,8 @@ const GetSingleShop = props => {
             </p>
             <div className="heroDiv">
             <Image style={{ objectFit: 'cover', height: '100%' }} cloudName='dylyqjirh' publicId={shop.hero || 'shopping-bags-500x500_vpqouy'}>
-            <Transformation height={600} width={972} crop="fill" />
-           </Image>
+            <Transformation height={400} width={648} crop="fill" />
+            </Image>
             </div>
             <div className="single-shop-body">
               <p>Description: {shop.description}</p>

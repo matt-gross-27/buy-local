@@ -8,7 +8,7 @@ import { Container as ContainerBase } from "components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import illustration from "images/signup-illustration.svg";
-import logo from "images/logo.svg";
+import logo from "images/logo.PNG";
 import UploadLogo from './UploadLogo'
 import UploadHero from './UploadHero'
 
@@ -24,7 +24,6 @@ const Form = tw.form`mx-auto max-w-xs`;
 const Label = tw.label`max-w-full text-sm`;
 const Input = tw.input`w-full py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mb-5 mb-5 mt-1 mb-6 last:mb-0`;
 const Textarea = tw.textarea`w-full py-4 rounded-lg h-20 font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mb-5 mt-1 mb-6 last:mb-0`;
-const Select = tw.select`w-full py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mb-5 mt-1 mb-6 last:mb-0`
 const SubmitButton = styled.button`
   ${tw`mt-5 w-full py-4 rounded-lg tracking-wide font-semibold bg-red-500 text-gray-100 w-full py-4 rounded-lg hover:bg-gray-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-sm focus:outline-none`}
   .icon {
@@ -49,7 +48,7 @@ function UpdateShop({ shop, setNavState }) {
   const [descriptionText, setDescriptionText] = useState('');
   const [phoneCharCount, setPhoneCharCount] = useState(0);
   const [phoneText, setPhoneText] = useState('');
-  const [logoId] = useState(null);
+  // const [logoId] = useState(null);
   const [formState, setFormState] = useState({
     name: shop.name,
     description: shop.description,
@@ -70,7 +69,7 @@ function UpdateShop({ shop, setNavState }) {
 
   const [validInstagram, SetValidInstagram] = useState(true)
   const validateInstagram = (event) => {
-    const regex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+    const regex = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/
     if (!regex.test(event.target.value) && event.target.value.length !== 0) {
       SetValidInstagram(false);
     } else {
@@ -270,7 +269,7 @@ function UpdateShop({ shop, setNavState }) {
                   
 
                   <Label htmlFor="stripeKey">Your Stripe "Publishable API Key"{' '}
-                    <a href="https://help.sharetribe.com/en/articles/1055989-configure-stripe-and-get-api-keys-for-a-marketplace" target="_blank">Help</a>
+                    <a href="https://help.sharetribe.com/en/articles/1055989-configure-stripe-and-get-api-keys-for-a-marketplace" target="_blank" rel="noreferrer">Help</a>
                   </Label>
                   <Input type="text" id="stripeKey" name="stripeKey" onChange={handleChange} placeholder={shop.stripeKey} />
 

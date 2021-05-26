@@ -75,10 +75,11 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
    * changing the defaultLinks variable below below.
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
-  const { data, loading, error } = useQuery(GET_USER)
+  const { data } = useQuery(GET_USER)
+  
   const user = data?.user || false
 
-  console.log(user)
+  console.log(user);
 
   const logout = event => {
     event.preventDefault();

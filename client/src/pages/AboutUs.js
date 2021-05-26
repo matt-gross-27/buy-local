@@ -1,9 +1,6 @@
 import React from "react";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import tw from "twin.macro";
-import styled from "styled-components"; //eslint-disable-line
-import { css } from "styled-components/macro"; //eslint-disable-line
-import Header from "components/headers/light.js";
 import Footer from "components/footers/SimpleFiveColumn.js"
 import MainFeature1 from "components/features/TwoColWithButton.js";
 // import MainFeature2 from "components/features/TwoColSingleFeatureWithStats.js";
@@ -16,7 +13,6 @@ const Subheading = tw.span`uppercase tracking-wider text-sm`;
 function AboutUs() {
   return (
     <AnimationRevealPage>
-      <Header />
       <MainFeature1
         subheading={<Subheading>About Us</Subheading>}
         heading="Eat, Drink, Shop Local"
