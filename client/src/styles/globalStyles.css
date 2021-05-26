@@ -66,7 +66,7 @@ button.closed {
 }
 
 button.open {
-  color: #6415FF;
+  color: red;
   border-radius: 5px;
 }
 
@@ -95,6 +95,11 @@ button.open {
 
 nav {
   z-index: 1000
+}
+
+.right-nav-x {
+  right: 5em;
+  color: red;
 }
 
 .shopHeader {
@@ -301,6 +306,10 @@ nav {
 @media screen and (max-width: 767px) {
   .productImg {
     height: 200px;
+  }
+
+  .right-nav-x {
+    right: 24px;
   }
 }
 

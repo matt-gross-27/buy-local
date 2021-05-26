@@ -44,9 +44,9 @@ export const LogoLink = styled(NavLink)`
   }
 `;
 
-export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
+export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between z-40`;
 export const NavToggle = tw.button`
-  lg:hidden z-20 focus:outline-none hocus:text-gray-500 transition duration-300
+  lg:hidden z-30 focus:outline-none hocus:text-gray-500 transition duration-300
 `;
 export const MobileNavLinks = motion(styled.div`
   ${tw`lg:hidden z-10 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
@@ -91,7 +91,6 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
       
       {Auth.loggedIn() ? (
             <>
-              <NavLink href="/profile" tw="lg:ml-12!">Me</NavLink>
               {user.isVendor ? (
                 <NavLink href="/my-shop">My Shop</NavLink>
               ) : (
@@ -133,8 +132,8 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
         <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
           {links}
         </MobileNavLinks>
-        <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open" : "closed"}>
-          {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
+        <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open position-fixed right-nav-x" : "closed"}>
+          {showNavLinks ? <CloseIcon tw="w-6 h-6 z-50"/> : <MenuIcon tw="w-6 h-6" />}
         </NavToggle>
       </MobileNavLinksContainer>
     </Header>
