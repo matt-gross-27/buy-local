@@ -1,8 +1,9 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Shop, Order, Category, Product } = require('../models');
-const { findOneAndUpdate } = require('../models/Order');
 const { signToken } = require('../utils/auth');
-// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+
+
 
 const resolvers = {
   Query: {
@@ -61,7 +62,69 @@ const resolvers = {
       return shop;
     },
 
-  
+    checkout: async (parent, { orderInput }, context) => {
+      //const order = new Order({ products: args.products });
+      const url = new URL(context.headers.referer).origin;
+      const order = await Order.create({...orderInput, customer: context.user._id});
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $push: { orderHistory: order._id } },
+        { new: true, runValidators: true }
+      );
+
+      await Shop.findOneAndUpdate(
+        { _id: orderInput.shop },
+        { $push: { sales: order._id } },
+        { new: true, runValidators: true }
+        ); 
+        
+        await orderInput.purchases.forEach(({ purchaseQuantity, product }) => {
+          Product.findOneAndUpdate(
+            { _id: product._id },
+            { $inc: { stock: purchaseQuantity * -1 } },
+            { new: true, runValidators: true },
+            );
+      });
+      
+      const { purchases } = await order.populate('purchases.product').execPopulate();
+      const products = purchases.map(purchaseItem => purchaseItem.product);
+    
+      const line_items = [];
+
+      for (let i = 0; i < products.length; i++) {
+        // generate product id
+        const product = await stripe.products.create({
+          name: products[i].name,
+          description: products[i].description
+
+        });
+
+        // generate price id using the product id
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: products[i].price * 100,
+          currency: 'usd',
+        });
+
+        // add price id to the line items array
+        line_items.push({
+          price: price.id,
+          quantity: 1
+        });
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/cancel`
+      });
+      
+      return { session: session.id };
+
+    },
+
 
     allOrders: async () => {
       const allOrders = await Order.find()
@@ -280,7 +343,8 @@ const resolvers = {
       if (context.user) {
         console.log(context.user)
         const order = await Order.create({...orderInput, customer: context.user._id});
-        console.log(orderInput)
+        await order.populate('purchases.product').execPopulate();
+        
 
         await User.findOneAndUpdate(
           { _id: context.user._id },

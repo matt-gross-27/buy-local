@@ -100,6 +100,10 @@ const typeDefs = gql`
     user: User
   }
 
+  type Checkout {
+    session: ID
+  }
+
   type Query {
     user: User
     shop(_id: ID): Shop
@@ -110,6 +114,8 @@ const typeDefs = gql`
     myOrderHistory: [Order]
     mySales: [Order]
     allOrders: [Order]
+    order(_id: ID!): Order
+    checkout(orderInput: orderInput): Checkout
   }
 
   type Mutation {
