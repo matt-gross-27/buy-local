@@ -84,7 +84,7 @@ function Team ({
     },
     {
       imageSrc: mattGross,
-      position: "Lead Developer",
+      position: "Sr. Developer",
       name: "Matt Gross",
       links: [
         {

@@ -72,83 +72,86 @@ function GetSingleShop() {
   //   slidesToShow: 1,
   //   slidesToScroll: 1,
   //   infinite: false,
-    // responsive: [
-    //   {
-    //     breakpoint: 1242,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 2,
-    //     }
-    //   },
-    //   {
-    //     breakpoint: 797,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1
-    //     }
-    //   }
-    // ]
+  // responsive: [
+  //   {
+  //     breakpoint: 1242,
+  //     settings: {
+  //       slidesToShow: 2,
+  //       slidesToScroll: 2,
+  //     }
+  //   },
+  //   {
+  //     breakpoint: 797,
+  //     settings: {
+  //       slidesToShow: 1,
+  //       slidesToScroll: 1
+  //     }
+  //   }
+  // ]
   // });
-  
+
   const { id: shopId } = useParams();
 
   const { loading, data } = useQuery(GET_SHOP_BY_ID, {
     variables: { _id: shopId }
   });
 
-  const shop = data?.shop || [];  
-  
+  const shop = data?.shop || [];
+
   if (loading) {
     return <div>Loading single Shop</div>;
   }
 
   return (
     <>
-    <Cart />
-      <div>
-        <div>
-          <Heading>{shop.name}</Heading>
-          <div className="heroDiv">
-            <Image style={{ objectFit: 'cover', height: '100%' }} cloudName='dylyqjirh' publicId={shop.hero || 'shopping-bags-500x500_vpqouy'}>
-              <Transformation height={600} width={972} crop="fill" />
-            </Image>
-            <div className='d-flex justify-content-between px-2'>
-              <div style={{ marginTop: '8px', fontSize: '20px', fontWeight: 'bold' }}>
-                <p>{shop.city}, {shop.state}</p>
-                <p>{`(${shop.phone.substr(0, 3)})-${shop.phone.substr(3, 3)}-${shop.phone.substr(6, 4)}`}</p>
-              </div>
+      <Cart />
 
-              <div>
-                <CardRatingContainer style={{ position: 'relative', margin: '8px 0', background: 'lightGrey' }}>
-                  <CardRating>
-                    {shop.ratingAvg}/5
+      <Container>
+
+
+        <Heading>{shop.name}</Heading>
+        <div className="heroDiv">
+          <Image className="heroImg" cloudName='dylyqjirh' publicId={shop.hero || 'shopping-bags-500x500_vpqouy'}>
+            <Transformation height={600} width={972} crop="fill" />
+          </Image>
+        </div>
+
+        <div className='d-flex justify-content-between px-2'>
+          <div style={{ marginTop: '8px', fontSize: '20px', fontWeight: 'bold' }}>
+            <p>{shop.city}, {shop.state}</p>
+            <p>{`(${shop.phone.substr(0, 3)})-${shop.phone.substr(3, 3)}-${shop.phone.substr(6, 4)}`}</p>
+          </div>
+
+          <div>
+            <CardRatingContainer style={{ position: 'relative', margin: '8px 0', background: 'lightGrey' }}>
+              <CardRating>
+                {shop.ratingAvg}/5
                      <StarIcon />'s
                    </CardRating>
 
-                  <CardReview>({shop.reviewCount} 'reviews')</CardReview>
-                </CardRatingContainer>
+              <CardReview>({shop.reviewCount} 'reviews')</CardReview>
+            </CardRatingContainer>
 
-                <div className="box flex"> {[1, 2, 3, 4, 5].map((index) => {
-                  return (
-                    <RatingIcon
-                      key={index}
-                      index={index}
-                      rating={rating}
-                      hoverRating={hoverRating}
-                      onMouseEnter={onMouseEnter}
-                      onMouseLeave={onMouseLeave}
-                      onSaveRating={onSaveRating} />
-                  )
-                })}
-                </div>
-              </div>
+            <div className="box flex"> {[1, 2, 3, 4, 5].map((index) => {
+              return (
+                <RatingIcon
+                  key={index}
+                  index={index}
+                  rating={rating}
+                  hoverRating={hoverRating}
+                  onMouseEnter={onMouseEnter}
+                  onMouseLeave={onMouseLeave}
+                  onSaveRating={onSaveRating} />
+              )
+            })}
             </div>
-            <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
-              {shop.description}
-            </Description>
           </div>
         </div>
-      </div>
+        <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
+          {shop.description}
+        </Description>
+
+      </Container>
 
       <Container>
         <Content>
@@ -174,7 +177,7 @@ function GetSingleShop() {
             <CardSlider className="product-slider">
               {shop.products &&
                 shop.products.map((product, index) => (
-                  <ProductCard item={product} key={index}/>
+                  <ProductCard item={product} key={index} />
                 ))}
             </CardSlider>
           </Container>
