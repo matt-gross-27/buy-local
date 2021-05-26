@@ -20,6 +20,8 @@ import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AddShop from './pages/AddShop';
 import MyShop from './pages/MyShop';
+import { Provider } from 'react-redux';
+import store from './utils/store';
 
 //import GetOrderHistory from "./pages/GetOrderHistory";
 
@@ -54,6 +56,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+      <Provider store={store}>
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -74,8 +77,8 @@ function App() {
           <Route path="/components/:type/:name">
             <ComponentRenderer />
           </Route>
-
         </Switch>
+        </Provider>
       </Router>
     </ApolloProvider>
   );
