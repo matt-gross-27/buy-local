@@ -65,7 +65,7 @@ function AppDownload ({
             </LinksContainer>
           </TextContainer>
           <ImageContainer>
-            <img src={imageSrc} alt="" tw="w-64"/>
+            <img className="app-image" src={imageSrc} alt=""/>
           </ImageContainer>
         </Row>
         <DecoratorBlobContainer>
