@@ -2,8 +2,8 @@
     position: fixed;
     top: 0;
     right: 0;
-    min-width: 20%;
-    max-width: 30%;
+    min-width: 33%;
+    max-width: 600px;
     max-height: 60%;
     background-color: #D6BCFA;
     overflow: auto;

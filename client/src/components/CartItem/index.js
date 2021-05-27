@@ -49,14 +49,14 @@ function CartItem({ item }) {
   return (
     <div className="flex-row cart-item">
       <h4 className="item-name">{item.name}, ${item.price}</h4>
-      <div style={{objectFit: 'cover'}}>
-        <img
+      <div className="heroDiv">
+        <img className="heroImg"
           src={item.image ? `https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${item.image}` : 'https://res.cloudinary.com/dylyqjirh/image/upload/v1621475439/Screen_Shot_2021-05-18_at_7.22.02_PM_gu1bfi.png'}
-          alt=""
+          alt={item.name}
         />
       </div>
       <div className="cart-item-details">
-        <div className="d-flex">
+        <div className="d-flex py-1">
           <span>Qty:</span>
           <input
             type="number"
