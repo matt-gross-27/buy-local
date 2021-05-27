@@ -121,9 +121,6 @@ return (
       <Container>
         <Content>
           <MainContainer>
-            <LogoLink href="/">
-              <LogoImage src={logo} style={{width:'70px', height: '70px'}} alt="logo" />
-            </LogoLink>
             <MainContent>
               <Heading>Sign In To Buy Local</Heading>
               <FormContainer>

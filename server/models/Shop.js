@@ -22,8 +22,8 @@ const shopSchema = new Schema(
     },
 
     instagram: {
-      type: String,
-      match: [/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, 'invalid url']
+      type: String
+      // match: [/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, 'invalid url']
     },
 
     hero: {
