@@ -22,14 +22,17 @@ function Home() {
 
   return (
     <AnimationRevealPage>
-      <div className='container'>
+      <section className='mx-lg-5'>
         <Hero
           imageSrc={firstImage}
           imageDecoratorBlob={true}
         />
-        {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
-        <span id='vendors'></span>
-        <GetAllShops />
+      </section>
+      {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
+      <span id='vendors'></span>
+      <GetAllShops />
+      
+      <section className='mx-md-5'>
         <MainFeature2
           subheading={<Subheading>A Reputed Brand</Subheading>}
           heading={<>Why <HighlightedText>Choose Us ?</HighlightedText></>}
@@ -57,12 +60,13 @@ function Home() {
           imageDecoratorBlobCss={tw`left-1/2 md:w-32 md:h-32 -translate-x-1/2 opacity-25`}
           textOnLeft={true}
         />
-        <DownloadApp
-          text={<>People around you are already ordering using the <HighlightedTextInverse>Buy Local App.</HighlightedTextInverse></>}
-        />
+      </section>
 
-        <Footer />
-      </div>
+      <DownloadApp
+        text={<>People around you are already ordering using the <HighlightedTextInverse>Buy Local App.</HighlightedTextInverse></>}
+      />
+
+      <Footer />
     </AnimationRevealPage>
   );
 }
