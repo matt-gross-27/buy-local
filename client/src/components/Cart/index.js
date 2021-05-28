@@ -17,6 +17,17 @@ function Cart() {
   const state = useSelector(state => state);
   const { id: shop } = useParams();
 
+  // useLazyQuery HOOK for onclick queries (vs useQuery for on render);
+  const [getCheckout, {data}] = useLazyQuery(QUERY_CHECKOUT);
+
+  useEffect(() => {
+    if (data) {
+      stripePromise.then(res => {
+        res.redirectToCheckout({ sessionId: data.checkout.session })
+      })
+    }
+  }, [data]);
+
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
@@ -51,9 +62,6 @@ function Cart() {
     }).format(sum);
   }
 
-  // useLazyQuery HOOK for onclick queries (vs useQuery for on render);
-  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
   function submitCheckout() {
     const orderInput = {
       shop,
@@ -70,17 +78,11 @@ function Cart() {
     console.log(orderInput)
 
     getCheckout({
-      variables: { orderInput }
+      variables: { orderInput: orderInput }
     });
   }
 
-  useEffect(() => {
-    if (data) {
-      stripePromise.then(res => {
-        res.redirectToCheckout({ sessionId: data.checkout.session })
-      })
-    }
-  }, [data]);
+  
 
   if (!state.cartOpen) {
     return (
