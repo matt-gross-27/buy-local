@@ -216,6 +216,7 @@ function MyShop() {
           </p>
 
           <h3 className='mt-5'>Products</h3>
+          <p> Click on the lock to edit your product info.</p>
           {shop.categories.map(category => (
 
             <MyShopProductList

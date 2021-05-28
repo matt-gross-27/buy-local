@@ -68,6 +68,24 @@ function UpdateShop({ shop, setNavState }) {
     hero: shop.hero
   });
 
+  const preloadedValues = {
+    name: shop.name,
+    description: shop.description,
+    phone: shop.phone,
+    logo: shop.logo,
+    instagram: shop.instagram,
+    addressNum: shop.addressNum, 
+    street: shop.street,
+    city: shop.city, 
+    state: shop.state, 
+    zip: shop.zip, 
+    stripeKey: shop.stripeKey, 
+    pickup: shop.pickup,
+    delivery: shop.delivery,
+    shipping: shop.shipping,
+    hero: shop.hero
+  }
+
   const [validInstagram, SetValidInstagram] = useState(true)
   const validateInstagram = (event) => {
     const regex = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/
@@ -153,7 +171,7 @@ function UpdateShop({ shop, setNavState }) {
                   <Label htmlFor="name">Edit Your Shop Name</Label>
                   <Input
                     placeholder= {shop.name}
-                    value= {shop.name}
+                    defaultValue= {shop.name}
                     name="name"
                     type="text"
                     id="name"
@@ -163,37 +181,37 @@ function UpdateShop({ shop, setNavState }) {
                   <Label htmlFor="description">Description: {descriptionCharCount}/280</Label>
                   <Textarea
                     placeholder={shop.description}
-                    //value={shop.description}
+                    defaultValue={shop.description}
                     name="description"
                     type="text"
-                    value={descriptionText}
+                    // value={descriptionText}
                     id="description"
                     onChange={handleChange}
                   />
 
                   <p style={{ fontSize: '14px', color: '#1a202c' }}>Upload a hero image (cropped to 1.62 x 1)</p>
-                  <UploadHero formState={formState} setFormState={setFormState} />
+                  <UploadHero formState={formState} setFormState={setFormState} defaultValue={shop.hero} />
 
 
                   <Label htmlFor="phone">Update Phone Number {phoneCharCount}/10</Label>
                   <Input
                     placeholder={shop.phone}
-                    //value={shop.phone}
+                    defaultValue={shop.phone}
                     name="phone"
                     type="text"
                     id="phone"
-                    value={phoneText}
+                    // value={phoneText}
                     onChange={handleChange}
                   />
 
                   <p style={{ fontSize: '14px', color: '#1a202c' }}>Upload your logo (cropped to circle)</p>
-                  <UploadLogo formState={formState} setFormState={setFormState} editProperty={'logo'} />
+                  <UploadLogo formState={formState} setFormState={setFormState} editProperty={'logo'} defaultValue={shop.logo} />
 
                   <Label htmlFor="instagram">Edit your Instagram link. (optional)</Label>
                   {!validInstagram && <p style={errStyle}>Please enter a valid url</p>}
                   <Input
                     placeholder={shop.instagram}
-                    //value={shop.instagram}
+                    defaultValue={shop.instagram}
                     name="instagram"
                     type="text"
                     id="instagram"
@@ -205,7 +223,7 @@ function UpdateShop({ shop, setNavState }) {
                   <Label htmlFor="addressNum">Address number</Label>
                   <Input
                     placeholder={shop.addressNum}
-                    //value={shop.addressNum}
+                    defaultValue={shop.addressNum}
                     name="addressNum"
                     type="text"
                     id="addressNum"
@@ -215,7 +233,7 @@ function UpdateShop({ shop, setNavState }) {
                   <Label htmlFor="street">Street</Label>
                   <Input
                     placeholder={shop.street}
-                    //value={shop.street}
+                    defaultValue={shop.street}
                     name="street"
                     type="text"
                     id="street"
@@ -225,7 +243,7 @@ function UpdateShop({ shop, setNavState }) {
                   <Label htmlFor="city">City</Label>
                   <Input
                     placeholder={shop.city}
-                    //value={shop.city}
+                    defaultValue={shop.city}
                     name="city"
                     type="text"
                     id="city"
@@ -235,7 +253,7 @@ function UpdateShop({ shop, setNavState }) {
                   <Label htmlFor="state">State</Label>
                   <Input
                     placeholder={shop.state}
-                    //value={shop.state}
+                    defaultValue={shop.state}
                     name="state"
                     type="text"
                     id="state"
@@ -245,7 +263,7 @@ function UpdateShop({ shop, setNavState }) {
                   <Label htmlFor="zip">Zip</Label>
                   <Input
                     placeholder={shop.zip}
-                    //value={shop.zip}
+                    defaultValue={shop.zip}
                     name="zip"
                     type="text"
                     id="zip"
@@ -255,24 +273,24 @@ function UpdateShop({ shop, setNavState }) {
                   <p>How does your store fulfill orders?</p>
                   <div style={{ marginBottom: '24px' }}>
                     <Label htmlFor="pickup">Do you offer Pickup?</Label>
-                    <input type="checkbox" id="pickup" name="pickup" onChange={handleChange} />
+                    <input type="checkbox" id="pickup" name="pickup" defaultChecked={shop.pickup} onChange={handleChange} />
                   </div>
 
                   <div style={{ marginBottom: '24px' }}>
                     <Label htmlFor="delivery">Do you offer Delivery?</Label>
-                    <input type="checkbox" id="delivery" name="delivery" onChange={handleChange} />
+                    <input type="checkbox" id="delivery" name="delivery" defaultChecked={shop.delivery} onChange={handleChange} />
                   </div>
 
                   <div style={{ marginBottom: '24px' }}>
                     <Label htmlFor="shipping">Do you offer Shipping?</Label>
-                    <input type="checkbox" id="shipping" name="shipping" onChange={handleChange} />
+                    <input type="checkbox" id="shipping" name="shipping" defaultChecked={shop.shipping} onChange={handleChange} />
                   </div>
                   
 
                   <Label htmlFor="stripeKey">Your Stripe "Publishable API Key"{' '}
                     <a href="https://help.sharetribe.com/en/articles/1055989-configure-stripe-and-get-api-keys-for-a-marketplace" target="_blank" rel="noreferrer">Help</a>
                   </Label>
-                  <Input type="text" id="stripeKey" name="stripeKey" onChange={handleChange} placeholder={shop.stripeKey} />
+                  <Input type="text" id="stripeKey" name="stripeKey" onChange={handleChange} placeholder={shop.stripeKey} defaultValue={shop.stripeKey} />
 
                   <SubmitButton type="submit">
                     <span className="text">Update Shop</span>
