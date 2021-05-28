@@ -33,16 +33,12 @@ const Textarea = styled(Input).attrs({as: "textarea"})`
 
 const SubmitButton = tw(PrimaryButtonBase)`inline-block mt-8`
 
-function windowAlert() {
-  window.alert("Thanks for your Email!😀")
-}
-
 function FormsTwoCol ({
   subheading = "Contact Us",
   heading = <>Feel free to <span tw="text-primary-500">get in touch</span><wbr/> with us.</>,
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  description = "If you have questions or feedback about an order, here's how to get in touch. We will be happy to answer your questions.",
   submitButtonText = "Send",
-  formAction = "/",
+  formAction = "/form-success",
   formMethod = "get",
   textOnLeft = true,
 }) {
@@ -64,7 +60,7 @@ function FormsTwoCol ({
               <Input type="text" name="name" placeholder="Full Name" required />
               <Input type="text" name="subject" placeholder="Subject (optional)" />
               <Textarea name="message" placeholder="Your Message Here" required />
-              <SubmitButton type="submit" onClick={windowAlert}>{submitButtonText}</SubmitButton>
+              <SubmitButton type="submit">{submitButtonText}</SubmitButton>
             </Form>
           </TextContent>
         </TextColumn>

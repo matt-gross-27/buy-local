@@ -1,4 +1,4 @@
-function Success() {
+function FormSuccess() {
 
     setTimeout(() => {
       window.location.assign("/")
@@ -11,10 +11,10 @@ function Success() {
         <i className="checkmark">✓</i>
       </div>
         <h1>Success</h1> 
-        <p>We received your purchase request.<br/> We'll be in touch shortly!</p>
+        <p>"Thanks for your Email! 😀"</p>
       </div>
 </div>
     );
   };
 
-export default Success;
+export default FormSuccess;
