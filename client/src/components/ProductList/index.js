@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useQuery } from '@apollo/react-hooks';
-
 import ProductItem from "../ProductItem";
 import { useDispatch, useSelector } from 'react-redux';
 import { UPDATE_PRODUCTS } from "../../utils/actions";
 import { QUERY_PRODUCTS } from "../../utils/queries";
-//import spinner from "../../assets/spinner.gif"
+import { idbPromise } from '../utils/helpers';
 
 function ProductList() {
   const state = useSelector(state => state);
