@@ -12,7 +12,6 @@ const GetAllShops = () => {
 
     const { loading, data }  = useQuery(GET_SHOPS);
     const shops = data?.shops || [];
-    console.log(shops)
 
     if (loading) {
         return <h2>Loading Shop...</h2>

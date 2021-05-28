@@ -34,13 +34,13 @@ function RatingIcon(props) {
 
   const handleClick = async(stars) => {
     try {
-      const data = await createRating({
+      await createRating({
         variables: {
           shopId: shopId,
           stars: stars
         }
-      })
-      console.log(data);
+      });
+
     } catch (error) {
       console.log(error);
     }
@@ -51,8 +51,12 @@ function RatingIcon(props) {
         className ="cursor-pointer"
         onMouseEnter={() => onMouseEnter(index)} 
         onMouseLeave={() => onMouseLeave()} 
-        onClick={() => onSaveRating(index)}
-        onClick={() => handleClick(index)}
+        onClick={
+          () => {
+            onSaveRating(index); 
+            handleClick(index);
+          }
+        }
         >
         <StarIcon fill={fill} />
       </div>

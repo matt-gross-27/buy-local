@@ -8,8 +8,6 @@ const GetOrderHistory = () => {
     const { loading, data }= useQuery(MY_ORDER_HISTORY);
     const orderHistoryData = data?.myOrderHistory || []
 
-    console.log(orderHistoryData)
-
     if (loading) {
         return <h2>Loading Order History...</h2>
     }

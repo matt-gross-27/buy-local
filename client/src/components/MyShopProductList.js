@@ -15,7 +15,9 @@ function MyShopProductList(props) {
 
   return (
     <section>
-      <h4 className="pl-36 mt-5">{category.name}</h4>
+      <hr />
+      <h4>{category.name}</h4>
+      <hr />
 
       {/* This needs to be a product comp */}
       {products.map(product => (

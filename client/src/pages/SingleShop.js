@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'; ///new react hook
 import { useQuery } from '@apollo/react-hooks';
 import { GET_SHOP_BY_ID } from '../utils/queries';
@@ -11,7 +11,6 @@ import Slider from "react-slick";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { SectionHeading } from "components/misc/Headings";
-import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
 import { ReactComponent as StarIcon } from "feather-icons/dist/icons/star.svg";
 import RatingIcon from './CreateRating';
 // for cart
@@ -26,7 +25,7 @@ const CardRating = styled.div`
 `;
 // end imports for cards and slider
 const CardReview = tw.div`font-medium text-xs text-gray-600`;
-const { SocialIcon } = require('react-social-icons');
+// const { SocialIcon } = require('react-social-icons');
 //styling for cards and slider//
 const Container = tw.div`relative mx-5`;
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`;
@@ -41,18 +40,7 @@ const CardSlider = styled(Slider)`
     ${tw`flex justify-center mb-1`}
   }
 `;
-const Card = tw.div`h-full flex! flex-col sm:border max-w-sm sm:rounded-tl-4xl sm:rounded-br-5xl relative focus:outline-none`;
-const CardImage = styled.div(props => [
-  `background-image: url("${props.imageSrc}");`,
-  tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
-]);
-
-const TextInfo = tw.div`py-1 sm:px-1 sm:py-1`;
-const TitleReviewContainer = tw.div`flex flex-col sm:flex-row sm:justify-between sm:items-center`;
-const Title = tw.h5`text-2xl font-bold`;
 const Description = tw.p`text-sm leading-loose mt-0 sm:mt-4`;
-const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`;
-
 function GetSingleShop() {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = React.useState(0);
@@ -105,10 +93,7 @@ function GetSingleShop() {
   return (
     <>
       <Cart />
-
       <Container>
-
-
         <Heading>{shop.name}</Heading>
         <div className="heroDiv">
           <Image className="heroImg" cloudName='dylyqjirh' publicId={shop.hero || 'shopping-bags-500x500_vpqouy'}>
@@ -116,10 +101,10 @@ function GetSingleShop() {
           </Image>
         </div>
 
-        <div className='d-flex justify-content-between px-2'>
+        <div className='d-flex flex-wrap justify-content-between px-2'>
           <div style={{ marginTop: '8px', fontSize: '20px', fontWeight: 'bold' }}>
             <p>{shop.city}, {shop.state}</p>
-            <p>{`(${shop.phone.substr(0, 3)})-${shop.phone.substr(3, 3)}-${shop.phone.substr(6, 4)}`}</p>
+            <a href={`tel:${shop.phone}`}>{`(${shop.phone.substr(0, 3)})-${shop.phone.substr(3, 3)}-${shop.phone.substr(6, 4)}`}</a>
           </div>
 
           <div>
@@ -191,6 +176,8 @@ function GetSingleShop() {
               }
             />
           ))}
+
+          <div style={{height: '80px'}}></div>
 
 
         </Content>

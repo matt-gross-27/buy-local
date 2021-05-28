@@ -67,29 +67,29 @@ function MyShopProduct({ product }) {
   if (!editable) {
     return (
       <div className="d-flex flex-row flex-wrap border mb-3" style={{ boxShadow: '3px 3px 3px silver' }}>
-        <div className='p-0 col-12 col-md-4 p-1 productImgDiv'>
+        <div className='p-3 col-12 col-md-5 p-1 productImgDiv'>
           <span className='editBtn' onClick={editProduct}>🔒</span>
           <Image className='productImg' cloudName='dylyqjirh' publicId={image || 'shopping-bags-500x500_vpqouy'}>
             <Transformation height={600} width={972} crop="fill" />
           </Image>
         </div>
-        <div className='p-0 col-12 col-md-8 d-flex flex-column justify-content-between'>
+        <div className='p-3 col-12 col-md-7 d-flex flex-column justify-content-around'>
           <div className='d-flex flex-wrap'>
-            <div className="productLabel pr-0">Name:</div>
+            <div className="font-weight-bold pr-0">Name:</div>
             <div className='px-2'>{name}</div>
           </div>
 
           <div className='d-flex flex-wrap'>
-            <div className="productLabel pr-0">Price:</div>
+            <div className="font-weight-bold pr-0">Price:</div>
             <div className='px-2'>${price}</div>
           </div>
 
           <div className='d-flex flex-wrap'>
-            <div className="productLabel pr-0">Description:</div>
+            <div className="font-weight-bold pr-0">Description:</div>
             <div className='px-2'>{description}</div>
           </div>
           <div className='d-flex flex-wrap'>
-            <div className="productLabel pr-0">Stock:</div>
+            <div className="font-weight-bold pr-0">Stock:</div>
             <div className='px-2'>{stock}</div>
           </div>
         </div>
@@ -99,12 +99,12 @@ function MyShopProduct({ product }) {
 
     return (
       <div className="d-flex flex-row flex-wrap border border-warning mb-3" style={{ boxShadow: '3px 3px 3px silver' }}>
-        <div className='p-0 col-12 col-md-4 p-1 productImgDiv border border-warning'>
+        <div className='p-3 col-12 col-md-5 p-1 productImgDiv border border-warning'>
           <span className='editBtn' onClick={editProduct}>🔓</span>
           <UploadProductEdit formState={formState} setFormState={setFormState} />
         </div>
 
-        <div className='p-0 col-12 col-md-8 d-flex flex-column justify-content-between'>
+        <div className='p-3 col-12 col-md-7 d-flex flex-column justify-content-between'>
           <div className='d-flex flex-wrap'>
             <div className="productLabel pr-0">Name:</div>
             <input name='name' className='px-2 product-input' placeholder={name} value={formState.name} onChange={handleChange} />

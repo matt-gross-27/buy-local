@@ -91,7 +91,6 @@ const resolvers = {
       const line_items = [];
 
       for (let i = 0; i < purchases.length; i++) {
-        console.log(i);
         // generate product id
         const product = await stripe.products.create({
           name: purchases[i].product.name,
@@ -341,7 +340,6 @@ const resolvers = {
     },
     createOrder: async (parent, { orderInput }, context) => {
       if (context.user) {
-        console.log(context.user)
         const order = await Order.create({...orderInput, customer: context.user._id});
 
         await User.findOneAndUpdate(

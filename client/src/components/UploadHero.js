@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 function UploadHero(props) {
-  const { formState, setFormState } = props;
+  const { formState, setFormState, initialPreview = null } = props;
   const [imgFile, setImgFile] = useState('');
-  const [heroPreview, setHeroPreview] = useState('');
+  const [heroPreview, setHeroPreview] = useState(initialPreview);
   const [message, setMessage] = useState('Preview Hero');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setFormState({
@@ -27,6 +28,7 @@ function UploadHero(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dylyqjirh/image/upload'
     const CLOUDINARY_UPLOAD_PRESET = 'btm3uik0'
     const file = imgFile;
@@ -42,8 +44,7 @@ function UploadHero(props) {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data.public_id);
-
+          setLoading(false);
           setFormState({
             ...formState,
             hero: data.public_id
@@ -76,7 +77,11 @@ function UploadHero(props) {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '185px', width: '300px', boxShadow: '0 0 5px silver', margin: '0 auto' }} className="img-preview">
           {!imgFile ?
             (
-              <p>{message}</p>
+              initialPreview ? (
+                <img alt='hero preview' style={{ objectFit: 'cover', height: '185px', width: '300px' }} src={`https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${initialPreview}`}/>
+              ) : (
+                <p>{message}</p>
+              )
             ) :
             (
               <img style={{ objectFit: 'cover', height: '185px', width: '300px' }} src={heroPreview} alt="your hero" />
@@ -100,7 +105,7 @@ function UploadHero(props) {
             top: '-36px'
           }}
         >
-          {!formState.hero ? 'Upload File' : 'Success'}
+          { loading ? 'Loading' : (!formState.hero ? 'Upload File' : 'Success') }
         </button>
       </div>
     </div>

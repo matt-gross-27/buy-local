@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import tw from "twin.macro";
 import styled from "styled-components";
 import { useSelector, useDispatch } from 'react-redux';
@@ -64,11 +64,11 @@ function ProductCard({ item }) {
           </Title>
         </TitleReviewContainer>
 
-        <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
+        <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '0px', height: '50px', overflow: 'scroll' }}>
           {item.description}
         </Description>
 
-        <p style={{bottom: '64px', position: 'absolute'}}>{item.stock} item(s) left</p>
+        <em style={{bottom: '52px', position: 'absolute'}}>{item.stock} item(s) left</em>
       </TextInfo>
 
       <PrimaryButton onClick={addToCart}>{item.stock === 0 ? 'Sold Out' : 'Add to Cart'}</PrimaryButton>

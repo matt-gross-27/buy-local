@@ -68,13 +68,15 @@ nav > a > img {
 } */
 
 button.closed {
-  color: #6415FF;
   border-radius: 5px;
+  height: 40px;
+  width: 45px;
 }
 
 button.open {
-  color: red;
   border-radius: 5px;
+  height: 40px;
+  width: 45px;
 }
 
 .single-shop-body {
@@ -91,17 +93,13 @@ button.open {
 .heroDiv {
   width: 100%;
   height: 0;
-  padding-top: 62%;
+  padding-top: 61.72%;
   box-shadow:3px 3px 3px silver;
   margin-bottom: 16px;
   align-self: center;
   text-align: center;
   margin: 0 auto;
   position: relative;
-}
-
-.app-image {
-  width: 300px
 }
 
 .heroImg {
@@ -157,7 +155,8 @@ nav  {
 }
 
 .productLabel {
-  padding: 0 8px;
+  padding: 3px;
+  margin: 3px;;
   font-weight: bold;
 }
 
@@ -171,8 +170,14 @@ nav  {
 
 .slick-track {
   margin-bottom: 20px;
-  width: 100%;
-  overflow-x: hide;
+  height: 420px
+
+}
+
+.slick-slide {
+  margin: 22px 0;
+  height: 420px;
+  min-width: 360px;
 }
 
 .product-slider {
@@ -199,15 +204,10 @@ nav  {
   width: 100px;
 }
 
-.slick-slide {
-  margin: 50px 0;
-  height: 450px;
-  min-width: 360px;
-}
-
 .slick-slide > div {
-  min-height: 420px;
-  max-height: 420px;
+  min-height: 400px;
+  max-height: 400px;
+  height: 400px;
   width: 303px;
   min-width: 303px;
   max-width: 303px;
@@ -277,21 +277,25 @@ nav  {
 
 .productImg {
   object-fit: cover;
-  height: 140px;
+  width: 100%;
 }
 
 .editBtn {
   position: absolute;
   top: 0;
   left: 0;
-  height: 26px;
-  width: 26px;
+  height: 38px;
+  width: 34px;
   background-color: white;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 32px;
   line-height: 1;
   padding: 1px;
   border-radius: 6px;
+}
+
+.container {
+  overflow-x: hidden;
 }
 
 .UploadProductEditBtn {
@@ -301,11 +305,11 @@ nav  {
 }
 
 .product-input {
-  padding-top: 0;
-  padding-bottom: 0;
-  border: none;
+  padding: 3px;
+  margin: 3px 0;
+  border: 1px solid silver;
   border-radius: 5px;
-  flex-grow: 1;
+  /* flex-grow: 1; */
 }
 
 .productImgDiv {
@@ -365,14 +369,28 @@ nav  {
 }
 
 @media screen and (max-width: 767px) {
-  .productImg {
-    height: 200px;
-  }
-
   .right-nav-x {
     right: 24px;
   }
 }
 
+.iPhoneDiv {
+  width: 100%;
+  height: 0;
+  padding-top: 150%;
+  position: relative;
+}
 
+.iPhoneImg {
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
+@media screen and (min-width: 1023px) {
+  .iPhoneDiv {
+    padding-top: 66.67%;
+  }
+}

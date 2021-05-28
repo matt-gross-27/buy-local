@@ -7,8 +7,6 @@ const GetProducts = () => {
     const { loading, data }= useQuery(GET_PRODUCTS);
     const productData = data?.products || []
 
-    console.log(productData)
-
     if (loading) {
         return <h2>Loading Products...</h2>
     }

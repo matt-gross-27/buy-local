@@ -99,7 +99,7 @@ function UploadProduct(props) {
           disabled={!imgFile || formState.image ? true : false}
           style={{position: 'absolute', width: '100%', padding: '.3rem', background: !formState.image ? '#f56565' : 'lightGreen', color: !formState.image ? 'white' : 'black', fontWeight: 'bold', borderBottom: '1px solid black', borderRight: '1px solid black', fontSize: 'small'}}
         >
-          {loading ? 'Loading' : (!formState.image ? 'Upload File' : 'Success')}
+          {loading ? 'Loading' : (!formState.image ? 'Upload File' : message)}
         </button>
       )}
     </>

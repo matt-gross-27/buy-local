@@ -9,7 +9,6 @@ import { Container as ContainerBase } from "components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import logo from "images/logo.PNG";
 import loginImage from "images/login-image.jpg";
 // import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
 
@@ -17,25 +16,9 @@ import loginImage from "images/login-image.jpg";
 const Container = tw(ContainerBase)`min-h-screen bg-gray-900 text-white font-medium flex justify-center -m-8`;
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`;
 const MainContainer = tw.div`lg:w-1/2 xl:w-5/12 p-6 sm:p-12`;
-const LogoLink = tw.a``;
-const LogoImage = tw.img`h-12 mx-auto`;
 const MainContent = tw.div`mt-12 flex flex-col items-center`;
 const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`;
 const FormContainer = tw.div`w-full flex-1 mt-8`;
-
-// const SocialButtonsContainer = tw.div`flex flex-col items-center`;
-// const SocialButton = styled.a`
-//   ${tw`w-full max-w-xs font-semibold rounded-lg py-3 border text-gray-900 bg-gray-100 hocus:bg-gray-200 hocus:border-gray-400 flex items-center justify-center transition-all duration-300 focus:outline-none focus:shadow-sm text-sm mt-5 first:mt-0`}
-//   .iconContainer {
-//     ${tw`bg-white p-2 rounded-full`}
-//   }
-//   .icon {
-//     ${tw`w-4`}
-//   }
-//   .text {
-//     ${tw`ml-4`}
-//   }
-// `;
 
 const DividerTextContainer = tw.div`my-12 mb-2 border-b text-center relative`;
 const DividerText = tw.div`leading-none px-2 pb-6 inline-block text-sm text-red-600 tracking-wide font-medium bg-white transform -translate-y-1/2 absolute inset-x-0 top-1/2 bg-transparent`;
@@ -64,7 +47,6 @@ const Login = props => {
   // update state based on form input changes
   const handleChange = event => {
     const { name, value } = event.target;
-    console.log(value);
     setFormState({
       ...formState,
       [name]: value
@@ -92,29 +74,6 @@ const Login = props => {
       password: ''
     });
   };
-
-
-  // logoLinkUrl = "#",
-  //   illustrationImageSrc = illustration,
-  //   headingText = "Sign In To Treact",
-    // socialButtons = [
-    //   {
-    //     iconImageSrc: googleIconImageSrc,
-    //     text: "Sign In With Google",
-    //     url: "https://google.com"
-    //   },
-    //   {
-    //     iconImageSrc: twitterIconImageSrc,
-    //     text: "Sign In With Twitter",
-    //     url: "https://twitter.com"
-    //   }
-    // ],
-    //submitButtonText = "Sign In",
-    // SubmitButtonIcon = LoginIcon,
-    // forgotPasswordUrl = "#",
-    // signupUrl = "/signup",
-
-
 
 return (
     <AnimationRevealPage>

@@ -45,8 +45,6 @@ function UploadProduct(props) {
         .then(res => res.json())
         .then(data => {
           setLoading(false);
-          console.log(data.public_id);
-
           setFormState({
             ...formState,
             image: data.public_id

@@ -75,8 +75,6 @@ function Cart() {
       });
     });
 
-    console.log(orderInput)
-
     getCheckout({
       variables: { orderInput: orderInput }
     });

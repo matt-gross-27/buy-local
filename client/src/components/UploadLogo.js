@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 function UploadLogo(props) {
-  const { formState, setFormState } = props;
+  const { formState, setFormState, initialPreview } = props;
   const [imgFile, setImgFile] = useState('');
-  const [logoPreview, setLogoPreview] = useState('');
+  const [logoPreview, setLogoPreview] = useState(initialPreview);
   const [message, setMessage] = useState('Preview Logo');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setFormState({
@@ -27,6 +28,7 @@ function UploadLogo(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dylyqjirh/image/upload'
     const CLOUDINARY_UPLOAD_PRESET = 'btm3uik0'
     const file = imgFile;
@@ -42,8 +44,7 @@ function UploadLogo(props) {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data.public_id);
-
+          setLoading(false);
           setFormState({
             ...formState,
             logo: data.public_id
@@ -76,7 +77,11 @@ function UploadLogo(props) {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '300px', width: '300px', boxShadow: '0 0 5px silver', margin: '0 auto', borderRadius: '100%' }} className="img-preview">
           {!imgFile ?
             (
-              <p>{message}</p>
+              initialPreview ? (
+                <img alt='logo preview' style={{ objectFit: 'cover', height: '300px', width: '300px', borderRadius: '100%' }} src={`https://res.cloudinary.com/dylyqjirh/image/upload/v1621788774/${initialPreview}`}/>
+              ) : (
+                <p>{message}</p>
+              )
             ) :
             (
               <img style={{ objectFit: 'cover', height: '300px', width: '300px', borderRadius: '100%' }} src={logoPreview} alt="your logo" />
@@ -100,7 +105,7 @@ function UploadLogo(props) {
             top: '-36px'
           }}
         >
-          {!formState.logo ? 'Upload File' : 'Success'}
+          { loading ? 'Loading' : (!formState.logo ? 'Upload File' : 'Success') }
         </button>
       </div>
     </div>

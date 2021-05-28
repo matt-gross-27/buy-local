@@ -77,8 +77,6 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
   
   const user = data?.user || false
 
-  console.log(user);
-
   const logout = event => {
     event.preventDefault();
     Auth.logout();
@@ -133,7 +131,7 @@ function HeaderLight ({ roundedHeaderButton = false, logoLink, links, className,
           {links}
         </MobileNavLinks>
         <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open position-fixed right-nav-x" : "closed"}>
-          {showNavLinks ? <CloseIcon tw="w-6 h-6 z-50"/> : <MenuIcon tw="w-6 h-6" />}
+          {showNavLinks ? <CloseIcon/> : <MenuIcon/>}
         </NavToggle>
       </MobileNavLinksContainer>
     </Header>
