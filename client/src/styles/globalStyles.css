@@ -55,30 +55,6 @@ nav > a > img {
     margin-bottom: 15px;
 }
 
-/* .single-shop-page {
-   align-content: center;
-   text-align: center;
-} */
-
-/* .single-shop-name {
-   text-align: center; 
-   align-content: center;
-   font-size: 42px;
-   color: rgba(214,188,250,var(--tw-text-opacity));
-} */
-
-button.closed {
-  border-radius: 5px;
-  height: 40px;
-  width: 45px;
-}
-
-button.open {
-  border-radius: 5px;
-  height: 40px;
-  width: 45px;
-}
-
 .single-shop-body {
     margin-left: 100px;
     font-weight: bold;
