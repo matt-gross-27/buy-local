@@ -73,6 +73,7 @@
 .checkout {
   width: 100%;
   text-align: center;
+  padding: 10px 0;
   background-color: lightpink;
   border-radius: 5px;
 }
@@ -103,18 +104,15 @@
 
 @media screen and (max-width: 768px) {
     .cart {
-      bottom: 14px;
       top: unset;
-      max-width: 100%;
-      width: 100%;
       max-height: auto;
       box-shadow: none;
       max-height: unset;
-    }
-
-    .cart {
-      bottom: 0;
-      height: 100vh;
+      bottom: 20px;
+      left: 20px;
+      width: calc(100% - 40px);
+      border-radius: 15px;
+      height: 75vh;
     }
 
     .cart-closed {

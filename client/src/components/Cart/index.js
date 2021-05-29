@@ -8,7 +8,7 @@ import { idbPromise } from "../../utils/helpers";
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { loadStripe } from '@stripe/stripe-js';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -18,7 +18,7 @@ function Cart() {
   const { id: shop } = useParams();
 
   // useLazyQuery HOOK for onclick queries (vs useQuery for on render);
-  const [getCheckout, {data}] = useLazyQuery(QUERY_CHECKOUT);
+  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   useEffect(() => {
     if (data) {
@@ -80,7 +80,7 @@ function Cart() {
     });
   }
 
-  
+
 
   if (!state.cartOpen) {
     return (
@@ -113,7 +113,11 @@ function Cart() {
                 Checkout
               </button>
               :
-              <p className="checkout">(log in to check out)</p>
+
+              <button disabled className="checkout" onClick={submitCheckout}>
+                <Link to='/login'>Login to Checkout</Link>
+              </button>
+
           }
         </div>
       ) : (
