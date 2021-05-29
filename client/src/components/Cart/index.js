@@ -108,16 +108,15 @@ function Cart() {
             Total: {calculateTotal()}
           </strong>
           {
-            Auth.loggedIn() ?
+            Auth.loggedIn() ? (
               <button className="checkout" onClick={submitCheckout}>
                 Checkout
               </button>
-              :
-
+            ) : (
               <button disabled className="checkout" onClick={submitCheckout}>
                 <Link to='/login'>Login to Checkout</Link>
               </button>
-
+            )
           }
         </div>
       ) : (

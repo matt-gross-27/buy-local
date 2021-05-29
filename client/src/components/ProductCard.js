@@ -17,7 +17,7 @@ const TextInfo = tw.div`py-1 sm:px-1 sm:py-1`;
 const TitleReviewContainer = tw.div`flex flex-col sm:flex-row sm:justify-between sm:items-center`;
 const Title = tw.h5`text-2xl font-bold`;
 const Description = tw.p`text-sm leading-loose mt-0 sm:mt-4`;
-const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`;
+const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-4`;
 
 function ProductCard({ item }) {
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ function ProductCard({ item }) {
           {item.description}
         </Description>
 
-        <em style={{bottom: '52px', position: 'absolute'}}>{item.stock} item(s) left</em>
+        <em className='cardStock'>{item.stock} item(s) left</em>
       </TextInfo>
 
       <PrimaryButton onClick={addToCart}>{item.stock === 0 ? 'Sold Out' : 'Add to Cart'}</PrimaryButton>

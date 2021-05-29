@@ -217,6 +217,22 @@ nav  {
   overflow-y: scroll;
 }
 
+.cardStock{
+  bottom: 62px;
+  position: absolute;
+  font-size: small;
+}
+
+@media screen and (max-width: 639px) {
+  .cardStock{
+    bottom: 52px;
+  }
+
+  .slick-slide > div > div > div:nth-of-type(2) {
+    overflow-y: scroll;
+  }
+}
+
 .sectionHeading {
   margin: 0 auto;
   text-align: center;
