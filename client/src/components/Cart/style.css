@@ -112,6 +112,7 @@
       left: 20px;
       width: calc(100% - 40px);
       border-radius: 15px;
+      height: 75vh;
     }
 
     .cart-closed {
