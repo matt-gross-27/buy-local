@@ -64,7 +64,7 @@ function SimpleFive() {
               <Link href="#">Support</Link>
             </LinkListItem>
             <LinkListItem>
-              <Link href="#">About Us</Link>
+              <Link href="/about-us">About Us</Link>
             </LinkListItem>
           </LinkList>
         </Column>
@@ -81,7 +81,7 @@ function SimpleFive() {
               <Link href="#">Business</Link>
             </LinkListItem>
             <LinkListItem>
-              <Link href="#">Team</Link>
+              <Link href="/our-team">Team</Link>
             </LinkListItem>
           </LinkList>
         </Column>

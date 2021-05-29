@@ -19,7 +19,7 @@ function AboutUs() {
       />
 
       <TeamCardGrid 
-        subheading={<Subheading>Our Team</Subheading>}
+        subheading={<Subheading></Subheading>}
       />
       </div>
       <Footer />

@@ -17,6 +17,7 @@ const HeadingContainer = tw.div``
 const Heading = tw(SectionHeading)``
 const Subheading = tw(SubheadingBase)`text-center mb-3`
 const Description = tw(SectionDescription)`mx-auto text-center`
+const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
 
 const Cards = tw.div`flex flex-wrap flex-row justify-center sm:max-w-2xl lg:max-w-5xl mx-auto`
 const Card = tw.div`mt-24 w-full sm:w-1/2 lg:w-1/3 flex flex-col items-center`
@@ -45,9 +46,9 @@ const CardLinks = styled.div`
 `
 
 function Team ({
-  heading = "Meet These Fine Folks.",
-  subheading = "Our Team",
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  heading = "Meet the ",
+  subheading = "",
+  description = "",
   cards = [
     {
       imageSrc: alexGiannini,
@@ -112,7 +113,7 @@ function Team ({
       <ContentWithPaddingXl>
         <HeadingContainer>
           {subheading && <Subheading>{subheading}</Subheading>}
-          {heading && <Heading>{heading}</Heading> }
+          {heading && <Heading>{heading}<HighlightedText>Team</HighlightedText></Heading> }
           {description && <Description>{description}</Description> }
         </HeadingContainer>
         <Cards>

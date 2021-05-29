@@ -24,6 +24,7 @@ import { Provider } from 'react-redux';
 import store from './utils/store';
 import Success from './pages/Success';
 import FormSuccess from './pages/FormSuccess';
+import Team from './components/cards/ProfileThreeColGrid';
 
 //import GetOrderHistory from "./pages/GetOrderHistory";
 
@@ -74,6 +75,7 @@ function App() {
           <Route exact path="/my-shop/" component={MyShop} />
           <Route exact path="/success" component={Success} />
           <Route exact path="/form-success" component={FormSuccess} />
+          <Route exact path="/our-team" component={Team} />
 
           <Route path="/components/:type/:subtype/:name">
             <ComponentRenderer />
