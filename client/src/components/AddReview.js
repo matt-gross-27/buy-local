@@ -1,100 +1,59 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import { useParams } from 'react-router-dom';
-import Auth from "../utils/auth";
-import { CREATE_REVIEW } from "../utils/mutations";
-import { GET_SHOP_BY_ID } from "../utils/queries";
-
-
-
-function AddReview() {
-
-    const { id: shopId } = useParams();
-
-    const { loading, data } = useQuery(GET_SHOP_BY_ID, {
-        variables: { _id: shopId }
-      });
-    
-    const shop = data?.shop || [];
-
-    console.log(shop)
-
-    const reviews = shop.reviews.reviewText
-
-    
-    const [createReview, { error }] = useMutation(CREATE_REVIEW);
-    const [reviewTextCharCount, setReviewTextCharCount] = useState(0);
-    // const [success, setSuccess] = useState(false)
-    const [reviewText, setReviewText] = useState('');
-    const [formState, setFormState] = useState({
-        reviews
-    });
-
-
-    const handleChange = event => {
-        const { name, value } = event.target;
-
-        if (event.target.name === 'reviewText') {
-            if (event.target.value.length < 150) {
-                setReviewText(event.target.value);
-                setReviewTextCharCount(event.target.value.length);
-                console.log(value)
-            }
-        } else {
-
-            setFormState({
-              ...formState,
-              [name]: value
-            });
-          }
-
+import { useMutation } from '@apollo/react-hooks';
+import { CREATE_REVIEW } from '../utils/mutations';
+import {useParams} from 'react-router-dom';
+const CreateReview = () => {
+  const [reviewText, setText] = useState('');
+  const [characterCount, setCharacterCount] = useState(0);
+  const { id: shopId } = useParams();
+  const [addReview, { error }] = useMutation(CREATE_REVIEW);
+  // update state based on form input changes
+  const handleChange = event => {
+    if (event.target.value.length <= 280) {
+      setText(event.target.value);
+      setCharacterCount(event.target.value.length);
     }
+  };
+  // submit form
+  const handleFormSubmit = async event => {
+    event.preventDefault();
+    try {
+      await addReview({
+        variables: { 
+            shopId,
+            reviewText }
+      });
+console.log(reviewText);
+      // clear form value
+      setText('');
+      setCharacterCount(0);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  return (
+    <div>
+      <p className={`${characterCount === 280 || error ? 'text-error' : ''}`}>
+        Character Count: {characterCount}/280
+        {error && <span className="">Something went wrong...</span>}
+      </p>
+      <form
+        className=""
+        onSubmit={handleFormSubmit}
+      >
+        <textarea
+          placeholder="Here's a new review..."
+          value={reviewText}
+          className=""
+          onChange={handleChange}
+        ></textarea>
+        <button className="" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+};
+export default CreateReview;
 
-        const handleFormSubmit = async event => {
-            event.preventDefault();
-
-            try {
-                if (Auth.loggedIn()) {
-                    
-                    const { data } = await createReview({
-                        variables: { ...formState, shopId }
-                    });
-
-                    if (data) {
-                        //setSuccess(true);
-                        console.log(reviewText)
-                        console.log('clicked')
-                    }
-                }
-                
-
-            } catch (error) {
-                console.log(error)
-                console.log('failed submit')
-            }
-
-        };
-
-        return (
-
-            <form onSubmit={handleFormSubmit}>
-                <textarea
-                    rows="3"
-                    placeholder="Write your review here!"
-                    type="text"
-                    id="reviewText"
-                    name="reviewText"
-                    value={reviewText}
-                    onChange={handleChange}>
-
-                </textarea>
-                <br></br>
-                <button type="submit">Submit Your Review</button>
-            </form>
-
-        );
-
-    
-    };
-
-export default AddReview;
+{/* <TestimonialSlider arrows={false} ref={setSliderRef}> */}

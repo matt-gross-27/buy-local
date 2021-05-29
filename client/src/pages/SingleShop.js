@@ -11,8 +11,7 @@ import SingleShopProducts from '../components/SingleShopProduct'
 import { ReactComponent as ArrowLeftIcon } from "images/arrow-left-3-icon.svg";
 import { ReactComponent as ArrowRightIcon } from "images/arrow-right-3-icon.svg";
 import { CREATE_REVIEW } from "../utils/mutations";
-import AddReview from "../components/AddReview";
-import Auth from "../utils/auth";
+import CreateReview from "../components/AddReview";
 //import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
 // end import for store reviews
 
@@ -105,6 +104,8 @@ const GetSingleShop = props => {
   });
 
   //matt's code for store reviews
+  const [reviewSliderRef, setReviewSliderRef] = useState(null)
+  
   const TestimonialSlider = styled(Slider)`
   ${tw`w-full mt-10 text-center md:text-left`}
   .slick-track {
@@ -136,6 +137,7 @@ const GetSingleShop = props => {
   }
   `;
 
+  
 
 
 
@@ -154,11 +156,13 @@ const GetSingleShop = props => {
 
   const products = shop.products
 
+  const reviews = shop.reviews
+
   //start matt changes for addReview
 
   const [showForm, setShowForm] = useState(false);
 
-  const reviews = shop.reviews
+  //const reviews = shop.reviews
 
   
     
@@ -221,6 +225,7 @@ const GetSingleShop = props => {
 
   //   };
 
+  
   // end matt's changes for addReview
 
   const newCreateReview = async(reviewText) => {
@@ -292,23 +297,7 @@ const GetSingleShop = props => {
 
             <button onClick={()=>setShowForm(true)} > Write a review </button>
                 {
-                  showForm?<form 
-                  >
-                  <textarea
-                      rows="3"
-                      placeholder="Write your review here!"
-                      type="text"
-                      id="reviewText"
-                      name="reviewText"
-                      
-                      >
-  
-                  </textarea>
-                  <br></br>
-                  <button type="submit" onClick={() => {
-                    newCreateReview(reviewText)
-                   } }>Submit Your Review</button>
-                  </form>:<div></div>
+                  showForm?<CreateReview />:<div></div>
                 }
 
           </div>
@@ -373,35 +362,19 @@ const GetSingleShop = props => {
               setSliderRef={setSliderRef}
               sliderSettings={sliderSettings}
             />
-          ))}
+          ))} */}
 
-            <TestimonialSlider arrows={false} ref={setSliderRef}>
-              {shop.reviews.map((testimonial, index) => ( 
-                <Testimonial>
-                  <Quote>{shop.reviews.reviewText}</Quote>
-                  <CustomerInfoAndControlsContainer>
-                    <CustomerInfo>
-                      <CustomerTextInfo>
-                        <CustomerName>{shop.reviews.createdAt}, {shop.reviews.firstName}</CustomerName>
-                      </CustomerTextInfo>
-                    </CustomerInfo>
-                    <Controls>
-                      <ControlButton onClick={sliderRef?.slickPrev}>
-                        <ArrowLeftIcon />
-                      </ControlButton>
-                      <div className="divider" />
-                      <ControlButton onClick={sliderRef?.slickNext}>
-                        <ArrowRightIcon />
-                      </ControlButton>
-                    </Controls>
-                  </CustomerInfoAndControlsContainer>
-                </Testimonial> 
-              ))} 
-           </TestimonialSlider> */}
+    
 
 
         </Content>
       </Container>
+
+      <Container>
+ 
+
+        
+          </Container>
     </>
   );
 
