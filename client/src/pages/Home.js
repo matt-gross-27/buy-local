@@ -30,7 +30,10 @@ function Home() {
       </section>
       {/* TabGrid Component also accepts a tabs prop to customize the tabs and its content directly. Please open the TabGrid component file to see the structure of the tabs props.*/}
       <span id='vendors'></span>
-      <GetAllShops />
+      
+      <section className='mx-3 mx-md-5'>
+        <GetAllShops />
+      </section>
       
       <section className='mx-md-5'>
         <MainFeature2
