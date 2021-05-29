@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'; ///new react hook
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_SHOP_BY_ID } from '../utils/queries';
 import { Image, Transformation } from 'cloudinary-react';
 // import { Logo } from "../components/Logo";
 // import { CREATE_RATING, CREAT_REVIEW } from "../utils/mutations";
 import SingleShopProducts from '../components/SingleShopProduct'
+
+// importing for store review
+import { ReactComponent as ArrowLeftIcon } from "images/arrow-left-3-icon.svg";
+import { ReactComponent as ArrowRightIcon } from "images/arrow-right-3-icon.svg";
+import { CREATE_REVIEW } from "../utils/mutations";
+import AddReview from "../components/AddReview";
+//import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
+// end import for store reviews
 
 
 // adding the cards with slider
@@ -95,6 +103,44 @@ const GetSingleShop = props => {
     // ]
   });
 
+  //matt's code for store reviews
+  const TestimonialSlider = styled(Slider)`
+  ${tw`w-full mt-10 text-center md:text-left`}
+  .slick-track {
+    ${tw`flex`}
+  }
+  .slick-slide {
+    ${tw`h-auto flex justify-center mb-1`}
+  }
+`;
+  
+  const Testimonial = tw.div`outline-none h-full flex! flex-col`;
+  const TestimonialHeading = tw.div`mt-4 text-xl font-bold`;
+  const Quote = tw.blockquote`mt-4 mb-8 sm:mb-10 leading-relaxed font-medium text-gray-700`;
+  const CustomerInfoAndControlsContainer = tw.div`mt-auto flex justify-between items-center flex-col sm:flex-row`;
+  const CustomerInfo = tw.div`flex flex-col sm:flex-row items-center justify-center lg:justify-start`;
+  const CustomerTextInfo = tw.div`text-center md:text-left sm:ml-6 mt-2 sm:mt-0`;
+  const CustomerName = tw.h5`font-bold text-xl`;
+
+  const Controls = styled.div`
+  ${tw`flex mt-8 sm:mt-0`}
+  .divider {
+    ${tw`my-3 border-r`}
+  }
+  `;
+  const ControlButton = styled.button`
+  ${tw`mx-3 p-4 rounded-full transition duration-300 bg-gray-200 hover:bg-gray-300 text-primary-500 hover:text-primary-700 focus:outline-none focus:shadow-outline`}
+  svg {
+    ${tw`w-4 h-4 stroke-3`}
+  }
+  `;
+
+  const [showForm, setShowForm] = useState('')
+  const [createReview, { error }] = useMutation(CREATE_REVIEW);
+
+
+  // end Matt's code for store reviews
+
   const { id: shopId } = useParams();
 
   const { loading, data } = useQuery(GET_SHOP_BY_ID, {
@@ -133,7 +179,10 @@ const GetSingleShop = props => {
                      <StarIcon />'s
                    </CardRating>
 
-                  <CardReview>({shop.reviewCount} 'reviews')</CardReview>
+                  <CardReview>({shop.ratingCount} 'reviews')
+                  
+                  </CardReview>
+
                 </CardRatingContainer>
 
                 <div className="box flex"> {[1, 2, 3, 4, 5].map((index) => {
@@ -151,9 +200,20 @@ const GetSingleShop = props => {
                 </div>
               </div>
             </div>
+
+
+
+
+
             <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
               {shop.description}
             </Description>
+
+            <button onClick={()=>setShowForm(true)} > Write a review </button>
+                {
+                  showForm?<AddReview />:null
+                }
+
           </div>
         </div>
       </div>
@@ -206,7 +266,7 @@ const GetSingleShop = props => {
             </CardSlider>
           </Container>
 
-          {shop.categories.map(category => (
+          {/* {shop.categories.map(category => (
             <SingleShopProducts
               key={category._id}
               category={category}
@@ -217,6 +277,30 @@ const GetSingleShop = props => {
               sliderSettings={sliderSettings}
             />
           ))}
+
+            <TestimonialSlider arrows={false} ref={setSliderRef}>
+              {shop.reviews.map((testimonial, index) => ( 
+                <Testimonial>
+                  <Quote>{shop.reviews.reviewText}</Quote>
+                  <CustomerInfoAndControlsContainer>
+                    <CustomerInfo>
+                      <CustomerTextInfo>
+                        <CustomerName>{shop.reviews.createdAt}, {shop.reviews.firstName}</CustomerName>
+                      </CustomerTextInfo>
+                    </CustomerInfo>
+                    <Controls>
+                      <ControlButton onClick={sliderRef?.slickPrev}>
+                        <ArrowLeftIcon />
+                      </ControlButton>
+                      <div className="divider" />
+                      <ControlButton onClick={sliderRef?.slickNext}>
+                        <ArrowRightIcon />
+                      </ControlButton>
+                    </Controls>
+                  </CustomerInfoAndControlsContainer>
+                </Testimonial> 
+              ))} 
+           </TestimonialSlider> */}
 
 
         </Content>
