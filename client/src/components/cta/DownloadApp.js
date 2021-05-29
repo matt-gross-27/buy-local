@@ -32,7 +32,7 @@ const Link = styled.a`
 const DecoratorBlobContainer = tw.div`absolute inset-0 overflow-hidden rounded-lg`
 const DecoratorBlob1 = tw(SvgDecoratorBlob1)`absolute bottom-0 left-0 w-80 h-80 transform -translate-x-20 translate-y-32 text-gray-800 opacity-50`
 const DecoratorBlob2 = tw(SvgDecoratorBlob1)`absolute top-0 right-0 w-80 h-80 transform  translate-x-20 -translate-y-64 text-gray-800 opacity-50`
-function AppDownload ({
+function AppDownload({
   subheading = "Download App",
   text = "Developers all over the world are happily using Buy Local.",
   link1Text = "App Store",
@@ -48,27 +48,29 @@ function AppDownload ({
     <Container css={pushDownFooter && tw`mb-20 lg:mb-24`}>
       <Content>
         <Row>
-          <TextContainer>
-            {subheading && <Subheading>{subheading}</Subheading>}
-            <Text>{text}</Text>
-            <LinksContainer>
-              <Link href={link1Url}>
-                <img src={link1IconSrc} alt=""/>
-                <span>{link1Text}</span>
-              </Link>
-              <Link href={link2Url}>
-                <img src={link2IconSrc} alt=""/>
-                <span>{link2Text}</span>
-              </Link>
-            </LinksContainer>
-          </TextContainer>
+            <TextContainer>
+          <div className='px-5'>
+              {subheading && <Subheading>{subheading}</Subheading>}
+              <Text>{text}</Text>
+          </div>
+              <LinksContainer className='text-center'>
+                <Link href={link1Url}>
+                  <img src={link1IconSrc} alt="" />
+                  <span>{link1Text}</span>
+                </Link>
+                <Link href={link2Url}>
+                  <img src={link2IconSrc} alt="" />
+                  <span>{link2Text}</span>
+                </Link>
+              </LinksContainer>
+            </TextContainer>
           <div className='iPhoneDiv'>
-            <img className='iPhoneImg' src={imageSrc} alt="iPhone"/>
+            <img className='iPhoneImg' src={imageSrc} alt="iPhone" />
           </div>
         </Row>
         <DecoratorBlobContainer>
-          <DecoratorBlob1/>
-          <DecoratorBlob2/>
+          <DecoratorBlob1 />
+          <DecoratorBlob2 />
         </DecoratorBlobContainer>
       </Content>
     </Container>
