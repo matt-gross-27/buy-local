@@ -12,6 +12,7 @@ import { ReactComponent as ArrowLeftIcon } from "images/arrow-left-3-icon.svg";
 import { ReactComponent as ArrowRightIcon } from "images/arrow-right-3-icon.svg";
 import { CREATE_REVIEW } from "../utils/mutations";
 import AddReview from "../components/AddReview";
+import Auth from "../utils/auth";
 //import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
 // end import for store reviews
 
@@ -135,8 +136,8 @@ const GetSingleShop = props => {
   }
   `;
 
-  const [showForm, setShowForm] = useState('')
-  const [createReview, { error }] = useMutation(CREATE_REVIEW);
+
+
 
 
   // end Matt's code for store reviews
@@ -152,6 +153,86 @@ const GetSingleShop = props => {
   console.log(shop)
 
   const products = shop.products
+
+  //start matt changes for addReview
+
+  const [showForm, setShowForm] = useState(false);
+
+  const reviews = shop.reviews
+
+  
+    
+  const [createReview, { error }] = useMutation(CREATE_REVIEW);
+  const [reviewTextCharCount, setReviewTextCharCount] = useState(0);
+  const [success, setSuccess] = useState(false)
+  // const [success, setSuccess] = useState(false)
+  const [reviewText, setReviewText] = useState('');
+  const [formState, setFormState] = useState({
+      
+      reviewText: ''
+});
+
+  console.log(reviews)
+
+  // const handleChange = event => {
+  //   const { name, value } = event.target;
+
+  //   if (event.target.name === 'reviewText') {
+  //       if (event.target.value.length < 150) {
+  //           setReviewText(event.target.value);
+  //           setReviewTextCharCount(event.target.value.length);
+  //           console.log(reviewText)
+  //       }
+  //   } else {
+
+  //       setFormState({
+  //         ...formState,
+  //         [name]: value
+  //       });
+  //     }
+
+  // }
+
+  //   const handleFormSubmit = async event => {
+  //       event.preventDefault();
+
+  //       try {
+  //           if (Auth.loggedIn()) {
+                
+  //               const { data } = await createReview({
+  //                   variables: { ...formState, shopId }
+  //               });
+
+
+
+  //               if (data) {
+  //                   setSuccess(true);
+  //                   console.log(reviewText)
+  //                   console.log('clicked')
+  //               }
+  //           }
+            
+
+  //       } catch (error) {
+  //           console.log(error)
+  //           console.log('failed submit')
+  //           console.log(reviewText)
+  //       }
+
+  //   };
+
+  // end matt's changes for addReview
+
+  const newCreateReview = async(reviewText) => {
+    try {
+      await createReview({
+        variables: { shopId: shopId, reviewText: reviewText }
+      })
+    } catch (error){
+      console.log(error)
+      console.log(reviewText)
+    }
+  }
 
   if (loading) {
     return <div>Loading single Shop</div>;
@@ -211,7 +292,23 @@ const GetSingleShop = props => {
 
             <button onClick={()=>setShowForm(true)} > Write a review </button>
                 {
-                  showForm?<AddReview />:null
+                  showForm?<form 
+                  >
+                  <textarea
+                      rows="3"
+                      placeholder="Write your review here!"
+                      type="text"
+                      id="reviewText"
+                      name="reviewText"
+                      
+                      >
+  
+                  </textarea>
+                  <br></br>
+                  <button type="submit" onClick={() => {
+                    newCreateReview(reviewText)
+                   } }>Submit Your Review</button>
+                  </form>:<div></div>
                 }
 
           </div>
