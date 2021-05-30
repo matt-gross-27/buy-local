@@ -11,7 +11,7 @@ const ratingSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: timestamp => timestamp.toString()
+      get: timestamp => timestamp.toLocaleString()
     },
 
     user: {

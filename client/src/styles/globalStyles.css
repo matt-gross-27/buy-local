@@ -55,8 +55,10 @@ nav > a > img {
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;
-  height: 150px;
-  width: 200px;
+  min-height: 150px;
+  max-height: 750px;
+  min-width: 200px;
+  max-width: 500px;
 }
 
 .card-text {
@@ -189,10 +191,10 @@ nav  {
   color: white;
 }
 
-.write-review button {
+/* .write-review button {
   background-color: #6415FF;
   color: white;
-}
+} */
 
 .slick-prev {
   position: absolute;
@@ -235,7 +237,7 @@ nav  {
 }
 
 .review-slider .slick-track {
-  height: 250px;
+  margin-bottom: -80px;
 }
 
 .slick-slide .review-slider .review-card > div {

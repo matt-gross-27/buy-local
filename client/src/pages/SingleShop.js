@@ -93,7 +93,8 @@ const GetSingleShop = props => {
 
   // start matt's code for store reviews formatting
   const ReviewDescription = tw.p`text-gray-900 text-base mt-0 sm:mt-4`
-  const ReviewUser = tw.h4`text-purple-700`
+  const ReviewUser = tw.h4`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`
+  const ReviewCreated = tw.p`text-gray-500 text-base`
   // end Matt's code for formatting store reviews
 
   const { id: shopId } = useParams();
@@ -140,7 +141,7 @@ const GetSingleShop = props => {
                      <StarIcon />'s
                    </CardRating>
 
-                  <CardReview>({shop.ratingCount} 'reviews')</CardReview>
+                  <CardReview>({shop.reviewCount} 'reviews')</CardReview>
                 </CardRatingContainer>
                 
 
@@ -223,7 +224,7 @@ const GetSingleShop = props => {
                 reviews.map((review, index) => (
                   <ReviewCard key={index} className="review-card" style={{ width: '300px' }}>
                     {/* <TextInfo>   */}
-                      <ReviewUser>{review.user.firstName}</ReviewUser>
+                      <ReviewUser>{review.user.firstName}</ReviewUser><ReviewCreated>{review.createdAt}</ReviewCreated>
                       <ReviewDescription style={{ color: 'black', marginTop: '0px', marginBottom: '8px' }}>
                         {review.reviewText}
                       </ReviewDescription>
