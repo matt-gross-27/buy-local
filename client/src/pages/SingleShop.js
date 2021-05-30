@@ -8,10 +8,7 @@ import { Image, Transformation } from 'cloudinary-react';
 import SingleShopProducts from '../components/SingleShopProduct'
 
 // start Matt's code for importing for store review
-import { CREATE_REVIEW } from "../utils/mutations";
 import CreateReview from "../components/AddReview";
-// import ReviewList from "../components/ReviewList";
-//import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
 // end import for store reviews
 
 
@@ -24,8 +21,6 @@ import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
 // import { ReactComponent as PriceIcon } from "feather-icons/dist/icons/dollar-sign.svg";
 // import { ReactComponent as LocationIcon } from "feather-icons/dist/icons/map-pin.svg";
 import { ReactComponent as StarIcon } from "feather-icons/dist/icons/star.svg";
-// import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chevron-left.svg";
-// import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
 import RatingIcon from './CreateRating';
 // import Category from 'components/cards/TabCardGrid';
 const CardRatingContainer = tw.div`leading-none absolute inline-flex bg-gray-100 bottom-0 left-0 ml-4 mb-4 rounded-full px-5 py-2 items-end`;
@@ -107,9 +102,8 @@ const GetSingleShop = props => {
   });
 
   // start matt's code for store reviews formatting
-  const ReviewDescription = tw.p`text-gray-700 text-base mt-0 sm:mt-4`
-  const ReviewContainer = tw.div`w-full lg:max-w-full lg:flex`
-
+  const ReviewDescription = tw.p`text-gray-900 text-base mt-0 sm:mt-4`
+  const ReviewUser = tw.h4`text-purple-700`
   // end Matt's code for formatting store reviews
 
   const { id: shopId } = useParams();
@@ -123,42 +117,11 @@ const GetSingleShop = props => {
   const products = shop.products
   const reviews = shop.reviews
 
-  
-
-
   //start matt changes for addReview
-
   const [showForm, setShowForm] = useState(false);
-
-  //const reviews = shop.reviews
-
-  
-    
-  const [createReview, { error }] = useMutation(CREATE_REVIEW);
-  // const [reviewTextCharCount, setReviewTextCharCount] = useState(0);
-  //const [success, setSuccess] = useState(false)
-  // const [success, setSuccess] = useState(false)
-  // const [reviewText, setReviewText] = useState('');
-  // const [formState, setFormState] = useState({
-      
-  //     reviewText: ''
-  //   });
-
   console.log(reviews)
-  
-  // function for addingReview
-  const newCreateReview = async(reviewText) => {
-    try {
-      await createReview({
-        variables: { shopId: shopId, reviewText: reviewText }
-      })
-    } catch (error){
-      console.log(error)
-      console.log(reviewText)
-    }
-  }
-  
-  // end matt's changes for addReview
+  // end matt changes for addReview
+
   if (loading) {
     return <div>Loading single Shop</div>;
   }
@@ -206,10 +169,6 @@ const GetSingleShop = props => {
                 </div>
               </div>
             </div>
-
-
-
-
 
             <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
               {shop.description}
@@ -272,45 +231,21 @@ const GetSingleShop = props => {
             </CardSlider>
           </Container>
 
-          {/* {shop.categories.map(category => (
-            <SingleShopProducts
-              key={category._id}
-              category={category}
-              products={
-                shop.products.filter(product => product.category._id === category._id)
-              }
-              setSliderRef={setSliderRef}
-              sliderSettings={sliderSettings}
-            />
-          ))} */}
-
-    
-
-
-      <CardSlider className="review-slider">
-              
+      <CardSlider className="review-slider">    
               {reviews &&
                 reviews.map((review, index) => (
                   <ReviewCard key={index} className="review-card" style={{ width: '300px' }}>
-                    <TextInfo>
-                      {/* <ReviewDescription>{review.reviewText}</ReviewDescription> */}
-                        {review.user.firstName}
-                      <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
+                    <TextInfo>  
+                      <ReviewUser>{review.user.firstName}</ReviewUser>
+                      <ReviewDescription style={{ color: 'black', marginTop: '0px', marginBottom: '8px' }}>
                         {review.reviewText}
-                      </Description>
+                      </ReviewDescription>
                     </TextInfo>
                   </ReviewCard>
-                ))}
-                
+                ))} 
             </CardSlider>
         </Content>
       </Container>
-
-      <Container>
-
-          <p></p>
-        
-      </Container> 
 
     </>
   );
