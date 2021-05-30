@@ -28,6 +28,7 @@ const typeDefs = gql`
     createdAt: String
     reviewText: String
     user: User
+    
   }
 
   type Product {

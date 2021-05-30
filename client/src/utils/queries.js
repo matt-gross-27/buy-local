@@ -172,6 +172,7 @@ export const GET_SHOP_BY_ID = gql`
                 reviewText
                 user {
                     _id
+                    firstName
                 }
             }
             categoryCount

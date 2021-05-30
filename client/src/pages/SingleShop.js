@@ -5,7 +5,13 @@ import { GET_SHOP_BY_ID } from '../utils/queries';
 import { Image, Transformation } from 'cloudinary-react';
 // import { Logo } from "../components/Logo";
 // import { CREATE_RATING, CREAT_REVIEW } from "../utils/mutations";
-import SingleShopProducts from '../components/SingleShopProducts'
+// import SingleShopProducts from '../components/SingleShopProduct'
+
+// start Matt's code for importing for store review
+import CreateReview from "../components/AddReview";
+// end import for store reviews
+
+
 // adding the cards with slider
 import Slider from "react-slick";
 import tw from "twin.macro";
@@ -39,9 +45,16 @@ const CardSlider = styled(Slider)`
   .slick-slide {
     ${tw`flex justify-center mb-1`}
   }
+
 `;
 const Description = tw.p`text-sm leading-loose mt-0 sm:mt-4`;
-function GetSingleShop() {
+// const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`;
+
+// styling for review box
+const ReviewCard = tw.div`flex-col sm:border max-w-sm sm:rounded-tl-4xl sm:rounded-br-5xl relative focus:outline-none`;
+
+const GetSingleShop = props => {
+
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = React.useState(0);
   const onMouseEnter = (index) => {
@@ -78,6 +91,11 @@ function GetSingleShop() {
   // ]
   // });
 
+  // start matt's code for store reviews formatting
+  const ReviewDescription = tw.p`text-gray-900 text-base mt-0 sm:mt-4`
+  const ReviewUser = tw.h4`text-purple-700`
+  // end Matt's code for formatting store reviews
+
   const { id: shopId } = useParams();
 
   const { loading, data } = useQuery(GET_SHOP_BY_ID, {
@@ -85,6 +103,14 @@ function GetSingleShop() {
   });
 
   const shop = data?.shop || [];
+  console.log(shop)
+  // const products = shop.products
+  const reviews = shop.reviews
+
+  //start matt changes for addReview
+  const [showForm, setShowForm] = useState(false);
+  console.log(reviews)
+  // end matt changes for addReview
 
   if (loading) {
     return <div>Loading single Shop</div>;
@@ -114,29 +140,41 @@ function GetSingleShop() {
                      <StarIcon />'s
                    </CardRating>
 
-              <CardReview>({shop.reviewCount} 'reviews')</CardReview>
-            </CardRatingContainer>
+                  <CardReview>({shop.ratingCount} 'reviews')</CardReview>
+                </CardRatingContainer>
+                
 
-            <div className="box flex"> {[1, 2, 3, 4, 5].map((index) => {
-              return (
-                <RatingIcon
-                  key={index}
-                  index={index}
-                  rating={rating}
-                  hoverRating={hoverRating}
-                  onMouseEnter={onMouseEnter}
-                  onMouseLeave={onMouseLeave}
-                  onSaveRating={onSaveRating} />
-              )
-            })}
+                <div className="box flex"> {[1, 2, 3, 4, 5].map((index) => {
+                  return (
+                    <RatingIcon
+                      key={index}
+                      index={index}
+                      rating={rating}
+                      hoverRating={hoverRating}
+                      onMouseEnter={onMouseEnter}
+                      onMouseLeave={onMouseLeave}
+                      onSaveRating={onSaveRating} />
+                  )
+                })}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
-          {shop.description}
-        </Description>
 
-      </Container>
+            <div>
+            <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
+              {shop.description}
+            </Description>
+            </div>
+            <div style={{ textAlign: "center" }}>
+            <button onClick={()=>setShowForm(true)} style={{ color: "white", background: "#6415FF" }} > Write a review </button>
+                {
+                  showForm?<CreateReview />:null
+                }
+
+            </div>
+
+
+    </Container>
 
       <Container>
         <Content>
@@ -167,7 +205,7 @@ function GetSingleShop() {
             </CardSlider>
           </Container>
 
-          {shop.categories.map(category => (
+          {/* {shop.categories.map(category => (
             <SingleShopProducts
               key={category._id}
               category={category}
@@ -177,11 +215,25 @@ function GetSingleShop() {
             />
           ))}
 
-          <div style={{height: '80px'}}></div>
+          <div style={{height: '80px'}}></div> */}
 
 
+      <CardSlider className="review-slider">    
+              {reviews &&
+                reviews.map((review, index) => (
+                  <ReviewCard key={index} className="review-card" style={{ width: '300px' }}>
+                    {/* <TextInfo>   */}
+                      <ReviewUser>{review.user.firstName}</ReviewUser>
+                      <ReviewDescription style={{ color: 'black', marginTop: '0px', marginBottom: '8px' }}>
+                        {review.reviewText}
+                      </ReviewDescription>
+                    {/* </TextInfo> */}
+                  </ReviewCard>
+                ))} 
+            </CardSlider>
         </Content>
       </Container>
+
     </>
   );
 

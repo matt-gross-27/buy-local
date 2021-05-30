@@ -50,6 +50,15 @@ nav > a > img {
   width: 200px;
 }
 
+.review-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  height: 150px;
+  width: 200px;
+}
+
 .card-text {
     font-size: 12px;
     margin-bottom: 15px;
@@ -144,7 +153,7 @@ nav  {
     display: none;
 }
 
-.slick-track {
+/* .slick-track {
   margin-bottom: 20px;
   height: 420px
 
@@ -155,13 +164,32 @@ nav  {
   height: 420px;
   min-width: 360px;
 }
+  width: 100%;
+  overflow-x: hide;
+  height: 300px;
+} */
 
 .product-slider {
   display: inline;
   margin-right: 40px;
 }
 
+.review-slider {
+  display: inline;
+  margin-right: 40px;
+}
+
+.review-slider button {
+  background-color: #6415FF;
+  color: white;
+}
+
 .product-slider button {
+  background-color: #6415FF;
+  color: white;
+}
+
+.write-review button {
   background-color: #6415FF;
   color: white;
 }
@@ -180,10 +208,39 @@ nav  {
   width: 100px;
 }
 
+.review-text-area{
+  width: 500px;
+}
+
+.slick-slide {
+  margin: 50px 0;
+  height: 450px;
+  min-width: 360px;
+}
+
 .slick-slide > div {
   min-height: 400px;
   max-height: 400px;
   height: 400px;
+  width: 303px;
+  min-width: 303px;
+  max-width: 303px;
+}
+
+.slick-slide .review-slider {
+  margin: 10px 0;
+  height: 150px;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.review-slider .slick-track {
+  height: 250px;
+}
+
+.slick-slide .review-slider .review-card > div {
+  min-height: 120px;
+  max-height: 220px;
   width: 303px;
   min-width: 303px;
   max-width: 303px;
