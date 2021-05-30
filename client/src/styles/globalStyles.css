@@ -161,7 +161,22 @@ nav {
   margin-right: 40px;
 }
 
+.review-slider {
+  display: inline;
+  margin-right: 40px;
+}
+
+.review-slider button {
+  background-color: #6415FF;
+  color: white;
+}
+
 .product-slider button {
+  background-color: #6415FF;
+  color: white;
+}
+
+.write-review button {
   background-color: #6415FF;
   color: white;
 }

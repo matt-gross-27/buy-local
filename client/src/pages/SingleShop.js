@@ -7,11 +7,10 @@ import { Image, Transformation } from 'cloudinary-react';
 // import { CREATE_RATING, CREAT_REVIEW } from "../utils/mutations";
 import SingleShopProducts from '../components/SingleShopProduct'
 
-// importing for store review
-import { ReactComponent as ArrowLeftIcon } from "images/arrow-left-3-icon.svg";
-import { ReactComponent as ArrowRightIcon } from "images/arrow-right-3-icon.svg";
+// start Matt's code for importing for store review
 import { CREATE_REVIEW } from "../utils/mutations";
 import CreateReview from "../components/AddReview";
+// import ReviewList from "../components/ReviewList";
 //import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
 // end import for store reviews
 
@@ -65,6 +64,9 @@ const Title = tw.h5`text-2xl font-bold`;
 const Description = tw.p`text-sm leading-loose mt-0 sm:mt-4`;
 const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`;
 
+// styling for review box
+const ReviewCard = tw.div`flex-col sm:border max-w-sm sm:rounded-tl-4xl sm:rounded-br-5xl relative focus:outline-none`;
+
 const GetSingleShop = props => {
 
   const [rating, setRating] = useState(0);
@@ -103,46 +105,11 @@ const GetSingleShop = props => {
     // ]
   });
 
-  //matt's code for store reviews
-  const [reviewSliderRef, setReviewSliderRef] = useState(null)
-  
-  const TestimonialSlider = styled(Slider)`
-  ${tw`w-full mt-10 text-center md:text-left`}
-  .slick-track {
-    ${tw`flex`}
-  }
-  .slick-slide {
-    ${tw`h-auto flex justify-center mb-1`}
-  }
-`;
-  
-  const Testimonial = tw.div`outline-none h-full flex! flex-col`;
-  const TestimonialHeading = tw.div`mt-4 text-xl font-bold`;
-  const Quote = tw.blockquote`mt-4 mb-8 sm:mb-10 leading-relaxed font-medium text-gray-700`;
-  const CustomerInfoAndControlsContainer = tw.div`mt-auto flex justify-between items-center flex-col sm:flex-row`;
-  const CustomerInfo = tw.div`flex flex-col sm:flex-row items-center justify-center lg:justify-start`;
-  const CustomerTextInfo = tw.div`text-center md:text-left sm:ml-6 mt-2 sm:mt-0`;
-  const CustomerName = tw.h5`font-bold text-xl`;
+  // start matt's code for store reviews formatting
+  const ReviewDescription = tw.p`text-gray-700 text-base mt-0 sm:mt-4`
+  const ReviewContainer = tw.div`w-full lg:max-w-full lg:flex`
 
-  const Controls = styled.div`
-  ${tw`flex mt-8 sm:mt-0`}
-  .divider {
-    ${tw`my-3 border-r`}
-  }
-  `;
-  const ControlButton = styled.button`
-  ${tw`mx-3 p-4 rounded-full transition duration-300 bg-gray-200 hover:bg-gray-300 text-primary-500 hover:text-primary-700 focus:outline-none focus:shadow-outline`}
-  svg {
-    ${tw`w-4 h-4 stroke-3`}
-  }
-  `;
-
-  
-
-
-
-
-  // end Matt's code for store reviews
+  // end Matt's code for formatting store reviews
 
   const { id: shopId } = useParams();
 
@@ -151,12 +118,12 @@ const GetSingleShop = props => {
   });
 
   const shop = data?.shop || [];
-
   console.log(shop)
-
   const products = shop.products
-
   const reviews = shop.reviews
+
+  
+
 
   //start matt changes for addReview
 
@@ -167,67 +134,18 @@ const GetSingleShop = props => {
   
     
   const [createReview, { error }] = useMutation(CREATE_REVIEW);
-  const [reviewTextCharCount, setReviewTextCharCount] = useState(0);
-  const [success, setSuccess] = useState(false)
+  // const [reviewTextCharCount, setReviewTextCharCount] = useState(0);
+  //const [success, setSuccess] = useState(false)
   // const [success, setSuccess] = useState(false)
-  const [reviewText, setReviewText] = useState('');
-  const [formState, setFormState] = useState({
+  // const [reviewText, setReviewText] = useState('');
+  // const [formState, setFormState] = useState({
       
-      reviewText: ''
-});
+  //     reviewText: ''
+  //   });
 
   console.log(reviews)
-
-  // const handleChange = event => {
-  //   const { name, value } = event.target;
-
-  //   if (event.target.name === 'reviewText') {
-  //       if (event.target.value.length < 150) {
-  //           setReviewText(event.target.value);
-  //           setReviewTextCharCount(event.target.value.length);
-  //           console.log(reviewText)
-  //       }
-  //   } else {
-
-  //       setFormState({
-  //         ...formState,
-  //         [name]: value
-  //       });
-  //     }
-
-  // }
-
-  //   const handleFormSubmit = async event => {
-  //       event.preventDefault();
-
-  //       try {
-  //           if (Auth.loggedIn()) {
-                
-  //               const { data } = await createReview({
-  //                   variables: { ...formState, shopId }
-  //               });
-
-
-
-  //               if (data) {
-  //                   setSuccess(true);
-  //                   console.log(reviewText)
-  //                   console.log('clicked')
-  //               }
-  //           }
-            
-
-  //       } catch (error) {
-  //           console.log(error)
-  //           console.log('failed submit')
-  //           console.log(reviewText)
-  //       }
-
-  //   };
-
   
-  // end matt's changes for addReview
-
+  // function for addingReview
   const newCreateReview = async(reviewText) => {
     try {
       await createReview({
@@ -238,7 +156,8 @@ const GetSingleShop = props => {
       console.log(reviewText)
     }
   }
-
+  
+  // end matt's changes for addReview
   if (loading) {
     return <div>Loading single Shop</div>;
   }
@@ -295,7 +214,7 @@ const GetSingleShop = props => {
               {shop.description}
             </Description>
 
-            <button onClick={()=>setShowForm(true)} > Write a review </button>
+            <button onClick={()=>setShowForm(true)} style={{ color: "white" , background: "#6415FF" }} > Write a review </button>
                 {
                   showForm?<CreateReview />:<div></div>
                 }
@@ -367,14 +286,31 @@ const GetSingleShop = props => {
     
 
 
+      <CardSlider className="review-slider">
+              
+              {reviews &&
+                reviews.map((review, index) => (
+                  <ReviewCard key={index} style={{ width: '300px' }}>
+                    <TextInfo>
+                      {/* <ReviewDescription>{review.reviewText}</ReviewDescription> */}
+                      <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
+                        {review.reviewText}
+                        {/* <p>{review.user.firstName}</p> */}
+                      </Description>
+                    </TextInfo>
+                  </ReviewCard>
+                ))}
+                
+            </CardSlider>
         </Content>
       </Container>
 
       <Container>
- 
 
+          <p></p>
         
-          </Container>
+      </Container> 
+
     </>
   );
 

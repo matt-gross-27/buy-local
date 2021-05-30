@@ -47,7 +47,8 @@ console.log(reviewText);
           className=""
           onChange={handleChange}
         ></textarea>
-        <button className="" type="submit">
+        <br></br>
+        <button className="" type="submit" style={{ color: "white" , background: "#6415FF" }}>
           Submit
         </button>
       </form>
