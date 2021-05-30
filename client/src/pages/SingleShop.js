@@ -51,6 +51,7 @@ const CardSlider = styled(Slider)`
   .slick-slide {
     ${tw`flex justify-center mb-1`}
   }
+
 `;
 const Card = tw.div`h-full flex! flex-col sm:border max-w-sm sm:rounded-tl-4xl sm:rounded-br-5xl relative focus:outline-none`;
 const CardImage = styled.div(props => [
@@ -290,12 +291,12 @@ const GetSingleShop = props => {
               
               {reviews &&
                 reviews.map((review, index) => (
-                  <ReviewCard key={index} style={{ width: '300px' }}>
+                  <ReviewCard key={index} className="review-card" style={{ width: '300px' }}>
                     <TextInfo>
                       {/* <ReviewDescription>{review.reviewText}</ReviewDescription> */}
+                        {review.user.firstName}
                       <Description style={{ color: '#888888', marginTop: '0px', marginBottom: '8px' }}>
                         {review.reviewText}
-                        {/* <p>{review.user.firstName}</p> */}
                       </Description>
                     </TextInfo>
                   </ReviewCard>

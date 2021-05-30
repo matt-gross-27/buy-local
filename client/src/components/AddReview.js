@@ -35,7 +35,7 @@ console.log(reviewText);
     <div>
       <p className={`${characterCount === 280 || error ? 'text-error' : ''}`}>
         Character Count: {characterCount}/280
-        {error && <span className="">Something went wrong...</span>}
+        {error && <span style={{ color: "red"}}><br /> Something went wrong...</span>}
       </p>
       <form
         className=""
@@ -44,7 +44,7 @@ console.log(reviewText);
         <textarea
           placeholder="Here's a new review..."
           value={reviewText}
-          className=""
+          className="review-text-area"          
           onChange={handleChange}
         ></textarea>
         <br></br>
@@ -57,4 +57,3 @@ console.log(reviewText);
 };
 export default CreateReview;
 
-{/* <TestimonialSlider arrows={false} ref={setSliderRef}> */}

@@ -43,6 +43,15 @@
   width: 200px;
 }
 
+.review-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  height: 150px;
+  width: 200px;
+}
+
 .card-text {
     font-size: 12px;
     margin-bottom: 15px;
@@ -150,11 +159,12 @@ nav {
     display: none;
 }
 
-.slick-track {
+/* .slick-track {
   margin-bottom: 20px;
   width: 100%;
   overflow-x: hide;
-}
+  height: 300px;
+} */
 
 .product-slider {
   display: inline;
@@ -195,6 +205,10 @@ nav {
   width: 100px;
 }
 
+.review-text-area{
+  width: 500px;
+}
+
 .slick-slide {
   margin: 50px 0;
   height: 450px;
@@ -204,6 +218,25 @@ nav {
 .slick-slide > div {
   min-height: 420px;
   max-height: 420px;
+  width: 303px;
+  min-width: 303px;
+  max-width: 303px;
+}
+
+.slick-slide .review-slider {
+  margin: 10px 0;
+  height: 150px;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.review-slider .slick-track {
+  height: 250px;
+}
+
+.slick-slide .review-slider .review-card > div {
+  min-height: 120px;
+  max-height: 220px;
   width: 303px;
   min-width: 303px;
   max-width: 303px;
