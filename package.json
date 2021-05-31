@@ -25,6 +25,8 @@
     "concurrently": "^6.1.0"
   },
   "dependencies": {
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "react-bootstrap": "^1.6.0",
+    "react-social-icons": "^5.4.0"
   }
 }

@@ -1,0 +1,448 @@
+/* Below animations are fore modal created using React-Modal */
+.ReactModal__Overlay {
+    transition: transform 300ms ease-in-out;
+    transition-delay: 100ms;
+    transform: scale(0);
+    /* transform: translateY(-150%); */
+}
+
+.ReactModal__Overlay--after-open{
+    transform: scale(1);
+    /* transform: translateY(0%); */
+}
+
+.ReactModal__Overlay--before-close{
+    transform: scale(0);
+    /* transform: translateY(-150%); */
+}
+
+.container-all-shops {
+    margin: 10px;
+}
+
+.all-shops-cards {
+    display: inline-flex;
+}
+
+#root {
+  overflow: hidden;
+}
+
+nav > a > img {
+  border-radius: 100%;
+  box-shadow: 3px 3px 3px silver;
+  height: 100px;
+  width: 100px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  height: 300px;
+  width: 200px;
+}
+
+.review-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  min-height: 150px;
+  max-height: 750px;
+  min-width: 200px;
+  max-width: 500px;
+}
+
+.card-text {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.single-shop-body {
+    margin-left: 100px;
+    font-weight: bold;
+}
+
+.single-shop-instagram {
+    margin-left: 100px;
+    font-weight: bold;
+    
+}
+
+.heroDiv {
+  width: 100%;
+  height: 0;
+  padding-top: 61.72%;
+  box-shadow:3px 3px 3px silver;
+  margin-bottom: 16px;
+  align-self: center;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.heroImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+nav  {
+  z-index: 55555
+}
+
+.right-nav-x {
+  right: 5em;
+  color: red;
+}
+
+.shopHeader {
+  position: sticky;
+  width: 100%;
+  top: 0;
+  background: white;
+  padding-top: 16px;
+}
+
+.shopNav {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 7px 40px;
+  color: #6415ff;
+}
+
+.shopNav:hover, .shopHeader h2:hover {
+  text-shadow: 1px 1px 1px silver;
+  cursor: pointer;
+}
+
+.pl-36 {
+  padding-left: 36px;
+}
+
+.wrap-text {
+  word-wrap: break-word;
+}
+
+.d-flex-col {
+  margin-top: 42px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productLabel {
+  padding: 3px;
+  margin: 3px;;
+  font-weight: bold;
+}
+
+.errStyle {
+  color: red
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* .slick-track {
+  margin-bottom: 20px;
+  height: 420px
+
+}
+
+.slick-slide {
+  margin: 22px 0;
+  height: 420px;
+  min-width: 360px;
+}
+  width: 100%;
+  overflow-x: hide;
+  height: 300px;
+} */
+
+.product-slider {
+  display: inline;
+  margin-right: 40px;
+}
+
+.review-slider {
+  display: inline;
+  margin-right: 40px;
+}
+
+.review-slider button {
+  background-color: #6415FF;
+  color: white;
+}
+
+.product-slider button {
+  background-color: #6415FF;
+  color: white;
+}
+
+/* .write-review button {
+  background-color: #6415FF;
+  color: white;
+} */
+
+.slick-prev {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 110px);
+  width: 100px;
+}
+
+.slick-next {
+  position: absolute;
+  bottom: 0;
+  right: calc(50% - 110px);
+  width: 100px;
+}
+
+.review-text-area{
+  width: 500px;
+}
+
+.slick-slide {
+  margin: 50px 0;
+  height: 450px;
+  min-width: 360px;
+}
+
+.slick-slide > div {
+  min-height: 400px;
+  max-height: 400px;
+  height: 400px;
+  width: 303px;
+  min-width: 303px;
+  max-width: 303px;
+}
+
+.slick-slide .review-slider {
+  margin: 10px 0;
+  height: 150px;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.review-slider .slick-track {
+  margin-bottom: -80px;
+}
+
+.slick-slide .review-slider .review-card > div {
+  min-height: 120px;
+  max-height: 220px;
+  width: 303px;
+  min-width: 303px;
+  max-width: 303px;
+}
+
+@media screen and (max-width: 400px) {
+  .slick-slide {
+    min-width: unset;
+  }
+  
+  .slick-slide > div {
+    min-width: unset;
+    max-width: unset;
+    width: 93%;
+  }
+}
+
+.slick-slide > div > div {
+  box-shadow: 3px 3px 3px silver;
+  border: 1px solid silver;
+}
+
+.slick-slide > div > div > div:first-of-type {
+  height: 185px;
+  min-height: 185px;
+  max-height: 185px;
+  border-bottom: 1px solid silver;
+}
+
+.slick-slide > div > div > div:nth-of-type(2) {
+  overflow-y: scroll;
+}
+
+.cardStock{
+  bottom: 62px;
+  position: absolute;
+  font-size: small;
+}
+
+@media screen and (max-width: 639px) {
+  .cardStock{
+    bottom: 52px;
+  }
+
+  .slick-slide > div > div > div:nth-of-type(2) {
+    overflow-y: scroll;
+  }
+}
+
+.sectionHeading {
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+  border-bottom: 1px solid grey;
+  margin-top: 60px
+}
+
+.add-rating-button {
+  margin-bottom: 10px;
+}
+
+.review-header {
+  margin-top: 60px;
+}
+
+.w-6 {
+  width: 1.5em;
+}
+.h-6 {
+  height: 1.5em;
+}
+.flex {
+  display: flex;
+}
+.cursor-pointer {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.box {
+  margin-bottom: 10px;
+}
+
+.productImg {
+  object-fit: cover;
+  width: 100%;
+}
+
+.editBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 38px;
+  width: 34px;
+  background-color: white;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 1;
+  padding: 1px;
+  border-radius: 6px;
+}
+
+.container {
+  overflow-x: hidden;
+}
+
+.UploadProductEditBtn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.product-input {
+  padding: 3px;
+  margin: 3px 0;
+  border: 1px solid silver;
+  border-radius: 5px;
+  /* flex-grow: 1; */
+}
+
+.productImgDiv {
+  text-align: center;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.success {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.success-card h1 {
+  color: #88B04B;
+  font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.success-card p {
+  color: #404F5E;
+  font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+  font-size:20px;
+  margin: 0;
+}
+.checkmark {
+  color: #9ABC66;
+  font-size: 100px;
+  line-height: 200px;
+  margin-left:-15px;
+}
+.success-card {
+  background: white;
+  padding: 60px;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px #C8D0D8;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.checkmarkDiv {
+  border-radius:200px;
+  height:200px;
+  width:200px;
+  background: #F8FAF5;
+  margin:0 auto;
+}
+
+@media screen and (max-width: 700px) {
+  .shopHeader {
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .right-nav-x {
+    right: 24px;
+  }
+}
+
+.iPhoneDiv {
+  width: 100%;
+  height: 0;
+  padding-top: 150%;
+  position: relative;
+}
+
+.iPhoneImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 1023px) {
+  .iPhoneDiv {
+    padding-top: 66.67%;
+  }
+}

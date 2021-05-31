@@ -1,0 +1,124 @@
+.cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    min-width: 33%;
+    max-width: 600px;
+    max-height: 60%;
+    background-color: #D6BCFA;
+    overflow: auto;
+    padding: .5rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
+    border-bottom-left-radius: .5rem;
+    z-index: 99999
+}
+
+.cart h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--dark);
+    padding-bottom: .5rem;
+    margin: 1rem 0;
+}
+
+.cart .close {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    cursor: pointer;
+    color: var(--tertiary);
+    z-index: 10000
+}
+
+.cart .close:hover {
+    text-decoration: underline;
+}
+
+.cart-closed {
+    position: fixed;
+    top: 2%;
+    right: 1%;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: .25rem;
+    width: 60px;
+    height: 60px;
+    background-color: #D6BCFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    box-shadow: 1px 1px 4px black;
+}
+
+.cart-closed:hover {
+    transform: rotate(8deg);
+}
+
+.cart img {
+  width: 100%;
+  margin-bottom: .5em;
+}
+
+.cart-item-details {
+  width: 100%;
+}
+
+.cart input {
+    width: 50px;
+    padding: 0;
+    margin: 0 .5rem 1rem 0;
+}
+
+.checkout {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: lightpink;
+  border-radius: 5px;
+}
+
+.cart input {
+  width: 50px;
+  padding: 0;
+  margin: 0 1em;
+  border: none;
+  position: relative;
+}
+
+.item-name {
+  position: relative;
+  top: 10px;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.trash {
+  cursor: pointer;
+}
+
+.cart-item {
+  position: relative;
+  top: -10px;
+}
+
+@media screen and (max-width: 768px) {
+    .cart {
+      top: unset;
+      max-height: auto;
+      box-shadow: none;
+      max-height: unset;
+      bottom: 20px;
+      left: 20px;
+      width: calc(100% - 40px);
+      border-radius: 15px;
+      height: 75vh;
+    }
+
+    .cart-closed {
+      bottom: 14px;
+      left: calc(50% - 30px);
+      top: unset;
+      right: unset;
+    }
+}
