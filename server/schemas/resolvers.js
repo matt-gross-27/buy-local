@@ -52,11 +52,13 @@ const resolvers = {
           .populate({ path: 'owner' })
           .populate({ path: 'categories' })
           .populate({ path: 'products', populate: { path: 'category' } })
+          .populate({ path: 'reviews', populate: { path: 'user' } })
       } else {
         shop = await Shop.findOne({ owner: context.user._id })
         .populate({ path: 'owner' })
         .populate({ path: 'categories' })
         .populate({ path: 'products', populate: { path: 'category' } })
+        .populate({ path: 'reviews', populate: { path: 'user' } })
       }
 
       return shop;
