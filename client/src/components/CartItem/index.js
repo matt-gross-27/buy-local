@@ -28,9 +28,9 @@ function CartItem({ item }) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: item._id,
-        purchaseQuantity: Math.abs(parseInt(value))
+        purchaseQuantity: Math.abs(Math.min(parseInt(value), item.stock))
       });
-      idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
+      idbPromise('cart', 'put', { ...item, purchaseQuantity: Math.abs(Math.min(parseInt(value), item.stock)) });
     }
   };
 

@@ -104,13 +104,11 @@ const GetSingleShop = props => {
   });
 
   const shop = data?.shop || [];
-  console.log(shop)
   // const products = shop.products
   const reviews = shop.reviews
 
   //start matt changes for addReview
   const [showForm, setShowForm] = useState(false);
-  console.log(reviews)
   // end matt changes for addReview
 
   if (loading) {

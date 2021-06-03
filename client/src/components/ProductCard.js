@@ -29,22 +29,30 @@ function ProductCard({ item }) {
     const itemInCart = cart.find((cartItem) => cartItem._id === item._id);
 
     if (itemInCart) {
+      let q = parseInt(itemInCart.purchaseQuantity) < parseInt(item.stock) ? 1 : 0
+
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: item._id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + q
       });
       idbPromise('cart', 'put', {
         ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + q
       })
+
     } else {
+      // sold out
+      if(item.stock === 0) {
+        return
+      }
+      // not sold out
       dispatch({
         type: ADD_TO_CART,
         product: { ...item, purchaseQuantity: 1 }
       });
       idbPromise('cart', 'put', {
-        ...item, 
+        ...item,
         purchaseQuantity: 1
       });
     }
@@ -71,7 +79,9 @@ function ProductCard({ item }) {
         <em className='cardStock'>{item.stock} item(s) left</em>
       </TextInfo>
 
-      <PrimaryButton onClick={addToCart}>{item.stock === 0 ? 'Sold Out' : 'Add to Cart'}</PrimaryButton>
+      <PrimaryButton onClick={addToCart}>
+        {item.stock === 0 ? 'Sold Out' : 'Add to Cart'}
+      </PrimaryButton>
     </Card>
   )
 }
