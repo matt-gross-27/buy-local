@@ -24,7 +24,9 @@ function Cart() {
     if (data) {
       stripePromise.then(res => {
         res.redirectToCheckout({ sessionId: data.checkout.session })
-      })
+      });
+
+      console.log('checkout', data)
     }
   }, [data]);
 
@@ -80,8 +82,6 @@ function Cart() {
     });
   }
 
-
-
   if (!state.cartOpen) {
     return (
       <div className="cart-closed" onClick={toggleCart}>
@@ -113,7 +113,7 @@ function Cart() {
                 Checkout
               </button>
             ) : (
-              <button disabled className="checkout" onClick={submitCheckout}>
+              <button>
                 <Link to='/login'>Login to Checkout</Link>
               </button>
             )
