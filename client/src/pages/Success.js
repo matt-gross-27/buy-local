@@ -31,8 +31,6 @@ function Success() {
         data.createOrder.purchases.forEach(({ product }) => {
           idbPromise('cart', 'delete', product);
         });
-
-        console.log(data);
       }
     }
 
