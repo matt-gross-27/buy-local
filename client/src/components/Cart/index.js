@@ -116,7 +116,7 @@ function Cart() {
                 Checkout
               </button>
             ) : (
-              <button>
+              <button className="checkout">
                 <Link to='/login'>Login to Checkout</Link>
               </button>
             )
