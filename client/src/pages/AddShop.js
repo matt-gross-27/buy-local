@@ -70,6 +70,7 @@ function AddShop() {
 
   const [validInstagram, SetValidInstagram] = useState(true)
   const validateInstagram = (event) => {
+    // eslint-disable-next-line 
     const regex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
     if (!regex.test(event.target.value) && event.target.value.length !== 0) {
       SetValidInstagram(false);

@@ -224,7 +224,7 @@ const GetSingleShop = props => {
                 reviews.map((review, index) => (
                   <ReviewCard key={index} className="review-card" style={{ width: '300px' }}>
                     {/* <TextInfo>   */}
-                      <ReviewUser>{review.user.firstName}</ReviewUser><ReviewCreated>{review.createdAt}</ReviewCreated>
+                      <ReviewCreated>{review.createdAt}</ReviewCreated>
                       <ReviewDescription style={{ color: 'black', marginTop: '0px', marginBottom: '8px' }}>
                         {review.reviewText}
                       </ReviewDescription>
