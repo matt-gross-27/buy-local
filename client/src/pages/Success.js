@@ -2,47 +2,56 @@ import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_ORDER } from '../utils/mutations';
 import { idbPromise } from '../utils/helpers';
+import { useParams } from 'react-router-dom';
 
 function Success() {
 
   const [createOrder] = useMutation(CREATE_ORDER);
+  const { shop } = useParams()
 
   useEffect(() => {
-  async function saveOrder() {
+    async function saveOrder() {
 
       const cart = await idbPromise('cart', 'get');
-      const products = cart.map(item => item._id);
+      const orderInput = {
+        shop,
+        purchases: []
+      }
 
-      if (products.length) {
-          const { data } = await createOrder({ variables: { products } });
-          const productData = data.createOrder.products;
-        
-          productData.forEach((item) => {
-            idbPromise('cart', 'delete', item);
-          });
-        }
-  }
+      cart.forEach(item => {
+        orderInput.purchases.push({
+          purchaseQuantity: item.purchaseQuantity,
+          product: item._id,
+        });
+      });
 
-  // setTimeout(() => {
-  //   window.location.assign("/")
-  // }, 3000);
+      if (orderInput.purchases.length) {
+        const { data } = await createOrder({ variables: { orderInput } });
 
-  saveOrder();
+        data.createOrder.purchases.forEach(({ product }) => {
+          idbPromise('cart', 'delete', product);
+        });
+      }
+    }
 
+    setTimeout(() => {
+      window.location.assign("/")
+    }, 3000);
 
-  }, [createOrder]);
+    saveOrder();
+  }, [createOrder, shop]);
 
-    return (
-<div className="success">
-    <div className="success-card">
-        <div className= "checkmarkDiv">
-        <i className="checkmark">✓</i>
+  return (
+    <div className="success">
+      <div className="success-card">
+        <div className="checkmarkDiv">
+          <i className="checkmark">✓</i>
+        </div>
+        <h1>Success</h1>
+        <p>We received your purchase request.<br /> We'll be in touch shortly!</p>
       </div>
-        <h1>Success</h1> 
-        <p>We received your purchase request.<br/> We'll be in touch shortly!</p>
-      </div>
-</div>
-    );
-  };
+    </div>
+  );
+};
 
 export default Success;

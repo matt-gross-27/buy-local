@@ -52,11 +52,13 @@ const resolvers = {
           .populate({ path: 'owner' })
           .populate({ path: 'categories' })
           .populate({ path: 'products', populate: { path: 'category' } })
+          .populate({ path: 'reviews', populate: { path: 'user' } })
       } else {
         shop = await Shop.findOne({ owner: context.user._id })
         .populate({ path: 'owner' })
         .populate({ path: 'categories' })
         .populate({ path: 'products', populate: { path: 'category' } })
+        .populate({ path: 'reviews', populate: { path: 'user' } })
       }
 
       return shop;
@@ -65,27 +67,7 @@ const resolvers = {
     checkout: async (parent, { orderInput }, context) => {
       //const order = new Order({ products: args.products });
       const url = new URL(context.headers.referer).origin;
-      const order = await Order.create({...orderInput, customer: context.user._id});
-      await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $push: { orderHistory: order._id } },
-        { new: true, runValidators: true }
-      );
-
-      await Shop.findOneAndUpdate(
-        { _id: orderInput.shop },
-        { $push: { sales: order._id } },
-        { new: true, runValidators: true }
-        ); 
-        
-        await orderInput.purchases.forEach(({ purchaseQuantity, product }) => {
-          Product.findOneAndUpdate(
-            { _id: product },
-            { $inc: { stock: purchaseQuantity * -1 } },
-            { new: true, runValidators: true },
-            );
-      });
-      
+      const order = await new Order({...orderInput, customer: context.user._id});
       const { purchases } = await order.populate('purchases.product').execPopulate();
     
       const line_items = [];
@@ -116,8 +98,8 @@ const resolvers = {
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`
+        success_url: `${url}/success/${order.shop}`,
+        cancel_url: `${url}/shop/${order.shop}`
       });
       
       return { session: session.id };
@@ -349,16 +331,16 @@ const resolvers = {
         );
 
         await Shop.findOneAndUpdate(
-          { _id: orderInput.shop },
+          { _id: order.shop },
           { $push: { sales: order._id } },
           { new: true, runValidators: true }
         ); 
 
-        await orderInput.purchases.forEach(({ purchaseQuantity, product }) => {
-          Product.findOneAndUpdate(
+        await order.purchases.forEach( async ({ purchaseQuantity, product }) => {
+          await Product.findOneAndUpdate(
             { _id: product },
             { $inc: { stock: purchaseQuantity * -1 } },
-            { new: true, runValidators: true },
+            { new: true, runValidators: true }
           );
         });
 

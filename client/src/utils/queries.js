@@ -308,7 +308,7 @@ export const QUERY_ALL_PRODUCTS = gql`
 
 export const QUERY_CHECKOUT = gql`
   query getCheckout($orderInput: orderInput!) {
-    checkout(orderInput:$orderInput) {
+    checkout(orderInput: $orderInput) {
       session
     }
   }

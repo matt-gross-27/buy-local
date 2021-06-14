@@ -73,7 +73,7 @@ function App() {
           <Route exact path="/contact-us" component={ContactUs} />
           <Route exact path="/shop/:id?" component={GetSingleShop} />
           <Route exact path="/my-shop/" component={MyShop} />
-          <Route exact path="/success" component={Success} />
+          <Route exact path="/success/:shop" component={Success} />
           <Route exact path="/form-success" component={FormSuccess} />
           <Route exact path="/our-team" component={Team} />
 
